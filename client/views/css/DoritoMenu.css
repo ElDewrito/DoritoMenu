@@ -1,11 +1,12 @@
 /* CSS declarations go here */
 @import url(http://fonts.googleapis.com/css?family=Ropa+Sans);
 
-
-html,
+html { background:black; height: 100%;}
 body {
-	background: black url(../img/background.png) no-repeat center center;
 	height: 100%;
+  	background-size: contain;
+  	opacity: 0;
+  	background: url(../img/background.png) no-repeat center center; 
 }
 
 #wrap {
@@ -22,8 +23,6 @@ body {
 .container .text-muted {
 	margin: 20px 0;
 }
-
-
 
 .menu-panel {
 	position: absolute;
@@ -94,3 +93,10 @@ body {
 	.credits .right-col {
 		text-align: right;
 	}
+
+
+
+.load {
+	opacity: 1;
+  	transition: all 1.0s;
+}

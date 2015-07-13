@@ -1,3 +1,0 @@
-Put static files here. Feel free to create new folders like "images,videos,etc"
-
-Don't put javascript, css, or html here!
