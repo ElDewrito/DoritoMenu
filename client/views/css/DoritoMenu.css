@@ -1,21 +1,96 @@
 /* CSS declarations go here */
+@import url(http://fonts.googleapis.com/css?family=Ropa+Sans);
+
 
 html,
 body {
-    height: 100%;
+	background: black url(../img/background.png) no-repeat center center;
+	height: 100%;
 }
 
 #wrap {
-    min-height: 100%;
-    height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+	min-height: 100%;
+	height: auto;
+	margin: 0 auto -60px;
+	padding: 0 0 60px;
 }
 
 #wrap > .container {
-    padding: 60px 15px 0;
+	padding: 60px 15px 0;
 }
 
 .container .text-muted {
-    margin: 20px 0;
+	margin: 20px 0;
 }
+
+
+
+.menu-panel {
+	position: absolute;
+	left: 200px;
+	bottom: 200px;
+	color: white;
+	font-family: 'Ropa Sans', sans-serif;
+	font-size: 27px;
+	text-transform: uppercase;
+	font-weight: bold;
+	list-style: none;
+}
+
+.menu-panel .menu {
+	list-style: none;
+	padding-left: 0;
+}
+
+.menu-panel .menu li {
+	padding-left: 10px;
+	padding: 9px 45px 9px 19px;
+	line-height: 25px;
+	border-left: 5px solid transparent;
+	transition: padding 0.3s, background 0.1s;
+}
+
+.menu-panel .menu li.active,
+.menu-panel .menu li:hover,
+.menu-panel .menu li:active {
+	border-left: 5px solid rgba(255,255,255,0.2);
+	cursor: pointer;
+	background: rgba(255,255,255,0.08);
+	padding-left: 40px;
+	padding-right: 13px;
+	transition: padding 0.3s, background 0.1s;
+}
+
+.overlay {
+  position: absolute;
+  width: 40vw;
+  height: 70vh;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  top: 15vh;
+  left: 30vw;
+  padding: 20px;
+  border-radius: 6px;
+  border: 4px solid black;
+}
+
+.heading {
+	color: white;
+	font-size: 50px;
+	text-transform: uppercase;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 10px;
+	font-family: 'Ropa Sans', sans-serif;
+}
+
+.credits {
+	color: white;
+	font-size: 25px;
+	font-family: 'Ropa Sans', sans-serif;
+	padding: 0 20px;
+}
+
+	.credits .right-col {
+		text-align: right;
+	}

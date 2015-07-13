@@ -9,25 +9,7 @@
 </body>
 <template name="layout">
     {{>Header}}
-    <div id="wrap">
-        <div class="container">
-            {{>yield}}
-        </div>
-    </div>
-</template>
-<template name="loading">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="main">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Loading..</h3>
-                    </div>
-                    <div class="panel-body">
-                        Please Wait
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        {{>yield}}
     </div>
 </template>
