@@ -1,14 +1,33 @@
 <head>
-  <title>DoritoMenu</title>
+    <title>DoritoMenu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Official Eldorito Menu">
+    <meta name="author" content="https://github.com/ElDewrito/DoritoMenu/graphs/contributors">
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
 </body>
-
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="layout">
+    {{>Header}}
+    <div id="wrap">
+        <div class="container">
+            {{>yield}}
+        </div>
+    </div>
+</template>
+<template name="loading">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="main">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Loading..</h3>
+                    </div>
+                    <div class="panel-body">
+                        Please Wait
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

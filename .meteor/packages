@@ -7,3 +7,7 @@
 meteor-platform
 autopublish
 insecure
+twbs:bootstrap
+jquery
+meteorhacks:fast-render
+iron:router
