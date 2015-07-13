@@ -15,3 +15,7 @@ git clone https://github.com/ElDewrito/DoritoMenu.git
 cd DoritoMenu
 meteor
 ```
+
+Once Meteor is up and running, you should be able to visit it at http://localhost:3000/
+
+Any changes you make will update in real time! This makes development very fast, and keeps the creative flow running.
