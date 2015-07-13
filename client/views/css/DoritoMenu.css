@@ -6,7 +6,7 @@ body {
 	height: 100%;
   	background-size: contain;
   	opacity: 0;
-  	background: url(../img/background.png) no-repeat center center; 
+  	background: url(../img/background.jpg) no-repeat center center; 
 }
 
 #wrap {
@@ -71,7 +71,11 @@ body {
   padding: 20px;
   border-radius: 6px;
   border: 4px solid black;
+  opacity: 0;
+ transition: opacity 1.0s;
 }
+
+	.overlay.active { opacity: 1;}
 
 .heading {
 	color: white;

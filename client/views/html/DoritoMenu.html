@@ -10,6 +10,11 @@
 
 $(document).ready(function() {
     $('body').delay(10).addClass('load');
+
+    $("body").on("click", "[data-menu=credits]", function() {
+
+        $(".overlay[data-id=credits]").toggleClass("active");
+    });
 });
 
     </script>
