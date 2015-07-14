@@ -9,4 +9,12 @@
             Hello World!
         </div>
     </div>
+    {{>ListMasters}}
+</template>
+<template name="ListMasters">
+    {{#each master}}
+    <div class="alert alert-success" role="alert">
+        {{list}} is online.
+    </div>
+    {{/each}}
 </template>
