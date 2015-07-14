@@ -8,5 +8,10 @@ Template.Splash.events = {
 }
 
 Template.Home.rendered = function() {
-    $('body').delay(10).addClass('load');
+
+	// Temporary class manipulation
+    $('body').addClass('load');
+    setTimeout(function() {
+    	$('.reveal').removeClass('reveal');
+    }, 500);
 }
