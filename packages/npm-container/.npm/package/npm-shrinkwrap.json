@@ -1,0 +1,99 @@
+{
+  "dependencies": {
+    "geoip-lite": {
+      "version": "1.1.6",
+      "dependencies": {
+        "async": {
+          "version": "0.1.22"
+        },
+        "colors": {
+          "version": "0.6.0-1"
+        },
+        "glob": {
+          "version": "3.2.11",
+          "dependencies": {
+            "inherits": {
+              "version": "2.0.1"
+            },
+            "minimatch": {
+              "version": "0.3.0",
+              "dependencies": {
+                "lru-cache": {
+                  "version": "2.6.5"
+                },
+                "sigmund": {
+                  "version": "1.0.1"
+                }
+              }
+            }
+          }
+        },
+        "iconv-lite": {
+          "version": "0.4.11"
+        },
+        "lazy": {
+          "version": "1.0.11"
+        },
+        "rimraf": {
+          "version": "2.0.3",
+          "dependencies": {
+            "graceful-fs": {
+              "version": "1.1.14"
+            }
+          }
+        },
+        "unzip": {
+          "version": "0.0.4",
+          "dependencies": {
+            "fstream": {
+              "version": "0.1.31",
+              "dependencies": {
+                "graceful-fs": {
+                  "version": "3.0.8"
+                },
+                "inherits": {
+                  "version": "2.0.1"
+                },
+                "mkdirp": {
+                  "version": "0.5.1",
+                  "dependencies": {
+                    "minimist": {
+                      "version": "0.0.8"
+                    }
+                  }
+                }
+              }
+            },
+            "pullstream": {
+              "version": "0.0.4",
+              "dependencies": {
+                "over": {
+                  "version": "0.0.5"
+                },
+                "stream-buffers": {
+                  "version": "0.2.6"
+                }
+              }
+            },
+            "binary": {
+              "version": "0.3.0",
+              "dependencies": {
+                "chainsaw": {
+                  "version": "0.1.0",
+                  "dependencies": {
+                    "traverse": {
+                      "version": "0.3.9"
+                    }
+                  }
+                },
+                "buffers": {
+                  "version": "0.1.1"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

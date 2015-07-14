@@ -11,3 +11,10 @@ twbs:bootstrap
 jquery
 meteorhacks:fast-render
 iron:router
+meteorhacks:npm
+
+
+npm-container
+http
+underscore
+jparker:crypto-sha256
