@@ -1,28 +1,6 @@
 <template name="Home">
-    <div class="menu-panel">
-        <ul class="menu">
-            <li class="active">Play Multiplayer</li>
-            <li>Settings</li>
-            <li data-menu="credits" >Credits</li>
-        </ul>
-    </div>
-
-
-
-    <div class="overlay" data-id="credits">
-        <div class="credits pop">
-            <h1 class="heading">Credits</h1>
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 left-col">
-                    Menu Style
-                </div>
-
-                <div class="col-xs-12 col-sm-6 right-col">
-                    Limited
-                </div>
-            </div>
-        </div>
-    </div>
+    {{>Splash}}
+    {{>CreditOverlay}}
     {{>ListMasters}}
 </template>
 <template name="ListMasters">
