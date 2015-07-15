@@ -3,14 +3,16 @@
     left: 140px;
     bottom: 180px;
     color: white;
-    font-size: 27px;
+    font-size: 22px;
     text-transform: uppercase;
     font-weight: bold;
     list-style: none;
-    width: 340px;
+    width: 280px;
     transition: width 1s ease;
     transition: left 1s ease;
     overflow: hidden;
+    background: url(/img/eldorito-logo.png) no-repeat 13px top;
+    padding-top: 95px;
 
     &.reveal {
         width: 0px;
@@ -22,16 +24,16 @@
         
         li {
             padding-left: 10px;
-            padding: 9px 45px 9px 19px;
-            line-height: 25px;
+            padding: 9px 45px 8px 5px;
+            line-height: 0.8;
             border-left: 5px solid transparent;
             transition: padding 0.3s, background 0.1s;
-            width: 340px;
+            width: 280px;
 
             &.active, &:hover, &:active {
                 cursor: pointer;
                 background: rgba(255, 255, 255, 0.08);
-                padding-left: 40px;
+                padding-left: 20px;
                 padding-right: 13px;
                 border-left: 5px solid rgba(255, 255, 255, 0.2);
                 transition: padding 0.3s, background 0.1s;
