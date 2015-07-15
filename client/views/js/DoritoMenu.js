@@ -4,6 +4,8 @@ Template.Splash.events = {
         $('li').removeClass("active");
         $($(e.currentTarget)).toggleClass("active");
         $(".overlay[data-id=" + overlay + "]").toggleClass("active");
+
+        $("body").attr("data-menu", overlay);
     }
 }
 

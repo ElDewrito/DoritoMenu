@@ -1,15 +1,15 @@
 .menu-panel {
     position: absolute;
-    left: 200px;
-    bottom: 200px;
+    left: 140px;
+    bottom: 180px;
     color: white;
-    font-family: 'Ropa Sans', sans-serif;
     font-size: 27px;
     text-transform: uppercase;
     font-weight: bold;
     list-style: none;
     width: 340px;
     transition: width 1s ease;
+    transition: left 1s ease;
     overflow: hidden;
 
     &.reveal {
@@ -38,4 +38,8 @@
             }
         }
     }
+}
+
+body[data-menu=gameservers] .menu-panel {
+    left: -10px;
 }

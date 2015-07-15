@@ -1,29 +1,33 @@
 <template name="ListServers">
+    <h3>Game Servers</h3>
     <div class="overlay" data-id="gameservers">
-        <h3>Game Servers - Click to connect</h3>
-        <table class="table table-condensed">
-            <thead>
-                <th>Game</th>
-                <th>Map</th>
-                <th>Variant</th>
-                <th>Location</th>
-                <th>Players</th>
-                <th>Flag</th>
-                <th>Ping</th>
-            </thead>
-            <tbody>
-                {{#each server}}
-                <tr data-ip="{{ip}}">
-                    <td>[{{data.eldewritoVersion}}] {{data.name}} ({{data.status}})</td>
-                    <td>{{data.map}}</td>
-                    <td>{{data.variant}}</td>
-                    <td>{{geoIP.city}} {{geoIP.region}} ({{geoIP.country}})</td>
-                    <td>{{data.numPlayers}} / {{data.maxPlayers}}</td>
-                    <td title="{{geoIP.country}}"><img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="{{geoIP.country}}"></td>
-                    <td>{{pingGameServer ip}}</td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+    
+    
+        <div class="list-wrapper">
+            {{#each server}}
+            <div class="row server-item" data-ip="{{ip}}">
+                <div class="col-xs-12 col-sm-2 server-image">
+                    <img src="http://placehold.it/200x100" class="img-responsive"/>
+                </div>
+
+                <div class="col-xs-12 col-sm-8 server-details">
+                    <div>
+                        <span class="name">{{data.name}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span>
+                        <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}}" alt="{{geoIP.country}}" />
+                        <span class="ping">{{pingGameServer ip}} ms</span>
+                    </div>
+
+                    <div>
+                        <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}} - {{geoIP.city}}</span> [{{data.eldewritoVersion}}] 
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-2 server-extra">
+                    <span class="playercount">{{data.numPlayers}}/{{data.maxPlayers}}</span>
+                </div>
+            </div>
+            {{/each}}
+        </div>
     </div>
 </template>

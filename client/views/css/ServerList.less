@@ -1,0 +1,52 @@
+.list-wrapper {
+	max-height: 70vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	font-size: 25px;
+	&::-webkit-scrollbar-thumb {
+	  background: rgba(255, 255, 255, 0.5);
+	}
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+ ::-webkit-scrollbar-track {
+    opacity: 0;
+}
+ ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+.server-item {
+	padding: 20px 10px;	
+	cursor: pointer;
+
+	&:hover, &:active, &.active {
+		background-color: rgba(255,255,255,0.2);
+	}
+
+	.server-image {
+
+	}
+
+	.server-details {
+		padding: 12px 0;
+		.name {
+			font-size: 26px;
+			font-weight: bold;
+		}
+	}
+
+	.server-extra {
+		.playercount {
+			font-size: 41px;
+			font-weight: bold;
+			padding: 10px 0;
+			display: block;
+			text-align: right;
+		}
+	}
+}

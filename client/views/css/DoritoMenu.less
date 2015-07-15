@@ -1,6 +1,6 @@
 /* CSS declarations go here */
 
-@import url(//fonts.googleapis.com/css?family=Ropa+Sans);
+
 html {
     background: black;
     height: 100%;
@@ -11,6 +11,14 @@ body {
     background-size: contain;
     opacity: 0;
     background: url(../img/background.jpg) no-repeat center center;
+}
+
+body[data-menu=gameservers] .overlay {
+    width: 76vw;
+    height: 80vh;
+    top: 5vh;
+    left: 17vw;
+    padding-right: 0;
 }
 
 #wrap {
@@ -52,7 +60,6 @@ body {
 .credits {
     color: white;
     font-size: 25px;
-    font-family: 'Ropa Sans', sans-serif;
     padding: 0 20px;
     background: url(../img/eldorito-logo.png) no-repeat center top;
     padding-top: 95px;
