@@ -10,7 +10,7 @@ body {
     height: 100%;
     background-size: contain;
     opacity: 0;
-    background: url(../img/background.jpg) no-repeat center center;
+    background: url(../img/background-sky.jpg) no-repeat center center;
 }
 
 .overlay[data-id=gameservers]  {
@@ -40,16 +40,16 @@ body {
     position: absolute;
     width: 40vw;
     height: 70vh;
-    background: rgba(20, 20, 32, 1);
+    background: rgba(20, 20, 32, 0.68);
     color: white;
     top: 15vh;
     left: 30vw;
     padding: 20px;
     border-radius: 6px;
     opacity: 0;
-    transition: opacity 1.0s;
+    transition: opacity 0.7s cubic-bezier(0, 0, 0.2, 1);
     border-radius: 0;
-    box-shadow: 0px 0px 26px 2px rgba(255, 255, 255, 0.25);
+      box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.25);
     
     &.active {
         opacity: 1;
