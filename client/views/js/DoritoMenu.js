@@ -6,6 +6,12 @@ Template.Splash.events = {
         $(".overlay[data-id=" + overlay + "]").toggleClass("active");
 
         $("body").attr("data-menu", overlay);
+    },
+
+    'click .back' : function(e) {
+    	$(".overlay.active").removeClass("active");
+    	$("body").removeAttr("data-menu");
+    	console.log("Closing");
     }
 }
 

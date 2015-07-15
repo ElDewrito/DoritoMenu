@@ -13,6 +13,13 @@
     background: url(/img/eldorito-logo.png) no-repeat 13px top;
     padding-top: 95px;
 
+    .eldorito {
+        font-size: 29px;
+        background: -webkit-linear-gradient(#E8E8E9, #b7b7b8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding-left: 10px;
+    }
 
     .menu {
         list-style: none;
@@ -24,7 +31,7 @@
             width: 0px;
         }
         
-        li {
+        li:not(.back) {
             padding-left: 10px;
             padding: 9px 45px 8px 5px;
             line-height: 0.8;
@@ -34,16 +41,23 @@
 
             &.active, &:hover, &:active {
                 cursor: pointer;
-                background: rgba(255, 255, 255, 0.08);
+                background: rgba(155, 212, 252, 0.08);
                 padding-left: 20px;
                 padding-right: 13px;
                 border-left: 5px solid rgba(255, 255, 255, 0.2);
                 transition: padding 0.3s, background 0.1s;
             }
         }
+
+        .back { opacity: 0; transition: opacity 0.2s, margin-left 0.2s; cursor: pointer;}
     }
 }
 
 body[data-menu=gameservers] .menu-panel {
-    left: -10px;
+    left: 10px;
+}
+
+body[data-menu] .menu-panel .menu .back {
+  opacity: 1;
+  margin-left: 219px;
 }
