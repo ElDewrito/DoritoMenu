@@ -12,10 +12,9 @@ jquery
 meteorhacks:fast-render
 iron:router
 meteorhacks:npm
-
-
 npm-container
 underscore
 jparker:crypto-sha256
 dandv:http-more
 255kb:md-snackbars
+less

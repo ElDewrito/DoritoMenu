@@ -1,0 +1,41 @@
+.menu-panel {
+    position: absolute;
+    left: 200px;
+    bottom: 200px;
+    color: white;
+    font-family: 'Ropa Sans', sans-serif;
+    font-size: 27px;
+    text-transform: uppercase;
+    font-weight: bold;
+    list-style: none;
+    width: 340px;
+    transition: width 1s ease;
+    overflow: hidden;
+
+    &.reveal {
+        width: 0px;
+    }
+
+    .menu {
+        list-style: none;
+        padding-left: 0;
+        
+        li {
+            padding-left: 10px;
+            padding: 9px 45px 9px 19px;
+            line-height: 25px;
+            border-left: 5px solid transparent;
+            transition: padding 0.3s, background 0.1s;
+            width: 340px;
+
+            &.active, &:hover, &:active {
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.08);
+                padding-left: 40px;
+                padding-right: 13px;
+                border-left: 5px solid rgba(255, 255, 255, 0.2);
+                transition: padding 0.3s, background 0.1s;
+            }
+        }
+    }
+}
