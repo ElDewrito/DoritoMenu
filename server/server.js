@@ -140,8 +140,6 @@ function GetMasterServerList() {
 
 }
 Meteor.startup(function() {
-    console.log('Hello World!');
-
     GetMasterServerList();
 
     //Let's query the master servers every 5 seconds for new games
