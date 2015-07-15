@@ -1,0 +1,29 @@
+<template name="ListServers">
+    <div class="overlay" data-id="gameservers">
+        <h3>Game Servers - Click to connect</h3>
+        <table class="table table-condensed">
+            <thead>
+                <th>Game</th>
+                <th>Map</th>
+                <th>Variant</th>
+                <th>Location</th>
+                <th>Players</th>
+                <th>Flag</th>
+                <th>Ping</th>
+            </thead>
+            <tbody>
+                {{#each server}}
+                <tr data-ip="{{ip}}">
+                    <td>[{{data.eldewritoVersion}}] {{data.name}} ({{data.status}})</td>
+                    <td>{{data.map}}</td>
+                    <td>{{data.variant}}</td>
+                    <td>{{geoIP.city}} {{geoIP.region}} ({{geoIP.country}})</td>
+                    <td>{{data.numPlayers}} / {{data.maxPlayers}}</td>
+                    <td title="{{geoIP.country}}"><img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="{{geoIP.country}}"></td>
+                    <td>{{pingGameServer ip}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>

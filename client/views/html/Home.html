@@ -1,12 +1,9 @@
 <template name="Home">
-    {{>Splash}}
-    {{>CreditOverlay}}
-    {{>ListMasters}}
-</template>
-<template name="ListMasters">
-    {{#each master}}
-    <div class="alert alert-success" role="alert">
-        {{list}} is online.
-    </div>
-    {{/each}}
+    {{>Splash}} {{>CreditOverlay}} {{>ListMasters}} {{>ListServers}}
+    	<audio id="connectgamepad" src="sounds/halo3_loop.mp3" type="audio/mp3"></audio>
+		<audio id="notification" src="sounds/odst_a_button.mp3" type="audio/mp3"></audio>
+		<audio id="beeep" src="sounds/halo3_player_respawn.mp3" type="audio/mp3"></audio>
+		<audio id="beep" src="sounds/halo3_countdown_for_respawn.mp3" type="audio/mp3"></audio>
+		<audio id="click" src="sounds/halo3_cursor_horizontal.mp3" type="audio/mp3"></audio>
+		<audio id="slide" src="sounds/halo3_a_button.mp3" type="audio/mp3"></audio>
 </template>

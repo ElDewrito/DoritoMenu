@@ -8,5 +8,7 @@ Template.Splash.events = {
 }
 
 Template.Home.rendered = function() {
+	MDSnackbars.init();
     $('body').delay(10).addClass('load');
+    StartRconConnection();
 }
