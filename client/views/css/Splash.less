@@ -8,19 +8,21 @@
     font-weight: bold;
     list-style: none;
     width: 280px;
-    transition: width 1s ease;
     transition: left 1s ease;
     overflow: hidden;
     background: url(/img/eldorito-logo.png) no-repeat 13px top;
     padding-top: 95px;
 
-    &.reveal {
-        width: 0px;
-    }
 
     .menu {
         list-style: none;
         padding-left: 0;
+        width: 280px;
+        transition: width 1s ease;
+        overflow: hidden;
+        &.reveal {
+            width: 0px;
+        }
         
         li {
             padding-left: 10px;

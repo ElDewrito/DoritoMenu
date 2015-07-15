@@ -14,8 +14,10 @@ Template.Home.rendered = function() {
     StartRconConnection();
     
     // Temporary class manipulation
-    $('body').addClass('load');
-    setTimeout(function() {
-        $('.reveal').removeClass('reveal');
-    }, 500);
+    $(document).ready(function() {
+	    $('body').addClass('load');
+	    setTimeout(function() {
+	        $('.reveal').removeClass('reveal');
+	    }, 500);
+	});
 }
