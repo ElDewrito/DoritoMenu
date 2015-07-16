@@ -9,16 +9,17 @@
 }
 
 
-::-webkit-scrollbar {
+.list-wrapper::-webkit-scrollbar {
     width: 10px;
 }
- ::-webkit-scrollbar-track {
+.list-wrapper::-webkit-scrollbar-track {
     opacity: 0;
 }
- ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-}
 
+.list-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.2s;
+}
 
 .server-item {
 	padding: 20px;	
@@ -52,7 +53,7 @@
 			text-align: right;
 		}
 	}
-	
+
 	&.passworded .server-image:before {
 		content: " ";
 		display: block;
