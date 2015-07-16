@@ -9,8 +9,9 @@ Template.ListServers.helpers({
 });
 
 Template.ListServers.events = {
-    '.list-wrapper .server-item': function(e) {
+    'click .row.server-item': function(e) {
         var server = $(e.currentTarget).attr("data-ip");
+        console.log(server);
         dewRcon.send("connect " + server, function(res) {
             SnackBarOptions.text = res;
             MDSnackbars.show(SnackBarOptions);
