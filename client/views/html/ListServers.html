@@ -3,8 +3,10 @@
         <div class="list-wrapper">
             {{#each server}}
             <div class="row server-item {{#if data.passworded}} passworded{{/if}}" data-ip="{{ip}}">
-                <div class="col-xs-12 col-sm-2 server-image">
-                    <img src="/img/maps/{{data.mapFile}}.jpg" width="200" height="100" class="img-responsive"/>
+                <div class="col-xs-12 col-sm-2">
+                    <div class="server-image">
+                        <img src="/img/maps/{{data.mapFile}}.jpg" width="200" height="100" class="img-responsive"/>
+                    </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-8 server-details">
