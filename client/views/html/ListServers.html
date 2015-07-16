@@ -24,6 +24,10 @@
                     <span class="playercount">{{data.numPlayers}}/{{data.maxPlayers}}</span>
                 </div>
             </div>
+            {{ else }}
+                <div class="no-servers">
+                    Could not find any servers
+                </div>
             {{/each}}
         </div>
     </div>
