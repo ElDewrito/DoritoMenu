@@ -1,24 +1,26 @@
 <template name="ListMasters">
     <div class="overlay" data-id="masterservers">
-        <table class="table">
-            <thead>
-                <th>Master Server</th>
-                <th>Game Servers</th>
-            </thead>
-            <tbody>
-                {{#each master}}
-                <tr>
-                    <td><a target="_blank" href="{{list}}">{{list}}</a></td>
-                    <td>
-                        <ul>
-                            {{#each result.servers}}
-                            <li>{{this}}</li>
-                            {{/each}}
-                        </ul>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+        <div class="list-wrapper">
+            <table class="table">
+                <thead>
+                    <th>Master Server</th>
+                    <th>Game Servers</th>
+                </thead>
+                <tbody>
+                    {{#each master}}
+                    <tr>
+                        <td><a target="_blank" href="{{list}}">{{list}}</a></td>
+                        <td>
+                            <ul>
+                                {{#each result.servers}}
+                                <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
