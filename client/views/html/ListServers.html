@@ -2,7 +2,7 @@
     <div class="overlay" data-id="gameservers">
         <div class="list-wrapper">
             {{#each server}}
-            <div class="row server-item" data-ip="{{ip}}">
+            <div class="row server-item {{#if data.passworded}} passworded{{/if}}" data-ip="{{ip}}">
                 <div class="col-xs-12 col-sm-2 server-image">
                     <img src="/img/maps/{{data.mapFile}}.jpg" width="200" height="100" class="img-responsive"/>
                 </div>
