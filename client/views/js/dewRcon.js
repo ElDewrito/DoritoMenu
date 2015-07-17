@@ -25,9 +25,6 @@ StartRconConnection = function() {
     dewRcon.dewWebSocket.onmessage = function(message) {
         dewRcon._cbFunction(message.data);
         dewRcon.lastMessage = message.data;
-        console.log(dewRcon.lastMessage);
-        console.log(dewRcon.lastCommand);
-        console.log(message.data);
     };
 }
 dewRconHelper = function() {
@@ -49,11 +46,35 @@ dewRconHelper = function() {
 }
 
 //TODO: make it so these don't have to be chained.. Darn CB Functions.
+GameSettings = new Meteor.Collection(null);
+var settingsBlacklist = ['Execute', 'Help', 'WriteConfig'];
 LoadDewStuff = function() {
     dewRcon.send("Version", function(res) {
         Session.set("Dew_Version", res);
         dewRcon.send("Player.Name", function(res) {
             Session.set("Dew_Player_Name", res);
+            //Lets get all the settings!
+            dewRcon.send("help", function(res) {
+                var settings = res.split(/\n/);
+                _.each(settings, function(key, val) {
+                    var settingsPart1 = key.split(' ', 2);
+                    var settingsHelp = key.split(' - ');
+                    if (settingsPart1[1] == "-") {
+                        settingsPart1[1] = "";
+                    }
+                    if ($.inArray(settingsPart1[0], settingsBlacklist) == -1) {
+                        var category = settingsPart1[0].split('.', 1);
+                        var insertSetting = {
+                            category: category[0],
+                            command: settingsPart1[0],
+                            value: settingsPart1[1],
+                            help: settingsHelp
+                        }
+                        GameSettings.insert(insertSetting);
+                    }
+                });
+
+            });
         });
     });
 

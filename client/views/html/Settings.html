@@ -1,0 +1,13 @@
+<template name="Settings">
+    <div class="overlay" data-id="settings">
+        <div class="list-wrapper">
+            To run a command, click the text area and hit enter. To save a setting, type your new setting and hit enter. 
+            {{#each setting}}
+                <div class="input-group">
+                    <span class="input-group-addon">{{this.command}}</span>
+                    <input type="text" class="form-control" data-command="{{this.command}}" placeholder="{{this.help}}" value="{{this.value}}" title="{{this.help}}">
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</template>
