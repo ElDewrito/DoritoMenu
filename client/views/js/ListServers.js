@@ -11,8 +11,10 @@ Template.ListServers.helpers({
 Template.ListServers.events = {
     'click .row.server-item': function(e) {
         var server = $(e.currentTarget).attr("data-ip");
-        console.log(server);
-        dewRcon.send("connect " + server, function(res) {
+        if ($(e.currentTarget).hasClass("passworded")) {
+            var password = prompt("Please type the sever password to connect");
+        }
+        dewRcon.send("connect " + server + " " + password, function(res) {
             SnackBarOptions.text = res;
             MDSnackbars.show(SnackBarOptions);
         });
