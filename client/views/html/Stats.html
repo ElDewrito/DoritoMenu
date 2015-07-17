@@ -1,0 +1,34 @@
+<template name="Stats">
+    <div class="overlay" data-id="stats">
+        <div class="list-wrapper">
+            This is a proof of concept and will be replaced soon. 
+            {{#each server}} 
+                {{#if data.players}}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{data.name}} - by {{data.hostPlayer}}</div>
+                        <table class="table">
+                            <thead>
+                                <th>Name</th>
+                                <th>Kills</th>
+                                <th>Deaths</th>
+                                <th>Alive</th>
+                                <th>Score</th>
+                            </thead>
+                            <tbody>
+                                {{#each data.players}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{kills}}</td>
+                                    <td>{{deaths}}</td>
+                                    <td>{{isAlive}}</td>
+                                    <td>{{score}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                {{/if}} 
+            {{/each}}
+        </div>
+    </div>
+</template>

@@ -11,7 +11,7 @@
 
                 <div class="col-xs-12 col-sm-8 server-details">
                     <div>
-                        <span class="name">{{data.name}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span>
+                        <span class="name">{{data.name}} - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span>
                         <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}}" alt="{{geoIP.country}}" />
                         <span class="ping">{{pingGameServer ip}}</span>
                     </div>
