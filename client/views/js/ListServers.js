@@ -64,4 +64,17 @@ Template.ListServers.rendered = function() {
             });
         });
     }, 10000);
+
+    $.ajax({
+        dataType: "json",
+        url: "https://api.myjson.com/bins/39vba",
+        timeout: 15000,
+        async: true,
+        success: function(data) {
+            if (data.active !== undefined && data.active) {
+                msg = "MOTD - " + data.author + ": " + data.message;
+                Session.set("motd", msg);
+            }
+        }
+    });   
 }
