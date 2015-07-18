@@ -13,16 +13,17 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-8 server-details">
-                    <div>
-                        <span class="name">{{data.name}} - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span>
-                        <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}}" alt="{{geoIP.country}}" />
-                        <span class="ping">{{pingGameServer ip}}</span>
+                    <div class="first-row">
+                        <span class="name">{{data.name}} 
+                        <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}}</span> 
+                        - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span>
                     </div>
 
-                    <div>
-                        <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}} - {{geoIP.city}}</span> [{{data.eldewritoVersion}}] 
+                    <div class="second-row">
+                        <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}}" alt="{{geoIP.country}}" /> {{geoIP.city}} 
+                        <span class="ping">{{pingGameServer ip}}</span> 
+                        <span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{data.eldewritoVersion}}</span>
                     </div>
-
                 </div>
 
                 <div class="col-xs-12 col-sm-2 server-extra">
