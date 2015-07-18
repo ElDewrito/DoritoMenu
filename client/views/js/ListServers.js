@@ -5,7 +5,29 @@ Template.ListServers.helpers({
                 $exists: 1
             }
         });
+    },
+
+    serverCount: function() {
+        return GameServers.find().count();
+    },
+
+    playerCount: function() {
+        // Ugh, if we had mongo db aggregate we could so this so cleanly.
+        var servers = GameServers.find({ 'data.players': { $exists: true}, $where : "this.data.players.length > 0" }).fetch()
+        var totalPlayers = 0;
+
+        servers.forEach(function(server) {
+            if (server.data !== undefined && server.data.players !== undefined) {
+                totalPlayers += server.data.players.length;
+            }
+        });
+        return totalPlayers;
+    },
+
+    matchMap: function(map) {
+        GameServers.find({ 'data.map' : map }).fetch()
     }
+
 });
 
 Template.ListServers.events = {

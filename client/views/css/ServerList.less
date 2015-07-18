@@ -1,5 +1,5 @@
 .list-wrapper {
-	max-height: 100%;
+	max-height: calc(~"100% - 58px");
 	overflow-x: hidden;
 	overflow-y: scroll;
 	font-size: 25px;
@@ -7,7 +7,6 @@
 	  background: rgba(255, 255, 255, 0.5);
 	}
 }
-
 
 .list-wrapper::-webkit-scrollbar {
     width: 10px;
@@ -21,6 +20,10 @@
     transition: all 0.2s;
 }
 
+.server-stats {
+	font-size: 30px;
+	padding: 8px 20px;
+}
 .server-item {
 	padding: 20px;	
 	border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -91,8 +94,6 @@
     height: 80vh;
     top: 10vh;
     left: 17vw;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    padding: 0;
     background: rgba(20, 20, 32, 0.6);
 }

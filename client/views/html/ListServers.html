@@ -1,5 +1,8 @@
 <template name="ListServers">
     <div class="overlay" data-id="gameservers">
+        <div class="server-stats">
+            {{playerCount}} Players - {{serverCount}} Servers
+        </div>
         <div class="list-wrapper">
             {{#each server}}
             <div class="row server-item {{#if data.passworded}} passworded{{/if}}" data-ip="{{ip}}">
