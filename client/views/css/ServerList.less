@@ -28,6 +28,10 @@
 		padding: 0 60px; 
 		font-size: 20px;
 		display: inline-block;
+
+		> span {
+  			margin-right: 20px;
+		}
 	}
 }
 .server-item {
@@ -41,7 +45,14 @@
 		border-top: 1px solid rgba(255, 255, 255, 0.07);
 		transition: all 0.2s;
 	}
-
+	
+	&.filtered {
+		transition: all 0.5s;
+		border: none;
+		overflow: hidden;
+		height: 0;
+		padding: 0 20px;
+	}
 	.server-image {
 		position: relative;
 		max-width: 200px;

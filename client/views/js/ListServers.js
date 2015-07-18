@@ -62,6 +62,23 @@ Template.ListServers.events = {
         });
 
         $container.html($servers);
+    },
+
+    'click .togglePassworded' : function(e) {
+        $(".list-wrapper").toggleClass(".hidePassworded");
+
+        var btnText = "";
+
+        if ($(".list-wrapper").hasClass(".hidePassworded")) {
+            $(".list-wrapper .passworded").addClass("filtered");
+            btnText = "Show Locked";
+        }
+        else  {
+            $(".list-wrapper .passworded").removeClass("filtered");   
+            btnText = "Hide Locked";
+        }
+
+        $(".togglePassworded").text(btnText);
     }
 }
 Template.ListServers.rendered = function() {
