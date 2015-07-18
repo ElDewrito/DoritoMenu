@@ -13,6 +13,10 @@
                             <input type="text" class="form-control" data-command="{{this.command}}" placeholder="{{this.help}}" value="{{this.value}}" title="{{this.help}}">
                         </div>
                     </div>
+                {{else}}
+                <div class="no-settings">
+                     Not settings to load, please make sure Eldorito is running
+                </div>
                 {{/each}}
             </div>
         </div>
