@@ -13,7 +13,12 @@ Template.Splash.events = {
     'click .back' : function(e) {
     	$(".overlay.active").removeClass("active");
     	$("body").removeAttr("data-menu");
-    	console.log("Closing");
+    },
+
+    'click .exit-menu' : function(e) {
+        dewRcon.send("set_menu false", function(res) {
+            console.log(res);
+        });
     }
 }
 
