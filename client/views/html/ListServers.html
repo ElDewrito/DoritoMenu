@@ -1,7 +1,8 @@
 <template name="ListServers">
     <div class="overlay" data-id="gameservers">
         <div class="server-stats">
-            {{playerCount}} Players - {{serverCount}} Servers
+            {{playerCount}} Players - {{serverCount}} Servers  
+            <div class="server-controls"><span class="orderByPing">Order By Ping</span></div>
         </div>
         <div class="list-wrapper">
             {{#each server}}

@@ -40,6 +40,28 @@ Template.ListServers.events = {
             SnackBarOptions.text = res;
             MDSnackbars.show(SnackBarOptions);
         });
+    },
+    'click .orderByPing' : function(e) {
+        var $container = $('.overlay[data-id=gameservers] .list-wrapper')
+        var $servers = $('.server-item').detach();
+
+        $servers = $servers.sort(function(a, b) {
+            var pingA = $(a).find('.ping').text();
+            pingA = parseInt(pingA.substring(0, pingA.length), 10);
+
+            var pingB = $(b).find('.ping').text();
+            pingB = parseInt(pingB.substring(0, pingB.length), 10);
+
+            if (isNaN(pingA))
+                pingA = 10000;
+
+            if (isNaN(pingB))
+                pingB = 10000;
+
+            return pingA > pingB ? 1 : -1;
+        });
+
+        $container.html($servers);
     }
 }
 Template.ListServers.rendered = function() {
