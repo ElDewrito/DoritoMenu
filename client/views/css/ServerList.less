@@ -105,3 +105,28 @@
     padding: 0;
     background: rgba(20, 20, 32, 0.6);
 }
+
+.server-image[class^="gametype-"]::after , .server-image[class*=" gametype-"]::after {
+	position: absolute;
+	bottom: 5px;
+	right: -22px;
+	width: 75px;
+	height: 55px;
+	content: "";
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	background-size: 97px;
+}
+
+.gametype-assault::after {background-image: url(../img/gametypes/assault.png);}
+.gametype-ctf::after {background-image: url(../img/gametypes/ctf.png);}
+.gametype-fileshare::after {background-image: url(../img/gametypes/fileshare.png);}
+.gametype-forge::after {background-image: url(../img/gametypes/forge.png);}
+.gametype-film::after {background-image: url(../img/gametypes/film.png);}
+.gametype-infection::after {background-image: url(../img/gametypes/infection.png);}
+.gametype-juggernaut::after {background-image: url(../img/gametypes/juggernaut.png);}
+.gametype-koth {background-image: url(../img/gametypes/koth.png);}
+.gametype-oddball::after {background-image: url(../img/gametypes/oddball.png);}
+.gametype-slayer::after { background-image: url(../img/gametypes/slayer.png); }
+.gametype-territories::after {background-image: url(../img/gametypes/territories.png);}
+.gametype-vip::after {background-image: url(../img/gametypes/vip.png);}
