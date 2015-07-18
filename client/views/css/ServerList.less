@@ -21,9 +21,10 @@
 }
 
 .server-stats {
-	font-size: 30px;
+	font-size: 23px;
 	padding: 8px 20px;
   	border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  	/*border-bottom: 1px solid rgba(255, 255, 255, 0.47);*/
 	.server-controls { 
 		padding: 0 60px; 
 		font-size: 20px;
@@ -33,16 +34,19 @@
   			margin-right: 20px;
 		}
 	}
+	.global-stats {
+		text-transform: uppercase;
+	}
 }
 .server-item {
 	padding: 20px;	
-	border-top: 1px solid rgba(255, 255, 255, 0.05);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+/*	border-top: 1px solid rgba(255, 255, 255, 0.05);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);*/
   	transition: all 0.2s;
 
 	&:hover, &:active, &.active {
 		background-color: rgba(255, 255, 255, 0.05);
-		border-top: 1px solid rgba(255, 255, 255, 0.07);
+		/*border-top: 1px solid rgba(255, 255, 255, 0.07);*/
 		transition: all 0.2s;
 	}
 	
@@ -116,12 +120,15 @@
 }
 
 .overlay[data-id=gameservers]  {
-    width: 76vw;
-    height: 80vh;
-    top: 10vh;
-    left: 17vw;
+    width: 77vw;
+    height: 72vh;
+    top: 14vh;
+    left: 21vw;
     padding: 0;
     background: rgba(20, 20, 32, 0.6);
+  	background: rgba(20, 20, 32, 0);
+  	box-shadow: none;
+  	border-top: none;
 }
 
 .server-image[class^="gametype-"]::after , .server-image[class*=" gametype-"]::after {

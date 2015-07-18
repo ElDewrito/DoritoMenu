@@ -7,12 +7,14 @@
     text-transform: uppercase;
     font-weight: bold;
     list-style: none;
-    width: 280px;
+    width: 230px;
     transition: left 1s ease;
     overflow: hidden;
     background: url(/img/eldorito-logo.png) no-repeat 13px top;
     padding-top: 95px;
     letter-spacing: 0.2px;
+    max-height: 381px;
+    min-height: 381px;
 
     .eldorito {
         font-size: 29px;
@@ -30,6 +32,12 @@
         overflow: hidden;
         &.reveal {
             width: 0px;
+            .back {
+                overflow: hidden;
+                visibility: hidden;
+                width: 80px;
+                display: none;
+            }
         }
         
         li:not(.back) {
@@ -53,7 +61,7 @@
             opacity: 0; 
             visibility: hidden;
             transition: opacity 0.2s; 
-            margin-left: 219px; 
+            display: inline-block;
         }
     }
 }
@@ -63,6 +71,7 @@ body[data-menu=gameservers] .menu-panel {
 }
 
 body[data-menu] .menu-panel .menu .back {
+    margin-left: 159px; 
     opacity: 1;
     visibility: visible;
 }
