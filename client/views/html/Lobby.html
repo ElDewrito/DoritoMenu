@@ -12,8 +12,9 @@
       <span> {{data.eldewritoVersion}}</span>
       <span class="ping">{{pingGameServer ip}}</span> 
 
-      
-      {{#each data.players}}
+     {{lobbyID}}
+
+      {{#each playerList}}
           {{data.players.name}}
       {{ else }}
           <div class="no-servers">

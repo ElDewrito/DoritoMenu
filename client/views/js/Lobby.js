@@ -1,4 +1,4 @@
-Template.ListServers.helpers({
+Template.Lobby.helpers({
     players: function(ip) {
         return GameServers.find({
             data: {
@@ -7,6 +7,14 @@ Template.ListServers.helpers({
             ip : ip
         });
     },
+
+    loadLobby : function (ip) {
+        // Load all lobby stuff here
+
+        var players = Template.Lobby.helpers.players(ip);
+        console.log(players);
+
+    }
 });
 
 
@@ -14,7 +22,14 @@ Template.ListServers.helpers({
 Template.Lobby.rendered = function(ipIn) {
     console.log("Lobby call:", ipIn);
 
+    
+    // if (ipIn !== undefined)
+        // Template.Lobby.helpers.loadLobby(ser);
+
+
     // We need to add in the template markup here
+
+
 
     //Lets check for pings when the server list is rendered
     //Lets also re-check pings every 10 seconds from the client
@@ -37,7 +52,8 @@ Template.Lobby.rendered = function(ipIn) {
             });
 
             // Load shit
-            Session.set("playerList", server.players)
+            Session.set("playerList", server.players);
+            Session.set("lobbyID", server._id);
         });
     }, 10000);
 
