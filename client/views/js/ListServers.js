@@ -33,13 +33,20 @@ Template.ListServers.helpers({
 Template.ListServers.events = {
     'click .row.server-item': function(e) {
         var server = $(e.currentTarget).attr("data-ip");
-        if ($(e.currentTarget).hasClass("passworded")) {
-            var password = prompt("Please type the sever password to connect");
-        }
-        dewRcon.send("connect " + server + " " + password, function(res) {
-            SnackBarOptions.text = res;
-            MDSnackbars.show(SnackBarOptions);
-        });
+        // if ($(e.currentTarget).hasClass("passworded")) {
+        //     var password = prompt("Please type the sever password to connect");
+        // }
+        // dewRcon.send("connect " + server + " " + password, function(res) {
+        //     SnackBarOptions.text = res;
+        //     MDSnackbars.show(SnackBarOptions);
+        // });
+
+        // Show lobby screen with relevant info
+        $(".overlay").removeClass("active");
+        $(".overlay[data-id=lobby]").toggleClass("active").attr("data-ip", server);
+        $("body").attr("data-menu", "lobby");
+        Template.Lobby.rendered(server);
+
     },
     'click .orderByPing' : function(e) {
         var $container = $('.overlay[data-id=gameservers] .list-wrapper')

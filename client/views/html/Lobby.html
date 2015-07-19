@@ -1,0 +1,24 @@
+<template name="Lobby">
+   <div class="overlay" data-id="lobby">
+    Lobby here
+    <a href="#">Join Game</a>
+
+    <span class="playercount">{{data.numPlayers}}/{{data.maxPlayers}}</span>
+    <span class="name">{{data.name}} 
+
+      <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}}</span> 
+      - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span>
+      {{geoIP.city}} 
+      <span> {{data.eldewritoVersion}}</span>
+      <span class="ping">{{pingGameServer ip}}</span> 
+
+      
+      {{#each data.players}}
+          {{data.players.name}}
+      {{ else }}
+          <div class="no-servers">
+            Could not find any players
+        </div>
+    {{/each}}
+</div>
+</template>
