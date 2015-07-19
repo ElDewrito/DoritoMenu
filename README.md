@@ -39,4 +39,4 @@ You can use LESS as a CSS replacement, as Meteor will compile less at run time.
 
 
 
-** Halo™ is a trademark or registered trademark of Microsift Corporation in the United States of America and elsewhere. ElDewrito is an unofficial mod, it is in no way endorsed or affiliated to Microsoft Corporation, Saber Interaction or Innova Co. S.a.r.l or any of their subsidiaries.
+*Halo™ is a trademark or registered trademark of Microsift Corporation in the United States of America and elsewhere. ElDewrito is an unofficial mod, it is in no way endorsed or affiliated to Microsoft Corporation, Saber Interaction or Innova Co. S.a.r.l or any of their subsidiaries.*
