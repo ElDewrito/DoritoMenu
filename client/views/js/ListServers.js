@@ -87,6 +87,18 @@ Template.ListServers.events = {
         }
 
         $(".togglePassworded").text(btnText);
+    },
+
+    'click .condensed-mode' : function(e) {
+        ga('send', 'event', 'serverlist', 'toggle condensed mode');
+
+        $(".list-wrapper").toggleClass("condensed-view");
+        $(".condensed-mode").toggleClass("active");
+
+        var isCondensed = $(".condensed-mode").hasClass("active");
+
+        Cookies.set("condensed", isCondensed);
+
     }
 }
 Template.ListServers.rendered = function() {
@@ -125,4 +137,12 @@ Template.ListServers.rendered = function() {
             }
         }
     });   
+
+    var isCondensed = Cookies.get("condensed");
+
+    if (isCondensed) {
+        $(".list-wrapper").toggleClass("condensed-view");
+        $(".condensed-mode").toggleClass("active");
+    }
+    console.log(isCondensed);
 }

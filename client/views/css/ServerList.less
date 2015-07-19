@@ -6,18 +6,43 @@
 	&::-webkit-scrollbar-thumb {
 	  background: rgba(255, 255, 255, 0.5);
 	}
-}
+	&::-webkit-scrollbar {
+	    width: 10px;
+	}
+	&::-webkit-scrollbar-track {
+	    opacity: 0;
+	}
 
-.list-wrapper::-webkit-scrollbar {
-    width: 10px;
-}
-.list-wrapper::-webkit-scrollbar-track {
-    opacity: 0;
-}
+	&::-webkit-scrollbar-thumb {
+	    background: rgba(255, 255, 255, 0.3);
+	    transition: all 0.2s;
+	}
+	&.condensed-view {
+		.server-item { 
+			padding: 5px 20px;
 
-.list-wrapper::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    transition: all 0.2s;
+			.server-image {
+		  		max-width: 136px;
+		  		margin: 0 auto;
+			}
+			.server-details { 
+				padding: 7px 0;
+				line-height: 1.1;
+
+				.second-row { font-size: 16px; }
+				.name, .ping, .eldewirto-version { font-size: 18px; }
+				.eldewirto-version {
+					margin-left: 5px;
+					.glyphicon { font-size: 12px;}
+				}
+			}
+
+			.server-extra {
+				.playercount { font-size: 26px; padding: 14px 0;}
+			}
+		}
+
+	}
 }
 
 .server-stats {
@@ -33,6 +58,12 @@
 		> span {
   			margin-right: 20px;
 		}
+
+	}
+	.condensed-mode {
+		font-size: 20px; 
+		.glyphicon  { font-size: 15px; display: none;}
+		&.active .glyphicon { display: inline-block; }
 	}
 	.global-stats {
 		text-transform: uppercase;
@@ -57,6 +88,9 @@
 		height: 0;
 		padding: 0 20px;
 	}
+
+	
+
 	.server-image {
 		position: relative;
 		max-width: 200px;
