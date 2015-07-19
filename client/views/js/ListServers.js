@@ -36,12 +36,17 @@ Template.ListServers.events = {
         if ($(e.currentTarget).hasClass("passworded")) {
             var password = prompt("Please type the sever password to connect");
         }
+
+        ga('send', 'event', 'serverlist', 'connect', server);
+
         dewRcon.send("connect " + server + " " + password, function(res) {
             SnackBarOptions.text = res;
             MDSnackbars.show(SnackBarOptions);
         });
     },
     'click .orderByPing' : function(e) {
+        ga('send', 'event', 'serverlist', 'sort ping');
+
         var $container = $('.overlay[data-id=gameservers] .list-wrapper')
         var $servers = $('.server-item').detach();
 
@@ -65,6 +70,9 @@ Template.ListServers.events = {
     },
 
     'click .togglePassworded' : function(e) {
+
+        ga('send', 'event', 'serverlist', 'toggle passworded');
+
         $(".list-wrapper").toggleClass(".hidePassworded");
 
         var btnText = "";
