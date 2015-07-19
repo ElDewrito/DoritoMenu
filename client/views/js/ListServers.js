@@ -132,7 +132,7 @@ Template.ListServers.rendered = function() {
         crossDomain: true,
         success: function(data) {
             if (data.active !== undefined && data.active) {
-                msg = "MOTD - " + data.author + ": " + data.message;
+                msg = "<strong>MOTD</strong> - " + data.author + ": " + data.message;
                 Session.set("motd", msg);
             }
         }
@@ -145,4 +145,8 @@ Template.ListServers.rendered = function() {
         $(".condensed-mode").toggleClass("active");
     }
     console.log(isCondensed);
+}
+
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
