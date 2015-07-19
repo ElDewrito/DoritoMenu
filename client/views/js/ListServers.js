@@ -106,9 +106,10 @@ Template.ListServers.rendered = function() {
 
     $.ajax({
         dataType: "json",
-        url: "http://167.114.156.21/update_server/motd.json",
+        url: "/motd.json",
         timeout: 15000,
         async: true,
+        crossDomain: true,
         success: function(data) {
             if (data.active !== undefined && data.active) {
                 msg = "MOTD - " + data.author + ": " + data.message;
