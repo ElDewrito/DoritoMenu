@@ -106,7 +106,7 @@ Template.ListServers.rendered = function() {
 
     $.ajax({
         dataType: "json",
-        url: "https://api.myjson.com/bins/39vba",
+        url: "http://167.114.156.21/update_server/motd.json",
         timeout: 15000,
         async: true,
         success: function(data) {
