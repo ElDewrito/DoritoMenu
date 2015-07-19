@@ -2,7 +2,7 @@
 The Dorito Menu
 
 ## Development
-To get started, you need to first install Meteor.js on your system. Meteor supports Windows, OSX, and Linux. We highly reccomend first checking out the [Meteor Tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app) before diving into heavy development. 
+To get started, you need to first install Meteor.js on your system. Meteor supports Windows, OSX, and Linux. We highly recommend first checking out the [Meteor Tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app) before diving into heavy development. 
 
 Check out https://www.meteor.com/install on how to get Meteor up and running on your system.
 
@@ -39,4 +39,4 @@ You can use LESS as a CSS replacement, as Meteor will compile less at run time.
 
 
 
-*Halo™ is a trademark or registered trademark of Microsift Corporation in the United States of America and elsewhere. ElDewrito is an unofficial mod, it is in no way endorsed or affiliated to Microsoft Corporation, Saber Interaction or Innova Co. S.a.r.l or any of their subsidiaries.*
+*Halo™ is a trademark or registered trademark of Microsoft Corporation in the United States of America and elsewhere. ElDewrito is an unofficial mod, it is in no way endorsed or affiliated to Microsoft Corporation, Saber Interaction or Innova Co. S.a.r.l or any of their subsidiaries.*
