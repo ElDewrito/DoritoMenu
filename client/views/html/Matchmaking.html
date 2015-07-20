@@ -6,6 +6,19 @@
             {{else}}
                 <h1 class="heading">Please open Eldewrito to play</h1> 
             {{/if}}
+	
+			<div class="player-container">
+				<span class="lobby-stats">Matchmaking Lobby {{matchmakingPlayersCount}}</span>
+				<ul class="player-list">
+		            {{#each matchmakingPlayers}}
+		            	<li>
+							{{ name}}		
+							{{ netspeed}}		
+						<!-- {{ uid}}		 -->
+						</li>
+		            {{/each}}
+	            </ul>
+            </div>
         </div>
     </div>
 </template>

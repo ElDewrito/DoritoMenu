@@ -139,6 +139,7 @@ function GetMasterServerList() {
     }
 
 }
+
 Meteor.startup(function() {
     GetMasterServerList();
 
@@ -158,4 +159,20 @@ Meteor.startup(function() {
     Meteor.setInterval(function() {
         GetMasterServerList();
     }, 600000);
+
+    for (var i = 1; i < 10; i++ ){
+        var player = {
+            name : "Player" + i,
+            ip: "127.0.0.1",
+            uid: "player.uuid" + i,
+            netspeed: randomBetween(1000, 15000)
+        }        
+
+        MatchmakingPlayers.insert(player);
+    }
 });
+
+// Temporary function
+function randomBetween(min,max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
