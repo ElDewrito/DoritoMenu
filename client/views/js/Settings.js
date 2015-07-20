@@ -10,10 +10,16 @@ Template.Settings.events = {
 
         if (evt.which === 13) {
             var command = $(evt.currentTarget).attr("data-command");
-            dewRcon.send(command + " " + $(evt.currentTarget).val(), function(res) {
+            dewRcon.send(command + ' "' + $(evt.currentTarget).val() + '"', function(res) {
                 SnackBarOptions.text = res;
                 MDSnackbars.show(SnackBarOptions);
             });
         }
+    },
+    'click #write_config_button': function() {
+        dewRcon.send('WriteConfig', function(res) {
+            SnackBarOptions.text = res;
+            MDSnackbars.show(SnackBarOptions);
+        });
     }
 }

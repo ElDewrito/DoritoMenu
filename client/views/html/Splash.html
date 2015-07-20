@@ -1,16 +1,23 @@
 <template name="Splash">
     <div class="menu-panel">
-        <span class="eldorito">Eldewrito {{Dew_Version}}</span>
+        <span class="eldorito">{{#if gameRunning}}Eldewrito {{Dew_Version}}{{else}}Please open Eldewrito to play{{/if}}</span>
         <ul class="menu reveal">
-            <li>{{Dew_Player_Name}}</li>
-            <li data-menu="gameservers">Play Multiplayer</li>
-            <li data-menu="stats">Realtime Stats</li>
-            <li data-menu="settings">Settings</li>
-            <li data-menu="credits">Credits</li>
-            <li data-menu="masterservers">Master Servers</li>
-            <li class="exit-menu">Exit Menu</li>
+            {{#if gameRunning}}
+                <li data-menu="settings"><i class="fa fa-cogs"></i> Settings</li>
+            {{/if}}
+            <li class="debug" data-menu="matchmaking"><i class="fa fa-gamepad"></i> Matchmaking</li>
+            <li data-menu="gameservers"><i class="fa fa-server"></i> Server List</li>
+            <li data-menu="stats"><i class="fa fa-trophy"></i> Stats</li>
+            <li data-menu="credits"><i class="fa fa-heart"></i> Credits</li>
+            <li class="debug" data-menu="masterservers">Master Servers</li>
+            {{#if gameRunning}}
+                <li class="exit-menu">Exit Menu</li>
+            {{/if}}
             <li class="back">&lt; Back</li>
         </ul>
     </div>
-    <a class="alpha" href="https://github.com/ElDewrito/DoritoMenu" title="Found a bug? Create a bug report on GitHub!">Alpha Menu</a>
+    <a class="alpha" target="_blank" href="https://github.com/ElDewrito/DoritoMenu" title="Found a bug? Create a bug report on GitHub!">Alpha Menu</a>
+    {{#if gameRunning}}
+        <span class="player_name">Welcome {{Dew_Player_Name}}!</span>
+    {{/if}}
 </template>
