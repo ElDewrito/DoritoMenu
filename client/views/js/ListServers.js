@@ -34,7 +34,7 @@ Template.ListServers.helpers({
 });
 
 function orderByPing() {
- var $container = $('.overlay[data-id=gameservers] .list-wrapper')
+    var $container = $('.overlay[data-id=gameservers] .list-wrapper');
     var $servers = $('.server-item').detach();
 
     $servers = $servers.sort(function(a, b) {
@@ -120,24 +120,8 @@ Template.ListServers.events = {
         SnackBarOptions.text = "Quick joining...";
         MDSnackbars.show(SnackBarOptions);
 
-        _.each(GameServers.find().fetch(), function(server) {
-            var startTime = Date.now(),
-                endTime,
-                ping;
-            var hashServer = (CryptoJS.SHA256(server.ip).toString());
-            $.ajax({
-                type: "GET",
-                url: "http://" + server.ip + "/",
-                async: true,
-                timeout: 5000,
-                success: function() {
-                    endTime = Date.now();
-                    ping = Math.round((endTime - startTime) / 1.60);
-                    Session.set("ping_" + hashServer, ping);
-                    orderByPing();
-                }
-            });
-        });
+        orderByPingToggle = true;
+        updatePings();
 
         var server = $(".server-item:not(.passworded):not(.full").eq(0).attr("data-ip");
 
@@ -147,29 +131,34 @@ Template.ListServers.events = {
         });
     }
 }
+
+function updatePings() {
+     _.each(GameServers.find().fetch(), function(server) {
+        var startTime = Date.now(),
+            endTime,
+            ping;
+        var hashServer = (CryptoJS.SHA256(server.ip).toString());
+        $.ajax({
+            type: "GET",
+            url: "http://" + server.ip + "/",
+            async: true,
+            timeout: 5000,
+            success: function() {
+                endTime = Date.now();
+                ping = Math.round((endTime - startTime) / 1.60);
+                Session.set("ping_" + hashServer, ping);
+                if (orderByPingToggle)
+                    orderByPing();
+            }
+        });
+    });
+}
 Template.ListServers.rendered = function() {
     //Lets check for pings when the server list is rendered
     //Lets also re-check pings every 10 seconds from the client
+    updatePings();
     setInterval(function() {
-        _.each(GameServers.find().fetch(), function(server) {
-            var startTime = Date.now(),
-                endTime,
-                ping;
-            var hashServer = (CryptoJS.SHA256(server.ip).toString());
-            $.ajax({
-                type: "GET",
-                url: "http://" + server.ip + "/",
-                async: true,
-                timeout: 5000,
-                success: function() {
-                    endTime = Date.now();
-                    ping = Math.round((endTime - startTime) / 1.60);
-                    Session.set("ping_" + hashServer, ping);
-                    if (orderByPingToggle)
-                        orderByPing();
-                }
-            });
-        });
+       updatePings();
     }, 10000);
 
     $.ajax({
