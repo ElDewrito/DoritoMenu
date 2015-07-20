@@ -26,6 +26,10 @@ Template.ListServers.helpers({
 
     matchMap: function(map) {
         GameServers.find({ 'data.map' : map }).fetch()
+    },
+
+    equals: function(a, b) {
+        return (a === b);
     }
 });
 
@@ -109,6 +113,38 @@ Template.ListServers.events = {
 
         Cookies.set("condensed", isCondensed);
 
+    },
+
+    'click .quick-join' : function(e) {
+        ga('send', 'event', 'serverlist', 'quick-join');
+        SnackBarOptions.text = "Quick joining...";
+        MDSnackbars.show(SnackBarOptions);
+
+        _.each(GameServers.find().fetch(), function(server) {
+            var startTime = Date.now(),
+                endTime,
+                ping;
+            var hashServer = (CryptoJS.SHA256(server.ip).toString());
+            $.ajax({
+                type: "GET",
+                url: "http://" + server.ip + "/",
+                async: true,
+                timeout: 5000,
+                success: function() {
+                    endTime = Date.now();
+                    ping = Math.round((endTime - startTime) / 1.60);
+                    Session.set("ping_" + hashServer, ping);
+                    orderByPing();
+                }
+            });
+        });
+
+        var server = $(".server-item:not(.passworded):not(.full").eq(0).attr("data-ip");
+
+        dewRcon.send("connect " + server + " " + "", function(res) {
+            SnackBarOptions.text = res;
+            MDSnackbars.show(SnackBarOptions);
+        });
     }
 }
 Template.ListServers.rendered = function() {
