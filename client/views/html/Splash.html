@@ -1,13 +1,13 @@
 <template name="Splash">
     <div class="menu-panel">
-        <span class="eldorito">{{#if gameRunning}}Eldewrito {{Dew_Version}}{{else}}Please open Eldewrito to play{{/if}}</span>
+        <span class="eldorito">{{#if gameRunning}}Eldewrito {{Dew_Version}}{{else}}Open Eldewrito to play{{/if}}</span>
         <ul class="menu reveal">
-            {{#if gameRunning}}
-                <li data-menu="settings"><i class="fa fa-cogs"></i> Settings</li>
-            {{/if}}
             <li class="debug" data-menu="matchmaking"><i class="fa fa-gamepad"></i> Matchmaking</li>
             <li data-menu="gameservers"><i class="fa fa-server"></i> Server List</li>
             <li data-menu="stats"><i class="fa fa-trophy"></i> Stats</li>
+            {{#if gameRunning}}
+                <li data-menu="settings"><i class="fa fa-cogs"></i> Settings</li>
+            {{/if}}
             <li data-menu="credits"><i class="fa fa-heart"></i> Credits</li>
             <li class="debug" data-menu="masterservers">Master Servers</li>
             {{#if gameRunning}}
