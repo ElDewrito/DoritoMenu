@@ -160,7 +160,10 @@ Meteor.startup(function() {
         GetMasterServerList();
     }, 600000);
 
+    MatchmakingPlayers.cle
+
     for (var i = 1; i < 10; i++ ){
+        console.log("adding player" + i);
         var player = {
             name : "Player" + i,
             ip: "127.0.0.1",

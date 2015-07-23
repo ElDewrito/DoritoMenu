@@ -1,9 +1,13 @@
 <template name="ListServers">
     <div class="overlay" data-id="gameservers">
-        <div class="server-stats">
-            <span class="global-stats"><strong>{{playerCount}}</strong> Players - <strong>{{serverCount}}</strong> Servers</span> 
-            <div class="server-controls"><span class="quick-join">Quick Join</span> <span class="orderByPing"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Order By Ping</span> <span class="togglePassworded">Hide Locked</span></div>
-            <span class="condensed-mode pull-right"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Condensed Mode</span>
+        <div class="server-stats row">
+            <div class="col-xs-12 col-lg-4">
+                <span class="global-stats"><strong>{{playerCount}}</strong> Players - <strong>{{serverCount}}</strong> Servers</span> 
+            </div>
+            <div class="col-xs-12 col-lg-8">
+                <div class="server-controls"><span class="quick-join">Quick Join</span> <span class="orderByPing"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Order By Ping</span> <span class="togglePassworded">Hide Locked</span></div>
+                <span class="condensed-mode pull-right"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Condensed Mode</span>
+            </div>
         </div>
         <div class="list-wrapper">
             {{#each server}}
@@ -14,11 +18,11 @@
                     </div>
                 </div>
 
-                <div class="col-xs-6 col-sm-push-8 col-sm-2 server-extra">
+                <div class="col-xs-6 col-sm-push-9 col-sm-1 server-extra">
                     <span class="playercount">{{data.numPlayers}}/{{data.maxPlayers}}</span>
                 </div>
 
-                <div class="col-xs-12 col-sm-pull-2 col-sm-8 server-details">
+                <div class="col-xs-12 col-sm-pull-1 col-sm-9 server-details">
                     <div class="first-row">
                         <span class="name">{{data.name}} 
                         <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}}</span> 

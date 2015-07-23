@@ -1,0 +1,76 @@
+/* Responsive */
+
+/* Mobile Only */
+@media (max-width: 767px) {
+	html { overflow: visible; }
+	body {
+		height: auto;
+		background-repeat: repeat;
+		background-size: initial;
+		background-attachment: fixed;
+		min-height: 100%;
+	}
+
+	.load > .container {
+		padding-top: 20px;
+	}
+	.load .menu-panel {
+		display: block;
+		position: inherit;
+		width: 100%;
+	}
+
+	.alpha {
+		top: 0;
+		bottom: auto;
+	}
+
+	.load .overlay.active {
+		position: initial;
+		width: calc(~"100% + 30px");
+		height: auto !important;
+		margin-left: -15px;
+	}
+
+	.list-wrapper .server-item {
+		padding: 15px 15px 5px;
+		.server-details {
+			padding: 5px 0;
+			.first-row, .second-row {
+				padding: 0 15px;
+			}
+			.name {
+				font-size: 24px;
+				font-weight: bold;
+				line-height: 1.2;
+				display: block;
+				margin-top: 6px;
+			}
+		}
+	}
+}
+
+body .md-snackbar.md-snackbar-full {
+	top: 0;
+	bottom: initial;
+}
+
+
+@media (max-width: 1499px) {
+	.server-item .server-details {
+		padding: 0;
+		.name { font-size: 22px;}
+		.first-row { line-height: 1.1; }
+	}
+	.server-item .server-extra .playercount {
+		font-size: 20px;
+	}
+}
+
+/* SM Max */
+@media (max-width: 1199px) {
+	.server-stats .server-controls	{
+		padding: 0;
+	}
+
+}
