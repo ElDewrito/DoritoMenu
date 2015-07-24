@@ -2,13 +2,13 @@
     <div class="menu-panel">
         <span class="eldorito">{{#if gameRunning}}Eldewrito {{Dew_Version}}{{/if}}</span>
         <ul class="menu reveal">
-            <li class="debug" data-menu="matchmaking"><i class="fa fa-gamepad"></i> Matchmaking</li>
-            <li data-menu="gameservers"><i class="fa fa-server"></i> Server List</li>
-            <li data-menu="stats"><i class="fa fa-trophy"></i> Stats</li>
+            <li class="debug" data-menu="matchmaking">Matchmaking</li>
+            <li data-menu="gameservers">Server List</li>
+            <li data-menu="stats">Stats</li>
             {{#if gameRunning}}
-                <li data-menu="settings"><i class="fa fa-cogs"></i> Settings</li>
+                <li data-menu="settings">Settings</li>
             {{/if}}
-            <li data-menu="credits"><i class="fa fa-heart"></i> Credits</li>
+            <li data-menu="credits">Credits</li>
             <li class="debug" data-menu="masterservers">Master Servers</li>
             {{#if gameRunning}}
                 <li class="exit-menu">Exit Menu</li>
@@ -18,6 +18,6 @@
     </div>
     <a class="alpha" target="_blank" href="https://github.com/ElDewrito/DoritoMenu" title="Found a bug? Create a bug report on GitHub!">Alpha Menu</a>
     {{#if gameRunning}}
-        <span class="player_name">Welcome {{Dew_Player_Name}}!</span>
+        <span class="player_name">Welcome {{Dew_Player_Name}}</span>
     {{/if}}
 </template>
