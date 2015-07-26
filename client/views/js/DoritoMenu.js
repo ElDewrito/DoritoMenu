@@ -1,6 +1,8 @@
 Template.Splash.events = {
     'click li': function(e) {
         var overlay = $(e.currentTarget).attr("data-menu");
+        Session.set("lastPage", Session.get("currentPage"));
+        Session.set("currentPage", overlay);
         $('li').removeClass("active");
         $($(e.currentTarget)).toggleClass("active");
 
@@ -8,6 +10,7 @@ Template.Splash.events = {
         $(".overlay[data-id=" + overlay + "]").toggleClass("active");
 
         $("body").attr("data-menu", overlay);
+        MenuItemEventTriggers(overlay);
     },
 
     'click .back': function(e) {
@@ -21,9 +24,22 @@ Template.Splash.events = {
         });
     }
 }
+MenuItemEventTriggers = function(item) {
+    console.log(item);
+    if (item != "matchmaking") {
+        console.log(Meteor.call('removeFromMatchmaking', function(err, res) {
+            console.log(err, res);
+        }));
+    }
+    switch (item) {
+        case "matchmaking":
+            JoinMatchmaking();
+            break;
+    }
+}
 
 Template.Home.rendered = function() {
-        (function(i, s, o, g, r, a, m) {
+    (function(i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
         i[r] = i[r] || function() {
             (i[r].q = i[r].q || []).push(arguments)
@@ -33,34 +49,39 @@ Template.Home.rendered = function() {
         a.async = 1;
         a.src = g;
         m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-65054935-2', 'auto');
-        ga('send', 'pageview');
+    ga('create', 'UA-65054935-2', 'auto');
+    ga('send', 'pageview');
 
-        MDSnackbars.init();
-        StartRconConnection();
+    MDSnackbars.init();
+    StartRconConnection();
 
-        // Temporary class manipulation
-        $(document).ready(function() {
-            $('body').addClass('load');
-            setTimeout(function() {
-                $('.reveal').removeClass('reveal');
-            }, 500);
+    // Temporary class manipulation
+    $(document).ready(function() {
+        $('body').addClass('load');
+        setTimeout(function() {
+            $('.reveal').removeClass('reveal');
+        }, 500);
 
-            var params = getQueryVariable("debug");
+        var params = getQueryVariable("debug");
 
-            if (params == 1)
-                $("body").addClass("debug");
-        });
+        if (params == 1)
+            $("body").addClass("debug");
+    });
+    $(window).bind('beforeunload', function() {
+        Meteor.apply('removeFromMatchmaking');
+    });
 }
 
 function getQueryVariable(variable) {
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-       }
-       return(false);
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+            return pair[1];
+        }
+    }
+    return (false);
 }

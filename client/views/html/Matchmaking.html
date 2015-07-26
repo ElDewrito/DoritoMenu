@@ -2,18 +2,17 @@
     <div class="overlay" data-id="matchmaking">
         <div class="list-wrapper">
             {{#if gameRunning}}
-                <h1 class="heading"><i class="fa fa-spinner fa-pulse"></i> Finding Players <i class="fa fa-spinner fa-pulse"></i></h1> 
+                <h1 class="heading"><i class="fa fa-spinner fa-pulse"></i> {{matchmakingStatus}} <i class="fa fa-spinner fa-pulse"></i></h1> 
             {{else}}
                 <h1 class="heading">Please open Eldewrito to play</h1> 
             {{/if}}
 	
 			<div class="player-container">
-				<span class="lobby-stats">Matchmaking Lobby {{matchmakingPlayersCount}}</span>
+				<span class="lobby-stats">{{matchmakingPlayersCount}} Players waiting to play</span>
 				<ul class="player-list">
 		            {{#each matchmakingPlayers}}
 		            	<li>
-							{{ name}}		
-							{{ netspeed}}		
+                            {{name}} joined {{reactiveTime}}
 						<!-- {{ uid}}		 -->
 						</li>
 		            {{/each}}

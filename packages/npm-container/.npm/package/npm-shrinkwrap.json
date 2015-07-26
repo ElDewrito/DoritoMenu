@@ -194,6 +194,25 @@
           }
         }
       }
+    },
+    "tcp-port-used": {
+      "version": "0.1.2",
+      "dependencies": {
+        "debug": {
+          "version": "0.7.4"
+        },
+        "is2": {
+          "version": "0.0.9",
+          "dependencies": {
+            "deep-is": {
+              "version": "0.1.2"
+            }
+          }
+        },
+        "q": {
+          "version": "0.9.7"
+        }
+      }
     }
   }
 }

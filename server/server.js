@@ -1,6 +1,7 @@
 //This only happens in the server instance. This code is not public
 var geoip = Meteor.npmRequire('geoip-lite');
 var Agent = Meteor.npmRequire('socks5-http-client/lib/Agent');
+var tcpPortUsed  = Meteor.npmRequire('tcp-port-used');
 /*
 //Uncomment if using TOR
 var httpExtraOptions = {
@@ -106,11 +107,9 @@ function UpdateGameServerStats() {
             }, {
                 upsert: true
             });
-        }
-        else
-        {
+        } else {
             //Unable to talk to server.. is it down? maybe we should remove it...
-             GameServers.remove({
+            GameServers.remove({
                 "hash": server.hash,
             });
         }
@@ -148,7 +147,7 @@ Meteor.startup(function() {
     //Once changes are detected, the client will get an update, but only if it's a change!
     Meteor.setInterval(function() {
         UpdateMasterServerList();
-    }, 5000);    
+    }, 5000);
 
     //Every 10 seconds lets query all the game servers for their latest stat data
     Meteor.setInterval(function() {
@@ -160,22 +159,68 @@ Meteor.startup(function() {
         GetMasterServerList();
     }, 600000);
 
-    MatchmakingPlayers.cle
+    Meteor.methods({
+        removeFromMatchmaking: function() {
+            var clientIp = this.connection.httpHeaders['x-forwarded-for'].split(',')[0];
+            console.log('bruh');
+            MatchmakingPlayers.remove({
+                ip: clientIp
+            });
+            return 'Removed from matchmaking';
+        },
+        addToMatchmaking: function(name, uid, netspeed) {
+            console.log('addToMatchmaking called.');
+            console.log(name, uid, netspeed);
+            //TODO: this is pretty open right now, we should probably lock this down... bruh.
+            var clientIp = this.connection.httpHeaders['x-forwarded-for'].split(',')[0];
+            var player = MatchmakingPlayers.findOne({
+                ip: clientIp.split(',')[0],
+                name: name
+            });
+            if (player != null) {
+                return "Player already in matchmaking";
+            }
+            player = {
+                createdAt: new Date(),
+                name: name,
+                ip: clientIp.split(',')[0],
+                uid: uid,
+                netspeed: netspeed
+            }
+            var player = MatchmakingPlayers.insert(player);
+            return player;
+        },
+        checkMyMatchmakingServer: function() {
+            var clientIp = this.connection.httpHeaders['x-forwarded-for'];
 
-    for (var i = 1; i < 10; i++ ){
-        console.log("adding player" + i);
-        var player = {
-            name : "Player" + i,
-            ip: "127.0.0.1",
-            uid: "player.uuid" + i,
-            netspeed: randomBetween(1000, 15000)
-        }        
+            try {
+                var checkGameResult = HTTP.call("GET", "http://" + clientIp.split(',')[0] + ":11775/", httpExtraOptions);
+            } catch (e) {
+                return 'Cant talk to server, sorry you cant host matchmaking';
+            }
+            if (checkGameResult.statusCode == 200) {
+                var server = JSON.parse(checkGameResult.content);
+                /*
+                //TODO: fml
+                tcpPortUsed.waitUntilUsedOnHost(11774, clientIp.split(',')[0],500, 5000)
+                    .then(function(inUse) {
+                        console.log('Port 11774 usage: ' + inUse + clientIp.split(',')[0]);
+                        return inUse;
 
-        MatchmakingPlayers.insert(player);
-    }
+                    }, function(err) {
+                        console.error('Error on check:', err.message,clientIp.split(',')[0]);
+                        return err;
+                    });
+                */
+                return server;
+            } else {
+                return 'Cant talk to server, sorry you cant host matchmaking';
+            }
+        }
+    });
 });
 
 // Temporary function
-function randomBetween(min,max) {
-    return Math.floor(Math.random()*(max-min+1)+min);
+function randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
