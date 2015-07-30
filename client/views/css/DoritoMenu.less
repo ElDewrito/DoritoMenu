@@ -187,6 +187,10 @@ body:not(.debug) .debug{
     opacity: 0.97;
     font-size: 565px;
     color: white;
-    pointer-events:none
+    pointer-events:none;
     text-align: center;
+    display: none;
+    &.active {
+        display: block;
+    }
 }
