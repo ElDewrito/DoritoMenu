@@ -1,0 +1,78 @@
+.overlay[data-id=login] {
+	width: 35vw;
+	height: 63vh;
+	left: 34vw;
+	background: rgba(20, 20, 32, 0);
+	box-shadow: 0px 2px 6px 0 rgba(0, 0, 0, 0.43);
+	.bg {
+		content: "";
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		position: absolute;
+		background: url(/img/backgrounds/1.jpg) no-repeat center center;
+		filter: blur(12px);
+		-webkit-filter: blur(12px);
+		z-index: 10;
+		height: 100%;
+		width: 100%;
+		background-size: initial;
+		background-attachment: fixed;
+	}
+
+	.content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 20;
+		padding: 150px 100px;
+		width: 100%;
+	}
+
+	form {
+		text-align: center;
+		width: 52%;
+		margin: 60px auto 0;
+	}
+
+	.form-control {
+		background-color: rgba(0, 0, 0, 0.21);
+		border: none;
+		font-size: 18px;
+		border-radius: 0;
+		width: 100%;
+		font-family: "Arial", sans-serif;
+		color: #b9b9b9;
+		margin: 20px auto 2px;
+		padding: 19px 20px;
+		box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.28) inset;
+	}
+
+	.halo-click {
+		background: url(/img/eldorito-logo.png) no-repeat left center;
+		padding-left: 33px;
+		color: white;
+		display: block;
+		width: 250px;
+		text-align: center;
+		margin: 0 auto;
+		font-size: 42px;
+		background-size: 60px;
+	}
+
+	.btn-default {
+		float: right;
+		padding: 5px 17px;
+		background-color: rgb(33, 57, 80);
+		color: rgb(210, 210, 210);
+		font-family: "Calibri", sans-serif;
+		border-radius: 0;
+		font-size: 15px;
+		border: 0;
+		box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);
+		&:hover {
+			box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);
+		}
+	}
+}
