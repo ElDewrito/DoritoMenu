@@ -104,15 +104,7 @@ Template.ListServers.events = {
     },
 
     'click .condensed-mode' : function(e) {
-        ga('send', 'event', 'serverlist', 'toggle condensed mode');
-
-        $(".list-wrapper").toggleClass("condensed-view");
-        $(".condensed-mode").toggleClass("active");
-
-        var isCondensed = $(".condensed-mode").hasClass("active");
-
-        Cookies.set("condensed", isCondensed);
-
+        toggleCondensed(true);    
     },
 
     'click .quick-join' : function(e) {
@@ -125,18 +117,31 @@ Template.ListServers.events = {
 
         var server = $(".server-item:not(.passworded):not(.full").eq(0).attr("data-ip");
 
-        dewRcon.send("connect " + server + " " + "", function(res) {
-            SnackBarOptions.text = res;
-            MDSnackbars.show(SnackBarOptions);
-        });
+            dewRcon.send("connect " + server + " " + "", function(res) {
+                SnackBarOptions.text = res;
+                MDSnackbars.show(SnackBarOptions);
+            });
+        }
     }
-}
 
-function updatePings() {
+    function toggleCondensed(store) {
+      ga('send', 'event', 'serverlist', 'toggle condensed mode');
+      console.log("toggling");
+
+      $(".list-wrapper").toggleClass("condensed-view");
+      $(".condensed-mode").toggleClass("active");
+
+      var isCondensed = $(".condensed-mode").hasClass("active");
+
+      if (store)
+        dewStorage.set("condensed", isCondensed);
+  }
+
+  function updatePings() {
      _.each(GameServers.find().fetch(), function(server) {
         var startTime = Date.now(),
-            endTime,
-            ping;
+        endTime,
+        ping;
         var hashServer = (CryptoJS.SHA256(server.ip).toString());
         $.ajax({
             type: "GET",
@@ -152,14 +157,15 @@ function updatePings() {
             }
         });
     });
-}
-Template.ListServers.rendered = function() {
+ }
+ Template.ListServers.rendered = function() {
     //Lets check for pings when the server list is rendered
     //Lets also re-check pings every 10 seconds from the client
-    updatePings();
+    updatePings();  
+    dewStorage.checkCondensed();
     setInterval(function() {
        updatePings();
-    }, 10000);
+   }, 10000);
 
     $.ajax({
         dataType: "json",
@@ -173,13 +179,5 @@ Template.ListServers.rendered = function() {
                 Session.set("motd", msg);
             }
         }
-    });   
-
-    var isCondensed = Cookies.get("condensed");
-
-    if (isCondensed) {
-        $(".list-wrapper").toggleClass("condensed-view");
-        $(".condensed-mode").toggleClass("active");
-    }
-    console.log(isCondensed);
+    });  
 }
