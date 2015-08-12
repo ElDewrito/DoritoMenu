@@ -33,7 +33,7 @@ Template.ListServers.helpers({
     }
 });
 
-function orderByPing() {
+function orderPings() {
     var $container = $('.overlay[data-id=gameservers] .list-wrapper');
     var $servers = $('.server-item').detach();
 
@@ -74,13 +74,8 @@ Template.ListServers.events = {
     },
     'click .orderByPing' : function(e) {
         ga('send', 'event', 'serverlist', 'sort ping');
-        
-        $(".orderByPing").toggleClass("active");
 
-        orderByPingToggle = !orderByPingToggle;
-
-        if (orderByPingToggle)
-            orderByPing();        
+        orderPing(true);
     },
 
     'click .togglePassworded' : function(e) {
@@ -104,6 +99,7 @@ Template.ListServers.events = {
     },
 
     'click .condensed-mode' : function(e) {
+        ga('send', 'event', 'serverlist', 'toggle condensed mode');
         toggleCondensed(true);    
     },
 
@@ -125,15 +121,27 @@ Template.ListServers.events = {
     }
 
     toggleCondensed = function (store) {
-      ga('send', 'event', 'serverlist', 'toggle condensed mode');
       $("[data-id=gameservers] .list-wrapper").toggleClass("condensed-view");
       $("[data-id=gameservers] .condensed-mode").toggleClass("active");
-
+      
       var isCondensed = $(".condensed-mode").hasClass("active");
 
       if (store)
         dewStorage.set("condensed", isCondensed);
-  }
+    }
+
+    orderPing = function (store) {
+
+        $(".orderByPing").toggleClass("active");
+
+        orderByPingToggle = !orderByPingToggle;
+
+        if (orderByPingToggle)
+            orderPings();  
+
+        if (store)
+            dewStorage.set("orderByPing", orderByPingToggle);
+    }
 
   function updatePings() {
      _.each(GameServers.find().fetch(), function(server) {
@@ -151,7 +159,7 @@ Template.ListServers.events = {
                 ping = Math.round((endTime - startTime) / 1.60);
                 Session.set("ping_" + hashServer, ping);
                 if (orderByPingToggle)
-                    orderByPing();
+                    orderPings();
             }
         });
     });
@@ -160,7 +168,6 @@ Template.ListServers.events = {
     //Lets check for pings when the server list is rendered
     //Lets also re-check pings every 10 seconds from the client
     updatePings();  
-    dewStorage.checkCondensed();
     setInterval(function() {
        updatePings();
    }, 10000);
