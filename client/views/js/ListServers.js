@@ -126,7 +126,7 @@ Template.ListServers.events = {
 
     toggleCondensed = function (store) {
       ga('send', 'event', 'serverlist', 'toggle condensed mode');
-      $("[data-id=gameservers] .list-wrapper").addClass("condensed-view");
+      $("[data-id=gameservers] .list-wrapper").toggleClass("condensed-view");
       $("[data-id=gameservers] .condensed-mode").toggleClass("active");
 
       var isCondensed = $(".condensed-mode").hasClass("active");
