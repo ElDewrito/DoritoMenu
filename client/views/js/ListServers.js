@@ -18,7 +18,7 @@ Template.ListServers.helpers({
 
         servers.forEach(function(server) {
             if (server.data !== undefined && server.data.players !== undefined) {
-                totalPlayers += server.data.players.length;
+                totalPlayers += server.data.numPlayers;
             }
         });
         return totalPlayers;
