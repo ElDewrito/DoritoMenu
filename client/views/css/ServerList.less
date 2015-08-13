@@ -104,7 +104,7 @@
 		background-color: rgba(255, 255, 255, 0.05);
 		/*border-top: 1px solid rgba(255, 255, 255, 0.07);*/
 		transition: all 0.2s;
-		.favourite-toggle { display: block; }
+		.favourite-toggle { opacity: 1; transition: opacity 0.2s }
 	}
 	
 	&.filtered {
@@ -126,12 +126,19 @@
 	}
 
 	.favourite-toggle {
-		display: none;
-		font-size: 17px;
-		margin-bottom: -16px;
-		position: absolute;
-		bottom: 0;
-		padding: 3px 12px 10px 0;
+	    display: inline-block;
+	    width: 26px;
+	    height: 22px;
+	    background: url(/img/Star-Grey.png) no-repeat 50% 50%;
+	    background-size: contain;
+	    top: 4px;
+	    position: relative;
+	    opacity: 0;
+	    transition: opacity 0.2s;
+	    &:hover {
+		    background: url(/img/Star-Full.png) no-repeat 50% 50%;
+	    	background-size: contain;
+	    }
 	}
 
 
@@ -150,6 +157,27 @@
 				font-size: 15px;
 			}
 		}
+		.ip-container {
+			display: inline-block;
+			margin-left: 10px;
+			.glyphicon {
+				font-size: 15px;
+				margin-right: 5px;
+			}
+			.ip {
+				display: inline-block;
+				width: 0;
+				overflow: hidden;
+				transition: width 0.2s, min-width 0.2s;
+				min-width: 0;
+				line-height: 0.7;
+			}
+			&:hover .ip {
+				width: 12vw;
+				min-width: 165px;
+				transition: width 0.2s, min-width 0.2s;
+			}
+		}
 	}
 
 	.server-extra {
@@ -161,7 +189,7 @@
 			text-align: right;
 		}
 	}
-	&.favourite .server-image:before {
+	/*&.favourite .server-image:before {
 	    content: "";
 	    background: url(/img/Star-Full.png) no-repeat 6px 93%;
 	    right: 0;
@@ -172,7 +200,7 @@
 	    bottom: 0;
 	    height: 100%;
 	    background-size: 22%;
-	}
+	}*/
 
 	&.passworded .server-image:before {
 		content: " ";
@@ -189,9 +217,17 @@
 	}
 
 
-	&.favourite.passworded .server-image:before {
+	/*&.favourite.passworded .server-image:before {
 	    background: url(/img/Star-Full.png) no-repeat 6px 93%, url(/img/passworded.png) no-repeat 50% 50%;
 	    background-size: 22%, 15%;
+	}*/
+
+	&.favourite {
+		.favourite-toggle {
+		    background: url(/img/Star-Full.png) no-repeat 50% 50%;
+	    	background-size: contain;
+    	 	opacity: 1; transition: opacity 0.2s 
+	    }
 	}
 }
 

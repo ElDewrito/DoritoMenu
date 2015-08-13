@@ -26,15 +26,14 @@
                     <div class="first-row">
                         <span class="name">{{data.name}} 
                         <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}}</span> 
-                        - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span>
-
-                        <span class="favourite-toggle">Favourite</span>
+                        - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span> <span class="favourite-toggle"></span>
                     </div>
 
                     <div class="second-row">
                         <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}}" alt="{{geoIP.country}}" /> {{geoIP.city}} 
                         <span class="ping">{{pingGameServer ip}}</span> 
                         <span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{data.eldewritoVersion}}</span>
+                        <span class="ip-container"><span class="glyphicon glyphicon-hdd"></span><span class="ip">{{ip}}</span></span>
                     </div>
 
 
