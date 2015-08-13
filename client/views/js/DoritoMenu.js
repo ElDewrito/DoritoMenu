@@ -53,7 +53,6 @@ Template.Home.rendered = function() {
 			if (params == 1)
 				$("body").addClass("debug");
 
-
     		dewStorage.loadSettings();
 		});
 	}

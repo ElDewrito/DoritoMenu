@@ -21,7 +21,9 @@ dewStorage = (function () {
 	module.set = function (name, val) {
 		localStorage.setItem(name, val);            
 	},
-
+	module.clear = function () {
+		localStorage.clear();
+	}
 	module.loadSettings = function () {
 		var isCondensed = dewStorage.get("condensed");
 
@@ -34,6 +36,9 @@ dewStorage = (function () {
 		if (pings == "true") {
 			orderPing(false);
 		}
+
+		checkFavouriteList();
+
 	}
 	module.active = module.available();
 	return module;

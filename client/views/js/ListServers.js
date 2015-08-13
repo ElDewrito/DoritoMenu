@@ -117,17 +117,28 @@ Template.ListServers.events = {
                 SnackBarOptions.text = res;
                 MDSnackbars.show(SnackBarOptions);
             });
+        },
+
+        'click .favourite-toggle' : function(e) {
+            e.stopPropagation();
+
+            var server = $(e.currentTarget).parents(".server-item");
+            ga('send', 'event', 'serverlist', 'favourite', server.attr("data-ip"));
+
+            setFavourite(server.attr("data-ip"));
+
+            $(server).toggleClass("favourite");
         }
     }
 
     toggleCondensed = function (store) {
-      $("[data-id=gameservers] .list-wrapper").toggleClass("condensed-view");
-      $("[data-id=gameservers] .condensed-mode").toggleClass("active");
-      
-      var isCondensed = $(".condensed-mode").hasClass("active");
+        $("[data-id=gameservers] .list-wrapper").toggleClass("condensed-view");
+        $("[data-id=gameservers] .condensed-mode").toggleClass("active");
 
-      if (store)
-        dewStorage.set("condensed", isCondensed);
+        var isCondensed = $(".condensed-mode").hasClass("active");
+
+        if (store)
+            dewStorage.set("condensed", isCondensed);
     }
 
     orderPing = function (store) {
@@ -143,7 +154,36 @@ Template.ListServers.events = {
             dewStorage.set("orderByPing", orderByPingToggle);
     }
 
-  function updatePings() {
+    setFavourite = function(ip) {
+        var favouritesList = JSON.parse(dewStorage.get("favourites"));
+
+        if (favouritesList == null) { 
+            favouritesList = [];
+        } 
+
+        favouritesList.push(ip);
+
+        dewStorage.set("favourites", JSON.stringify(favouritesList));
+    }
+
+    checkFavourite = function(ip) {
+
+        var favouritesList = JSON.parse(dewStorage.get("favourites"));
+
+        if (favouritesList.indexOf(ip) >= 0)
+            return true;
+        else
+            return false;
+    }
+
+    checkFavouriteList = function() {
+        $(".server-item").each(function() {
+            if (checkFavourite($(this).attr("data-ip"))) {
+                $(this).addClass("favourite");
+            }
+        });
+    }
+    function updatePings() {
      _.each(GameServers.find().fetch(), function(server) {
         var startTime = Date.now(),
         endTime,
@@ -170,6 +210,7 @@ Template.ListServers.events = {
     updatePings();  
     setInterval(function() {
        updatePings();
+       checkFavouriteList();
    }, 10000);
 
     $.ajax({
