@@ -155,20 +155,15 @@ Template.ListServers.events = {
     }
 
     setFavourite = function(ip) {
-        var favouritesList = JSON.parse(dewStorage.get("favourites"));
-
-        if (favouritesList == null) { 
-            favouritesList = [];
-        } 
-
-        favouritesList.push(ip);
-
-        dewStorage.set("favourites", JSON.stringify(favouritesList));
+        dewStorage.setArray("favourites", ip);
     }
 
     checkFavourite = function(ip) {
 
         var favouritesList = JSON.parse(dewStorage.get("favourites"));
+
+        if (favouritesList == null)
+            return false;
 
         if (favouritesList.indexOf(ip) >= 0)
             return true;
@@ -212,18 +207,4 @@ Template.ListServers.events = {
        updatePings();
        checkFavouriteList();
    }, 10000);
-
-    $.ajax({
-        dataType: "json",
-        url: "/motd.json",
-        timeout: 15000,
-        async: true,
-        crossDomain: true,
-        success: function(data) {
-            if (data.active !== undefined && data.active) {
-                msg = "<strong>MOTD</strong> - " + data.author + ": " + data.message;
-                Session.set("motd", msg);
-            }
-        }
-    });  
 }

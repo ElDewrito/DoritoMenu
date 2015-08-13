@@ -21,9 +21,23 @@ dewStorage = (function () {
 	module.set = function (name, val) {
 		localStorage.setItem(name, val);            
 	},
+
+	module.setArray = function (name, val) {
+		var tmp = JSON.parse(dewStorage.get(name));
+		if (tmp == null) {
+			tmp = [];
+		}
+
+		tmp.push(val);
+
+		dewStorage.set(name, JSON.stringify(tmp));
+	},
+
+
 	module.clear = function () {
 		localStorage.clear();
-	}
+	},
+
 	module.loadSettings = function () {
 		var isCondensed = dewStorage.get("condensed");
 

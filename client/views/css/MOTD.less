@@ -1,0 +1,53 @@
+.motd-splash-blur {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 90;
+ 	background: url(/img/backgrounds/1.jpg) no-repeat center center;
+    -webkit-filter: blur(12px);
+    opacity: 0.97;
+    pointer-events:none;
+    display: none;
+    &.show { display: block; }
+}
+
+
+.motd-splash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 95;
+    color: white;
+    margin: 17% auto 0;
+    background-color: rgba(255, 255, 255, 0.07);
+    padding: 40px 0;
+    border-top: 3px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+    font-size: 17px;
+    line-height: 1.2;
+    display: none;
+    .container { padding-left: 40px; }
+    .accept {
+		float: right;
+		margin-right: 60px;
+		margin-bottom: -10px;
+		margin: 10px 60px -10px 0;
+		color: white;
+		text-shadow: 1px 1px 1px grey;
+		&:hover,
+		&:active {
+			text-decoration: none;
+			font-style: italic;
+		}
+    }
+    .motd-body {
+    	font-family: "Calibri", Arial, sans-serif;
+		font-size: 19px;
+		font-weight: 300;
+		p { margin-bottom: 15px; }
+    }
+    &.show { display: block; }
+}

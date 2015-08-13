@@ -1,6 +1,9 @@
 {
   "date" : "19th July 2015",
-  "message": "Forge has now been added to all maps, other than Edge. Including a new feature of <strong>phased objects</strong>",
+  "heading" : "Forge Update",
+  "body" : "<p>Forge has now been added to all maps, other than Edge. Including a new feature of phased objects. Load up a Forge gametype to try out the new options. Items marked with a (p) can be phased.</p><p>Happy Forging!</p>",
   "author": "Devs",
-  "active" : true
+  "active" : true,
+  "motdID" : 1,
+  "usedMOTD": "0,"
 }
