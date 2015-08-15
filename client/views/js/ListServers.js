@@ -128,6 +128,26 @@ Template.ListServers.events = {
             setFavourite(server.attr("data-ip"));
 
             $(server).toggleClass("favourite");
+        },
+
+        'click .direct-connect' : function(e) {
+            $(".overlay[data-id=directConnect]").addClass("active");
+
+            $(".overlay[data-id=directConnect] .connect").on("click", function() {
+                var ip = $(".overlay[data-id=direct-connect] #directConnectIP").val();
+                if (ip != null) {
+                    dewRcon.send("connect " + $(server).attr('data-ip') + " ", function(res) {
+                        SnackBarOptions.text = res;
+                        MDSnackbars.show(SnackBarOptions);
+                    });
+
+                    $(".overlay[data-id=directConnect]").removeClass("active");
+                }
+            });
+
+            $(".overlay[data-id=directConnect] .cancel").on("click", function() {
+                $(".overlay[data-id=directConnect]").removeClass("active");
+            });
         }
     }
 
