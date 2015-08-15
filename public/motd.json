@@ -1,9 +1,9 @@
 {
-  "date" : "19th July 2015",
-  "heading" : "Forge Update",
-  "body" : "<p>Forge has now been added to all maps, other than Edge. Including a new feature of phased objects. Load up a Forge gametype to try out the new options. Items marked with a (p) can be phased.</p><p>Happy Forging!</p>",
-  "author": "Devs",
+  "date" : "15th August 2015",
+  "heading" : "Menu Updated",
+  "body" : "<p>The Dewmenu has been updated with a set of new features; favourite servers, direct connect, new MOTD splash screens, improved password prompt window and storage for menu configuration settings allowing your presets to be saved for later.</p><p>- Limited</p>",
+  "author": "Limited",
   "active" : true,
-  "motdID" : 1,
-  "usedMOTD": "0,"
+  "motdID" : 2,
+  "usedMOTD": "0,1"
 }
