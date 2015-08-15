@@ -60,17 +60,17 @@ var orderByPingToggle = false;
 
 Template.ListServers.events = {
     'click .row.server-item': function(e) {
-        var server = $(e.currentTarget).attr("data-ip");
+        var server = $(e.currentTarget);
+        ga('send', 'event', 'serverlist', 'connect', server.attr("data-ip"));
         if ($(e.currentTarget).hasClass("passworded")) {
-            var password = prompt("Please type the sever password to connect");
+            displayPasswordForm(server);
         }
-
-        ga('send', 'event', 'serverlist', 'connect', server);
-
-        dewRcon.send("connect " + server + " " + password, function(res) {
-            SnackBarOptions.text = res;
-            MDSnackbars.show(SnackBarOptions);
-        });
+        else {
+            dewRcon.send("connect " + server + " ", function(res) {
+                SnackBarOptions.text = res;
+                MDSnackbars.show(SnackBarOptions);
+            });
+        }
     },
     'click .orderByPing' : function(e) {
         ga('send', 'event', 'serverlist', 'sort ping');
@@ -131,6 +131,23 @@ Template.ListServers.events = {
         }
     }
 
+    displayPasswordForm = function(server) {
+        $(".overlay[data-id=password]").addClass("active");
+
+        $(".overlay[data-id=password] .connect").on("click", function() {
+            var password = $(".overlay[data-id=password] #loginPassword").val();
+            dewRcon.send("connect " + $(server).attr('data-ip') + " " + password, function(res) {
+                SnackBarOptions.text = res;
+                MDSnackbars.show(SnackBarOptions);
+            });
+
+            $(".overlay[data-id=password]").removeClass("active");
+        });
+
+        $(".overlay[data-id=password] .cancel").on("click", function() {
+            $(".overlay[data-id=password]").removeClass("active");
+        });
+    }
     toggleCondensed = function (store) {
         $("[data-id=gameservers] .list-wrapper").toggleClass("condensed-view");
         $("[data-id=gameservers] .condensed-mode").toggleClass("active");
