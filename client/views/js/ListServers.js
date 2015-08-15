@@ -66,7 +66,7 @@ Template.ListServers.events = {
             displayPasswordForm(server);
         }
         else {
-            dewRcon.send("connect " + server + " ", function(res) {
+            dewRcon.send("connect " + server.attr("data-ip") + " ", function(res) {
                 SnackBarOptions.text = res;
                 MDSnackbars.show(SnackBarOptions);
             });
@@ -132,11 +132,12 @@ Template.ListServers.events = {
 
         'click .direct-connect' : function(e) {
             $(".overlay[data-id=directConnect]").addClass("active");
+            $(".overlay[data-id=directConnect] #directConnectIP").focus();
 
             $(".overlay[data-id=directConnect] .connect").on("click", function() {
-                var ip = $(".overlay[data-id=direct-connect] #directConnectIP").val();
+                var ip = $(".overlay[data-id=directConnect] #directConnectIP").val();
                 if (ip != null) {
-                    dewRcon.send("connect " + $(server).attr('data-ip') + " ", function(res) {
+                    dewRcon.send("connect " + ip + " ", function(res) {
                         SnackBarOptions.text = res;
                         MDSnackbars.show(SnackBarOptions);
                     });
