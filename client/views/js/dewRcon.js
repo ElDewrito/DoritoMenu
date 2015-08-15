@@ -23,6 +23,7 @@ StartRconConnection = function() {
         if (!dewRconConnected) {
             setTimeout(StartRconConnection, 1000);
         }
+        console.error("WebSocket could not be established, check game is running");
     };
     dewRcon.dewWebSocket.onmessage = function(message) {
         dewRcon._cbFunction(message.data);
