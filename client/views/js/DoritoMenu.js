@@ -19,6 +19,10 @@ Template.Splash.events = {
 		dewRcon.send("set_menu false", function(res) {
 			console.log(res);
 		});
+	},
+	'click .train-menu' : function(e) {
+		e.preventDefault();
+		window.location.href = "http://thefeeltrain.github.io";
 	}
 }
 

@@ -48,6 +48,7 @@ dewRconHelper = function() {
     }
 }
 
+
 //TODO: make it so these don't have to be chained.. Darn CB Functions.
 GameSettings = new Meteor.Collection(null);
 var settingsBlacklist = ['Execute', 'Help', 'WriteConfig'];
