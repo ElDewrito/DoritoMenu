@@ -22,6 +22,7 @@ Template.Splash.events = {
 	},
 	'click .train-menu' : function(e) {
 		e.preventDefault();
+        ga('send', 'event', 'settings', 'change-menu', 'train');
 		window.location.href = "http://thefeeltrain.github.io";
 	}
 }
