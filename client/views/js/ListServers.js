@@ -123,11 +123,14 @@ Template.ListServers.events = {
 			e.stopPropagation();
 
 			var server = $(e.currentTarget).parents(".server-item");
-			ga('send', 'event', 'serverlist', 'favourite', server.attr("data-ip"));
 
 			setFavourite(server.attr("data-ip"));
 
 			$(server).toggleClass("favourite");
+
+			if ($(server).hasClass("favourite")) {
+				ga('send', 'event', 'serverlist', 'favourite', server.attr("data-ip"));
+			}
 		},
 
 		'click .direct-connect' : function(e) {
