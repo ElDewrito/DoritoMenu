@@ -59,6 +59,10 @@ Template.Home.rendered = function() {
 				$("body").addClass("debug");
 
     		dewStorage.loadSettings();
+
+			cheet('d o d g e r', function () {
+				$(".banned").addClass("active");
+			});
 		});
 	}
 
@@ -71,4 +75,3 @@ Template.Home.rendered = function() {
 		}
 		return(false);
 	}
-
