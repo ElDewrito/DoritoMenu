@@ -58,14 +58,16 @@ dewStorage = (function () {
 			$(".overlay[data-id=setMenu]").addClass("active");
 
 			$(".overlay[data-id=setMenu] .confirm").on("click", function() {
-				console.log("Setting default to be dewmenu");
 				dewRcon.send('game.menuurl "http://dewmenu.halo.click"');
 				SnackBarOptions.text = "Dewmenu set as the default";
 				MDSnackbars.show(SnackBarOptions);
 				$(".overlay[data-id=setMenu]").removeClass("active");
+        		ga('send', 'event', 'settings', 'set default', 'true');
+
 			});
 
 			$(".overlay[data-id=setMenu] .cancel").on("click", function() {
+        		ga('send', 'event', 'settings', 'set default', 'false');
 				$(".overlay[data-id=setMenu]").removeClass("active");
 			});
 		}
