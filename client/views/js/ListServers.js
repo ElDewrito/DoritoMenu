@@ -123,13 +123,14 @@ Template.ListServers.events = {
 			e.stopPropagation();
 
 			var server = $(e.currentTarget).parents(".server-item");
-
-			setFavourite(server.attr("data-ip"));
-
 			$(server).toggleClass("favourite");
 
 			if ($(server).hasClass("favourite")) {
 				ga('send', 'event', 'serverlist', 'favourite', server.attr("data-ip"));
+				setFavourite(server.attr("data-ip"));
+			}
+			else {
+				removeFavourite(server.attr("data-ip"));
 			}
 		},
 
@@ -197,6 +198,10 @@ Template.ListServers.events = {
 
 	setFavourite = function(ip) {
 		dewStorage.setArray("favourites", ip);
+	}
+
+	removeFavourite = function(ip) {
+		dewStorage.removeFromArray("favourites", ip);
 	}
 
 	checkFavourite = function(ip) {

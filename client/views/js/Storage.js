@@ -33,6 +33,18 @@ dewStorage = (function () {
 		dewStorage.set(name, JSON.stringify(tmp));
 	},
 
+	module.removeFromArray = function (name, val) {
+		var tmp = JSON.parse(dewStorage.get(name));
+		if (tmp == null) return false;
+
+		var i = tmp.indexOf(val);
+
+		if (i > -1) {
+			tmp.splice(i, 1);
+		}
+
+		dewStorage.set(name, JSON.stringify(tmp));
+	},
 
 	module.clear = function () {
 		localStorage.clear();
