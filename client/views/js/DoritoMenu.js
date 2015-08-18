@@ -61,6 +61,7 @@ Template.Home.rendered = function() {
     		dewStorage.loadSettings();
 
 			cheet('d o d g e r', function () {
+        		ga('send', 'event', 'settings', 'banned', 'dodge');
 				$(".banned").addClass("active");
 			});
 		});
