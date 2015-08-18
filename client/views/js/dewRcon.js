@@ -11,17 +11,25 @@ StartRconConnection = function() {
         LoadDewStuff();
     };
     dewRcon.dewWebSocket.onerror = function() {
-        if (!snacking) {
-            DisplayNotification("Not connected to game. Is Eldewrito running?!");
-            snacking = 1;
-            setTimeout(function() {
-                snacking = 0;
-            }, 9000);
-        }
         dewRconConnected = false;
         Session.set('dewRconConnected', false);
         if (!dewRconConnected) {
-            setTimeout(StartRconConnection, 1000);
+            if (DewRconPortIndex == 0) {
+                DewRconPortIndex = 1;
+                snacking = 1;
+                StartRconConnection();
+            } else {
+                DewRconPortIndex = 0;
+                snacking = 0;
+                setTimeout(StartRconConnection, 1000);
+            }
+            if (!snacking) {
+                DisplayNotification("Not connected to game. Is Eldewrito running?!");
+                snacking = 1;
+                setTimeout(function() {
+                    snacking = 0;
+                }, 9000);
+            }
         }
         console.error("WebSocket could not be established, check game is running");
     };
@@ -30,9 +38,11 @@ StartRconConnection = function() {
         dewRcon.lastMessage = message.data;
     };
 }
+var DewRconPortIndex = 0;
+var DewRconPorts = [11764, 11776];
 dewRconHelper = function() {
     window.WebSocket = window.WebSocket || window.MozWebSocket;
-    this.dewWebSocket = new WebSocket('ws://127.0.0.1:11776', 'dew-rcon');
+    this.dewWebSocket = new WebSocket('ws://127.0.0.1:' + DewRconPorts[DewRconPortIndex], 'dew-rcon');
     this.lastMessage = "";
     this.lastCommand = "";
     this.open = false;
