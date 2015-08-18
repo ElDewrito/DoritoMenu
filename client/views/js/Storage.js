@@ -51,6 +51,9 @@ dewStorage = (function () {
 	},
 
 	module.checkDefault = function(val) {
+
+		if (dewStorage.get("default") == "1" || dewStorage.get("default") == "0" ) return;
+
 		var menuUrl = val[0].value;
 
 		if (menuUrl.indexOf("http://dewmenu.halo.click") <= -1) {
@@ -63,12 +66,13 @@ dewStorage = (function () {
 				MDSnackbars.show(SnackBarOptions);
 				$(".overlay[data-id=setMenu]").removeClass("active");
         		ga('send', 'event', 'settings', 'set default', 'true');
-
+				dewStorage.set("default", "1");
 			});
 
 			$(".overlay[data-id=setMenu] .cancel").on("click", function() {
         		ga('send', 'event', 'settings', 'set default', 'false');
 				$(".overlay[data-id=setMenu]").removeClass("active");
+				dewStorage.set("default", "0");
 			});
 		}
 	},
