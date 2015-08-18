@@ -65,7 +65,7 @@ var settingsBlacklist = ['Execute', 'Help', 'WriteConfig'];
 LoadDewStuff = function() {
     //Lets get all the settings!
     dewRcon.send("help", function(res) {
-        var settings = res.split(/\n/);
+        settings = res.split(/\n/);
         _.each(settings, function(key, val) {
             var settingsPart1 = key.split(' ', 2);
             var settingsHelp = key.split(' - ');
@@ -98,6 +98,9 @@ LoadDewStuff = function() {
                 });
             });
         });
-
+    
+        var menuSetting = GameSettings.find({ command: 'Game.MenuURL'}).fetch();
+        if (menuSetting !== undefined)
+            dewStorage.checkDefault(menuSetting);
     });
 }

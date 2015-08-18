@@ -50,6 +50,27 @@ dewStorage = (function () {
 		localStorage.clear();
 	},
 
+	module.checkDefault = function(val) {
+		var menuUrl = val[0].value;
+
+		if (menuUrl.indexOf("http://dewmenu.halo.click") <= -1) {
+
+			$(".overlay[data-id=setMenu]").addClass("active");
+
+			$(".overlay[data-id=setMenu] .confirm").on("click", function() {
+				console.log("Setting default to be dewmenu");
+				dewRcon.send('game.menuurl "http://dewmenu.halo.click"');
+				SnackBarOptions.text = "Dewmenu set as the default";
+				MDSnackbars.show(SnackBarOptions);
+				$(".overlay[data-id=setMenu]").removeClass("active");
+			});
+
+			$(".overlay[data-id=setMenu] .cancel").on("click", function() {
+				$(".overlay[data-id=setMenu]").removeClass("active");
+			});
+		}
+	},
+
 	module.loadSettings = function () {
 		var isCondensed = dewStorage.get("condensed");
 
@@ -64,7 +85,6 @@ dewStorage = (function () {
 		}
 
 		checkFavouriteList();
-
 	}
 	module.active = module.available();
 	return module;

@@ -1,6 +1,7 @@
 .overlay[data-id=login],
 .overlay[data-id=password],
-.overlay[data-id=directConnect] {
+.overlay[data-id=directConnect],
+.overlay[data-id=setMenu] {
 	width: 35vw;
 	height: 63vh;
 	left: 34vw;
@@ -79,6 +80,9 @@
 	}
 
 	.cancel { margin-right: 5px; }
+
+
+
 }
 
 .overlay[data-id=password], 
@@ -97,3 +101,34 @@
 		width: 360px;
 	}
 }
+
+.overlay[data-id=setMenu] {
+    height: 35vh;
+    width: 34vw;
+    top: 30vh;
+    .content { padding: 11% 23%;}
+	p { font-size: 16px; margin: 20px 0;}
+	.form {
+	    display: inline-block;
+	    margin: 0 auto;
+	    float: right;
+	    .btn {
+	    	float: none;
+	    	padding: 5px 20px;
+	    }
+
+	    .cancel {
+	        background-color: #3c2127;
+    		border-top: 1px solid #84585f;
+	    }
+
+	    .confirm {
+			background-color: #18452b;
+			color: white;
+			border-top: 1px solid #507B56;
+			border-bottom: 1px solid #223124;
+			box-shadow: 1px 1px 1px 0px #223124;
+	    }
+	}
+}
+
