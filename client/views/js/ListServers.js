@@ -7,6 +7,7 @@ Template.ListServers.helpers({
 		});
 	},
 
+	
 	serverCount: function() {
 		return GameServers.find().count();
 	},
@@ -56,41 +57,36 @@ function orderPings() {
 	$container.html($servers);
 }
 
+function updateLobby(data) {
+
+}
+
 var orderByPingToggle = false;
 
 Template.ListServers.events = {
 	'click .row.server-item': function(e) {
-		var server = $(e.currentTarget);
-		ga('send', 'event', 'serverlist', 'connect', server.attr("data-ip"));
-		if ($(e.currentTarget).hasClass("passworded")) {
-			displayPasswordForm(server);
-		}
-		else {
-			dewRcon.send("connect " + server.attr("data-ip") + " ", function(res) {
-				SnackBarOptions.text = res;
-				MDSnackbars.show(SnackBarOptions);
-			});
-		}
+		// var server = $(e.currentTarget);
+		// ga('send', 'event', 'serverlist', 'connect', server.attr("data-ip"));
+		// if ($(e.currentTarget).hasClass("passworded")) {
+		// 	displayPasswordForm(server);
+		// }
+		// else {
+		// 	dewRcon.send("connect " + server.attr("data-ip") + " ", function(res) {
+		// 		SnackBarOptions.text = res;
+		// 		MDSnackbars.show(SnackBarOptions);
+		// 	});
+		// }
 
 
 
 		//// new lobby stuff
-
-
-		var server = $(e.currentTarget).attr("data-ip");
-        // if ($(e.currentTarget).hasClass("passworded")) {
-        //     var password = prompt("Please type the sever password to connect");
-        // }
-        // dewRcon.send("connect " + server + " " + password, function(res) {
-        //     SnackBarOptions.text = res;
-        //     MDSnackbars.show(SnackBarOptions);
-        // });
+		var ip = $(e.currentTarget).attr("data-ip");
 
         // Show lobby screen with relevant info
         $(".overlay").removeClass("active");
-        $(".overlay[data-id=lobby]").toggleClass("active").attr("data-ip", server);
+        $(".overlay[data-id=lobby]").toggleClass("active");
         $("body").attr("data-menu", "lobby");
-        Template.Lobby.rendered(server);
+        Template.Lobby.rendered(ip);
 	},
 	'click .orderByPing' : function(e) {
 		ga('send', 'event', 'serverlist', 'sort ping');

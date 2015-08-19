@@ -3,19 +3,19 @@
     Lobby here
     <a href="#">Join Game</a>
 
-    <span class="playercount">{{data.numPlayers}}/{{data.maxPlayers}}</span>
-    <span class="name">{{data.name}} 
+    <span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
+    <span class="name">{{serverData.name}} 
 
-      <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}}</span> 
-      - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span>
+      <span class="gametype">{{serverData.variant}}</span> on <span class="map">{{serverData.map}}</span> 
+      - by {{serverData.hostPlayer}}</span> <span class="status {{serverData.statsClass}}">{{serverData.stats}}</span>
       {{geoIP.city}} 
-      <span> {{data.eldewritoVersion}}</span>
+      <span> {{serverData.eldewritoVersion}}</span>
       <span class="ping">{{pingGameServer ip}}</span> 
 
      {{lobbyID}}
 
       {{#each playerList}}
-          {{data.players.name}}
+          {{serverData.players.name}}
       {{ else }}
           <div class="no-servers">
             Could not find any players
