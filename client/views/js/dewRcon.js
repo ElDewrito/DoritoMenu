@@ -92,11 +92,7 @@ LoadDewStuff = function() {
         });
         dewRcon.send("Game.Version", function(version) {
             Session.set("Dew_Version", version);
-            dewRcon.send('Game.MenuURL "' + window.location + '"', function(ret) {
-                dewRcon.send('WriteConfig', function(ret) {
-                    //Save menu url
-                });
-            });
+            dewRcon.send('Game.MenuURL "' + window.location + '"');
         });
     
         var menuSetting = GameSettings.find({ command: 'Game.MenuURL'}).fetch();
