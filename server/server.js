@@ -28,7 +28,7 @@ function UpdateMasterServerList(DewJson) {
         try {
             var checkMasterResult = HTTP.call("GET", masterServers[val].list, httpExtraOptions);
             if (checkMasterResult.statusCode == 200) {
-                console.log("Got response from master (" + masterServers[val].list + ")");
+                //console.log("Got response from master (" + masterServers[val].list + ")");
                 var Json = JSON.parse(checkMasterResult.content);
                 Json.list = masterServers[val].list;
 
@@ -39,7 +39,7 @@ function UpdateMasterServerList(DewJson) {
                 }, {
                     upsert: true
                 });
-                console.log("Game Servers: " + Json.result.servers);
+               // console.log("Game Servers: " + Json.result.servers);
                 _.each(Json.result.servers, function(key, i) {
                     if (!_.contains(gameServers, Json.result.servers[i])) {
                         gameServers.push(Json.result.servers[i]);
@@ -47,7 +47,7 @@ function UpdateMasterServerList(DewJson) {
                 });
             }
         } catch (e) {
-            console.log("Unable to talk to master server (" + masterServers[val].list + ")");
+            //console.log("Unable to talk to master server (" + masterServers[val].list + ")");
             MasterServers.remove({
                 "hash": hashServer,
             });
@@ -80,6 +80,7 @@ function UpdateMasterServerList(DewJson) {
                 ip: server
             };
             GameServer.geoIP = geoip.lookup(server.split(":")[0]);
+            console.log(geoip.pretty(server.split(":")[0]));
 
             gameServers.push(GameServer);
             GameServers.update({
@@ -139,6 +140,7 @@ function GetMasterServerList() {
     }
 
 }
+
 Meteor.startup(function() {
     GetMasterServerList();
 
@@ -158,4 +160,23 @@ Meteor.startup(function() {
     Meteor.setInterval(function() {
         GetMasterServerList();
     }, 600000);
+
+    // MatchmakingPlayers.cle
+
+    // for (var i = 1; i < 10; i++ ){
+    //     console.log("adding player" + i);
+    //     var player = {
+    //         name : "Player" + i,
+    //         ip: "127.0.0.1",
+    //         uid: "player.uuid" + i,
+    //         netspeed: randomBetween(1000, 15000)
+    //     }        
+
+    //     MatchmakingPlayers.insert(player);
+    // }
 });
+
+// Temporary function
+function randomBetween(min,max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+}

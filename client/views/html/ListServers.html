@@ -1,34 +1,42 @@
 <template name="ListServers">
     <div class="overlay" data-id="gameservers">
-        <div class="server-stats">
-            <span class="global-stats"><strong>{{playerCount}}</strong> Players - <strong>{{serverCount}}</strong> Servers</span> 
-            <div class="server-controls"><span class="orderByPing">Order By Ping</span> <span class="togglePassworded">Hide Locked</span></div>
+        <div class="server-stats row">
+            <div class="col-xs-12 col-lg-3">
+                <span class="global-stats"><strong>{{playerCount}}</strong> Players - <strong>{{serverCount}}</strong> Servers</span> 
+            </div>
+            <div class="col-xs-12 col-lg-9">
+                <div class="server-controls"><span class="direct-connect">Direct Connect</span> <span class="quick-join">Quick Join</span> <span class="orderByPing"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Order By Ping</span> <span class="togglePassworded">Hide Locked</span></div>
+                <span class="condensed-mode pull-right"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Condensed Mode</span>
+            </div>
         </div>
         <div class="list-wrapper">
             {{#each server}}
-            <div class="row server-item {{#if data.passworded}} passworded{{/if}}" data-ip="{{ip}}">
+            <div class="row server-item {{#if data.passworded}} passworded{{/if}} {{#if equals data.numPlayers data.maxPlayers}} full{{/if}}" data-ip="{{ip}}">
                 <div class="col-xs-6 col-sm-2">
                     <div class="server-image gametype-{{lower data.variantType}}">
                         <img src="/img/maps/{{data.mapFile}}.jpg" width="200" height="100" class="img-responsive"/>
                     </div>
                 </div>
 
-                <div class="col-xs-6 col-sm-push-8 col-sm-2 server-extra">
+                <div class="col-xs-6 col-sm-push-9 col-sm-1 server-extra">
                     <span class="playercount">{{data.numPlayers}}/{{data.maxPlayers}}</span>
                 </div>
 
-                <div class="col-xs-12 col-sm-pull-2 col-sm-8 server-details">
+                <div class="col-xs-12 col-sm-pull-1 col-sm-9 server-details">
                     <div class="first-row">
                         <span class="name">{{data.name}} 
                         <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}}</span> 
-                        - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span>
+                        - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span> <span class="favourite-toggle"></span>
                     </div>
 
                     <div class="second-row">
-                        <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}}" alt="{{geoIP.country}}" /> {{geoIP.city}} 
+                        <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}} - {{geoIP.city}}" alt="{{geoIP.country}}" />
                         <span class="ping">{{pingGameServer ip}}</span> 
                         <span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{data.eldewritoVersion}}</span>
+                        <span class="ip-container"><span class="glyphicon glyphicon-hdd"></span><span class="ip">{{ip}}</span></span>
                     </div>
+
+
                 </div>
             </div>
             {{ else }}
@@ -37,6 +45,6 @@
                 </div>
             {{/each}}
         </div>
+        <div class="motd">{{{getMOTD}}}</div>
     </div>
-    <div class="motd">{{getMOTD}}</div>
 </template>

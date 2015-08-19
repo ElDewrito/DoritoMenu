@@ -1,16 +1,24 @@
 <template name="Splash">
     <div class="menu-panel">
-        <span class="eldorito">Eldewrito {{Dew_Version}}</span>
+        <span class="eldorito">{{#if gameRunning}}Eldewrito {{Dew_Version}}{{/if}}</span>
         <ul class="menu reveal">
-            <li>{{Dew_Player_Name}}</li>
-            <li data-menu="gameservers">Play Multiplayer</li>
-            <li data-menu="stats">Realtime Stats</li>
-            <li data-menu="settings">Settings</li>
+            <li class="debug" data-menu="matchmaking">Matchmaking</li>
+            <li data-menu="gameservers">Server List</li>
+            <li data-menu="stats">Stats</li>
+            {{#if gameRunning}}
+                <li data-menu="settings">Settings</li>
+            {{/if}}
             <li data-menu="credits">Credits</li>
-            <li data-menu="masterservers">Master Servers</li>
-            <li class="exit-menu">Exit Menu</li>
+            <li class="debug" data-menu="masterservers">Master Servers</li>
+            {{#if gameRunning}}
+                <li class="exit-menu">Exit Menu</li>
+            {{/if}}
             <li class="back">&lt; Back</li>
         </ul>
     </div>
-    <span class="alpha">Alpha Menu</span>
+    <a href="#" class="train-menu" title="Switch to TheFeelTrain menu">Switch to TheFeelTrains menu</a>
+    <a class="alpha" target="_blank" href="https://github.com/ElDewrito/DoritoMenu" title="Found a bug? Create a bug report on GitHub!">Alpha</a>
+    {{#if gameRunning}}
+        <span class="player_name">Welcome {{Dew_Player_Name}}</span>
+    {{/if}}
 </template>

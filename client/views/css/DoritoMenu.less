@@ -21,9 +21,28 @@ body {
     height: 100%;
     background-size: contain;
     opacity: 0;
-    background: url(../img/background-sky.jpg) no-repeat center center;
+    background: url(../img/backgrounds/1.jpg) no-repeat center center;
 }
 
+.banned {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: url(/img/backgrounds/1.jpg) no-repeat center center;
+    -webkit-filter: blur(12px);
+    opacity: 0.97;
+    font-size: 565px;
+    color: white;
+    pointer-events:none;
+    text-align: center;
+    display: none;
+    &.active {
+        display: block;
+    }
+}
 
 #wrap {
     min-height: 100%;
@@ -87,6 +106,8 @@ body {
 .credits {
     color: white;
     font-size: 25px;
+    max-height: 100%;
+    overflow-y: auto;
     
     .right-col {
         text-align: right;
@@ -105,7 +126,6 @@ body {
      }
 }
 
-
 .load {
     opacity: 1;
     transition: all 1.0s;
@@ -114,7 +134,11 @@ body {
 .motd {
     color: white;
     position: absolute;
-    bottom: 63px;
+    bottom: -29px;
+    margin-left: 18px;
+    strong {
+        text-shadow: 1px 1px 1px black;
+    }
 }
 
 .md-snackbar {
@@ -123,6 +147,20 @@ body {
     right: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.06);
+}
+
+.player_name {
+/*    background: -webkit-linear-gradient(#E8E8E9, #b7b7b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;*/
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    bottom: 23px;
+    left: 20px;
+    letter-spacing: 0;
+    vertical-align: bottom;
+    display: block;
 }
 
 .alpha {
@@ -140,4 +178,36 @@ body {
     background-size: 29px;
     display: block;
     padding-top: 16px;
+    opacity: 0.3;
+
+    &:hover, &:active {
+        opacity: 1;
+        text-decoration: none;
+    }
+}
+
+.train-menu {
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    bottom: 8px;
+    right: 20px;
+    display: block;
+    opacity: 0.3;
+    transition: opacity 0.2s;
+    font-family: Calibri, arial, sans-serif;
+    &:hover {
+        opacity: 1;
+        transition: opacity 0.2s;
+    }
+}
+
+
+.fa {
+    font-size: 18px;
+}
+
+
+body:not(.debug) .debug{
+    display: none;
 }

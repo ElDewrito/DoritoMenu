@@ -15,10 +15,15 @@
                     </div>
                 {{else}}
                 <div class="no-settings">
-                     Not settings to load, please make sure Eldorito is running
+                     No settings to load, please make sure Eldewrito is running
                 </div>
                 {{/each}}
+
             </div>
+            {{#if gameRunning}}
+                <p align="center">You can change settings above to change them for your current gaming session. If you want to save them for the next time you load Eldewrito, click "Write Config"</p>
+                <p align="center"><button type="button" id="write_config_button" class="btn btn-default">Write Config</button></p>
+            {{/if}}
         </div>
     </div>
 </template>
