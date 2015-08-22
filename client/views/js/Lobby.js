@@ -25,8 +25,17 @@ Template.Lobby.helpers({
 function getServerByIP(ip) {
     return GameServers.find({ip: ip}).fetch();
 }
-Template.Lobby.rendered = function(ipIn) {
-    
-    var server = getServerByIP(ipIn)[0];
+
+function updateServer(ipIn) {
+     var server = getServerByIP(ipIn)[0];
+    console.log("Server", server);
     Session.set("serverData", server.data);
+    console.log("Server updated");
+}
+Template.Lobby.load = function(ipIn) {
+    updateServer(ipIn);
+    
+   //  setInterval(function() {
+   //      updateServer(ipIn);
+   // }, 5000);
 }

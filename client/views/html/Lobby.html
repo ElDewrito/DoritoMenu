@@ -1,25 +1,94 @@
 <template name="Lobby">
-   <div class="overlay" data-id="lobby">
-    Lobby here
-    <a href="#">Join Game</a>
+	<div class="overlay" data-id="lobby">
+		<div class="bg"></div>
+		<div class="content">
+<!--     Lobby here
+	<a href="#">Join Game</a>
 
-    <span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
-    <span class="name">{{serverData.name}} 
+	<span class="name">{{serverData.name}} 
 
-      <span class="gametype">{{serverData.variant}}</span> on <span class="map">{{serverData.map}}</span> 
-      - by {{serverData.hostPlayer}}</span> <span class="status {{serverData.statsClass}}">{{serverData.stats}}</span>
-      {{geoIP.city}} 
-      <span> {{serverData.eldewritoVersion}}</span>
-      <span class="ping">{{pingGameServer ip}}</span> 
+	  <span class="gametype">{{serverData.variant}}</span> on <span class="map">{{serverData.map}}</span> 
+	  - by {{serverData.hostPlayer}}</span> <span class="status {{serverData.statsClass}}">{{serverData.stats}}</span>
+	  {{geoIP.city}} 
+	  <span> {{serverData.eldewritoVersion}}</span>
+	  <span class="ping">{{pingGameServer ip}}</span> 
 
-     {{lobbyID}}
+	 {{lobbyID}}
 
-      {{#each playerList}}
-          {{serverData.players.name}}
-      {{ else }}
-          <div class="no-servers">
-            Could not find any players
-        </div>
-    {{/each}}
+	  -->
+		<h1>Lobby</h1>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<div class="server-image gametype-{{lower serverData.variantType}}">
+				    <img src="/img/maps/{{serverData.mapFile}}.jpg" width="465" height="262" class="img-responsive"/>
+					
+				</div>
+
+				<div class="server-info">
+					<h2>
+						<img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}} - {{geoIP.city}}" alt="{{geoIP.country}}" />
+						<span class="server-name">{{serverData.name}}</span>
+					</h2>
+
+					<span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
+					<span class="gametype">{{serverData.variantType}}</span> on <span class="map-name">{{serverData.map}}</span>
+					<span class="connect" data-ip="{{serverData.ip}}">Connect</span>
+					<span class="status {{data.statsClass}}">{{serverData.stats}}</span>
+					<span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{serverData.eldewritoVersion}}</span>
+
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-6">
+							Time Left
+							Status							
+						</div>
+
+						<div class="col-xs-12 col-sm-6">
+							<div class="highlight-player">
+								<span class="name">Limited</span>
+								<div class="row">
+									<div class="col-xs-12 col-sm-6">
+										Graph here
+									</div>
+									<div class="col-xs-12 col-sm-6">
+										<span class="stat"><span class="value">343</span>KILLS</span>
+										<span class="stat"><span class="value">343</span>DEATHS</span>
+										<span class="stat"><span class="value">343</span>ASSISTS</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="team-weighing">
+						<div class="team-1">Red Team</div>
+						<div class="team-2"></div>
+					</div>        
+				</div>
+			</div>
+			
+			<div class="col-xs-12 col-sm-6">
+				<div class="player-list-container">
+					Players <span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
+
+					<ul class="player-list">
+						{{#each serverData.players}}
+						<li class="red">{{name}} - {{kills}}</li>
+						{{ else }}
+						<div class="no-servers">
+						Could not find any players
+						</div>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
 </template>
+
+
+
+
+
+

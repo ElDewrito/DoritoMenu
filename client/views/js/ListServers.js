@@ -86,7 +86,7 @@ Template.ListServers.events = {
         $(".overlay").removeClass("active");
         $(".overlay[data-id=lobby]").toggleClass("active");
         $("body").attr("data-menu", "lobby");
-        Template.Lobby.rendered(ip);
+        Template.Lobby.load(ip);
 	},
 	'click .orderByPing' : function(e) {
 		ga('send', 'event', 'serverlist', 'sort ping');

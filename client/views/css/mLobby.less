@@ -1,0 +1,59 @@
+.overlay[data-id=lobby] {
+    top: 0;
+    width: 77%;
+    height: 100%;
+    right: 0;
+    left: auto;
+    .content {
+    	padding: 50px;
+    }
+
+    
+    .player-list-container {
+        color: white;
+        .player-list {
+            padding-left: 0;
+            list-style: none;
+            li {
+                background: rgba(255,0,0,0.3);
+                padding: 5px 10px;
+                margin-bottom: 3px;
+                display: block;
+                font-size: 16px;
+                &:hover {
+                    ligten(red, 80%);
+                }
+            }
+        }
+    }
+
+    .highlight-player {
+        .name {
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .stat {
+            font-size: 14px;
+            color: lightblue;
+            text-transform: uppercase;
+            margin: 0 10px 10px 0;
+            .value {
+                color: white;
+                font-size: 16px;
+            }
+        }
+    }
+    .server-image {
+    	position: relative;
+	    max-width: 465px;
+    	[class*=" gametype-"]::after,
+    	[class^="gametype-"]::after {
+    		right: auto;
+    		left: 0;
+    	}
+    }
+	.popup-heading {
+		width: 360px;
+	}
+}
