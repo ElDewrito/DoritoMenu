@@ -1,58 +1,99 @@
 .overlay[data-id=lobby] {
-    top: 0;
-    width: 77%;
-    height: 100%;
-    right: 0;
-    left: auto;
-    .content {
-    	padding: 50px;
-    }
+	top: 0;
+	width: 77%;
+	height: 100%;
+	right: 0;
+	left: auto;
+	.content {
+		padding: 50px;
+	}
 
-    
-    .player-list-container {
-        color: white;
-        .player-list {
-            padding-left: 0;
-            list-style: none;
-            li {
-                background: rgba(255,0,0,0.3);
-                padding: 5px 10px;
-                margin-bottom: 3px;
-                display: block;
-                font-size: 16px;
-                &:hover {
-                    ligten(red, 80%);
-                }
-            }
-        }
-    }
+	.lobby-col-left {
+		max-width: 465px;
+		h2 { 
+			margin-top: 10px;
+			.flag {
+				margin-top: -4px;
+			}
+		}
+		.connect {
+			display: inline-block;
+			background-color: rgba(138, 167, 177, 0.09);
+			padding: 10px 30px;
+			border: 1px solid rgba(177, 188, 222, 0.51);
+			box-shadow: 0px 0px 12px 3px rgba(146, 164, 218, 0.51) inset;
+			margin: 10px 0;
+		}
+	}
+	
+	.player-list-container {
+		color: white;
+		.player-list {
+			padding-left: 0;
+			list-style: none;
+			li {
+				background: rgba(255,0,0,0.3);
+				padding: 5px 10px;
+				margin-bottom: 3px;
+				display: block;
+				font-size: 16px;
+				
+				&.blue {
+					background-color: rgba(68, 121, 255, 0.32);
+				}
+				&.blue:hover {
+					background-color: rgba(68, 121, 255, 0.52);
+				}
+				&.red {
+					background-color: rgba(247, 52, 52, 0.44)
+				}
+				&.red:hover {
+					background-color: rgba(247, 52, 52, 0.74)
+				}
+			}
+		}
+	}
 
-    .highlight-player {
-        .name {
-            font-size: 16px;
-            font-weight: normal;
-        }
+	.highlight-player {
+		#lobbyChart {
+			max-width: 100%;
+			padding-bottom: 100%;
+			height: auto !important;
+		}
+		.name {
+			font-size: 16px;
+			font-weight: normal;
+		}
 
-        .stat {
-            font-size: 14px;
-            color: lightblue;
-            text-transform: uppercase;
-            margin: 0 10px 10px 0;
-            .value {
-                color: white;
-                font-size: 16px;
-            }
-        }
-    }
-    .server-image {
-    	position: relative;
-	    max-width: 465px;
-    	[class*=" gametype-"]::after,
-    	[class^="gametype-"]::after {
-    		right: auto;
-    		left: 0;
-    	}
-    }
+		.stat {
+			font-size: 14px;
+			color: lightblue;
+			text-transform: uppercase;
+			margin: 0 10px 10px 0;
+			display: inline-block;
+			border-left: 1px solid rgba(255, 255, 255, 0.18);
+			padding-left: 8px;
+			padding-top: 3px;
+			width: 55px;
+			.value {
+				color: white;
+				font-size: 22px;
+				display: block;
+				line-height: 0.5;
+				font-weight: 200;
+				margin-bottom: 2px;
+			}
+		}
+	}
+	.server-image {
+		position: relative;
+		max-width: 465px;
+		[class*=" gametype-"]::after,
+		[class^="gametype-"]::after {
+			right: auto;
+			left: 0;
+		}
+	}
 	.popup-heading {
 		width: 360px;
 	}

@@ -65,17 +65,7 @@ var orderByPingToggle = false;
 
 Template.ListServers.events = {
 	'click .row.server-item': function(e) {
-		// var server = $(e.currentTarget);
-		// ga('send', 'event', 'serverlist', 'connect', server.attr("data-ip"));
-		// if ($(e.currentTarget).hasClass("passworded")) {
-		// 	displayPasswordForm(server);
-		// }
-		// else {
-		// 	dewRcon.send("connect " + server.attr("data-ip") + " ", function(res) {
-		// 		SnackBarOptions.text = res;
-		// 		MDSnackbars.show(SnackBarOptions);
-		// 	});
-		// }
+	
 
 
 
