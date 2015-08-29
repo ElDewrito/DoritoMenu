@@ -120,10 +120,8 @@ function getServerByIP(ip) {
 var serverObj;
 function updateServer(ipIn) {
     serverObj = getServerByIP(ipIn)[0];
-    console.log("Server", serverObj);
     Session.set("serverData", serverObj.data);
     Session.set("geoIP", serverObj.geoIP);
-    updateTopPlayer(serverObj.data.players[0]);
 
     playerIndex = 0;
 
@@ -157,14 +155,17 @@ function updateServer(ipIn) {
     });
 }
 
+var serverUpdateInterval = null;
 Template.Lobby.load = function(ipIn) {
     Chart.defaults.global.responsive = true;
     updateServer(ipIn);
+    updateTopPlayer(serverObj.data.players[0]);
+    
+    clearInterval(serverUpdateInterval);
 
-
-   //  setInterval(function() {
-   //      updateServer(ipIn);
-   // }, 5000);
+    serverUpdateInterval = setInterval(function() {
+        updateServer(ipIn);
+   }, 5000);
 }
 
 Template.Lobby.events = {
