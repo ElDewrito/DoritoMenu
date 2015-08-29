@@ -56,6 +56,10 @@ Template.Lobby.helpers({
 
     getPlayerIndex : function (){
         return playerIndex;
+    },
+
+    healthStatus : function (isAlive) {
+        return (isAlive ? 'alive' : 'dead');
     }
 });
 

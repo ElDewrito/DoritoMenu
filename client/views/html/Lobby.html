@@ -66,9 +66,9 @@
 						{{#each serverData.players}}
 							{{#if notNull name }}
 								{{#if isTeamGame serverData.variant}}
-									<li class="{{ teamColour team }}" data-index="{{getPlayerIndex}}">{{name}}</li>
+									<li class="{{ teamColour team }} {{ healthStatus isAlive}}" data-index="{{getPlayerIndex}}">{{name}}</li>
 								{{else}}
-									<li class="" data-index="{{getPlayerIndex}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}}</li>
+									<li class="{{ healthStatus isAlive}}" data-index="{{getPlayerIndex}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}}</li>
 								{{/if}}
 								{{playerListInc}}
 							{{/if}}
