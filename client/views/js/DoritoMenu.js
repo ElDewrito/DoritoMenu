@@ -53,10 +53,7 @@ Template.Home.rendered = function() {
 				$('.reveal').removeClass('reveal');
 			}, 500);
 
-			var params = getQueryVariable("debug");
-
-			if (params == 1)
-				$("body").addClass("debug");
+			var debugParam = getQueryVariable("debug");
 
     		dewStorage.loadSettings();
 
@@ -64,6 +61,24 @@ Template.Home.rendered = function() {
         		ga('send', 'event', 'settings', 'banned', 'dodge');
 				$(".banned").addClass("active");
 			});
+
+			if (debugParam == 1)
+				$("body").addClass("debug");
+
+			var connectParam = getQueryVariable("connect");
+			var passParam = getQueryVariable("password");
+
+			if (connectParam != null) {
+				if (passParam == false) passParam = "";
+				if (/[^0-9.:]+/g.test(connectParam) == false && /[^0-9a-zA-Z.:]+/g.test(passParam) == false) {
+					setTimeout(function() {
+						dewRcon.send("connect " + connectParam + passParam, function(res) {
+							SnackBarOptions.text = res;
+							MDSnackbars.show(SnackBarOptions);
+						});
+					}, 2000);
+				}
+			}
 		});
 	}
 
