@@ -72,7 +72,7 @@ Template.Home.rendered = function() {
 				if (passParam == false) passParam = "";
 				if (/[^0-9.:]+/g.test(connectParam) == false && /[^0-9a-zA-Z.:]+/g.test(passParam) == false) {
 					setTimeout(function() {
-						dewRcon.send("connect " + connectParam + passParam, function(res) {
+						dewRcon.send("connect " + connectParam + " " + passParam, function(res) {
 							SnackBarOptions.text = res;
 							MDSnackbars.show(SnackBarOptions);
 						});
