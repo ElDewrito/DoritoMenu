@@ -29,11 +29,17 @@
 		}
 		.connect {
 			display: inline-block;
-			background-color: rgba(138, 167, 177, 0.09);
-			padding: 10px 30px;
-			border: 1px solid rgba(177, 188, 222, 0.51);
-			box-shadow: 0px 0px 12px 3px rgba(146, 164, 218, 0.51) inset;
+			background-color: rgba(138, 167, 177, 0.05);
+			padding: 5px 14px;
+			border: 1px solid rgba(168, 177, 204, 0.17);
+			/* box-shadow: 0px 0px 12px 3px rgba(146, 164, 218, 0.51) inset; */
 			margin: 10px 0;
+			font-size: 33px;
+			line-height: 1;
+			&:hover {
+		    	background-color: rgba(138, 167, 177, 0.15);
+		    	border: 1px solid rgba(168, 177, 204, 0.25);
+			}
 		}
 
 		.server-info { font-size: 21px;
@@ -53,6 +59,8 @@
 	
 	.player-list-container {
 		color: white;
+		font-size: 22px;
+		margin-top: -30px;
 		.player-list {
 			padding-left: 0;
 			list-style: none;
@@ -62,6 +70,7 @@
 				margin-bottom: 3px;
 				display: block;
 				font-size: 16px;
+				position: relative;
 				
 				&.blue {
 					background-color: rgba(68, 121, 255, 0.32);
@@ -75,18 +84,24 @@
 				&.red:hover {
 					background-color: rgba(247, 52, 52, 0.74)
 				}
+
+				&:hover:before {
+					background-color: rgba(255, 255, 255, 0.18);
+					content: "";
+					display: block;
+					left: 0;
+					right: 0;
+					top: 0;
+					bottom: 0;
+					position: absolute;
+				}
 			}
 		}
 	}
 
 	.highlight-player {
-		#lobbyChart {
-			max-width: 100%;
-			padding-bottom: 100%;
-			height: auto !important;
-		}
+		max-width: 290px;
 		.name {
-			font-size: 16px;
 			font-weight: normal;
 		}
 

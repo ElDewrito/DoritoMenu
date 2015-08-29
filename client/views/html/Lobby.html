@@ -33,73 +33,51 @@
 						<span class="gametype">{{serverData.variantType}}</span> on <span class="map-name">{{serverData.map}}</span>
 						<span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{serverData.eldewritoVersion}}</span>
 					</div>
-					<span class="">Server List</span>
 					<span class="connect" data-ip="{{serverData.ip}}">Connect</span>
-					<div class="row">
-						<div class="col-xs-12 col-sm-4">
-						</div>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="highlight-player">
-								<h3>Top Player</h3>
-								<span class="name dead">Limited</span>
-								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<canvas id="lobbyChart" width="100" height="100"></canvas>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<span class="stat"><span class="value">2</span>SCORE</span>
-										<span class="stat"><span class="value">4</span>ASSISTS</span>
-										<span class="stat"><span class="value">17</span>KILLS</span>
-										<span class="stat"><span class="value">8</span>DEATHS</span>
-									</div>
-								</div>
+					<div class="highlight-player">
+						<h3><span class="name dead">Limited</span></h3>
+						<div class="row">
+							<div class="col-sm-5">
+								<canvas id="lobbyChart" width="100" height="100" style="max-height: 100px; max-width: 100px;"></canvas>
+							</div>
+							<div class="col-sm-7">
+								<span class="stat" data-stat="score"><span class="value">2</span>SCORE</span>
+								<span class="stat" data-stat="assists"><span class="value">4</span>ASSISTS</span>
+								<span class="stat" data-stat="kills"><span class="value">17</span>KILLS</span>
+								<span class="stat" data-stat="deaths"><span class="value">8</span>DEATHS</span>
 							</div>
 						</div>
 					</div>
-					<div class="team-weighing">
-						<div class="team-1">Red Team</div>
-						<div class="team-2"></div>
-					</div>        
+					{{#if isTeamGame serverData.variant}}
+						<div class="team-weighing">
+							<div class="team-1">Red Team</div>
+							<div class="team-2"></div>
+						</div>        
+					{{/if}}
 				</div>
 			</div>
 			
-			<div class="col-xs-12 col-sm-6 lobby-col-right">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="player-list-container">
-							Players <span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
+			<div class="col-xs-12 col-push-sm-1 col-sm-4 lobby-col-right">
+				<div class="player-list-container">
+					Players <span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
 
-							<ul class="player-list">
-								{{playerListReset}}
-								{{#each serverData.players}}
-									{{#if notNull name }}
-										{{#if isTeamGame serverData.variant}}
-											<li class="{{ teamColour team }}" data-index="{{getPlayerIndex}}">{{name}} - {{kills}}</li>
-										{{else}}
-											<li class="" data-index="{{getPlayerIndex}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}} - {{kills}}</li>
-										{{/if}}
-										{{playerListInc}}
-									{{/if}}
-								{{ else }}
-								<div class="no-servers">
-									Could not find any players
-								</div>
-								{{/each}}
-							</ul>
+					<ul class="player-list">
+						{{playerListReset}}
+						{{#each serverData.players}}
+							{{#if notNull name }}
+								{{#if isTeamGame serverData.variant}}
+									<li class="{{ teamColour team }}" data-index="{{getPlayerIndex}}">{{name}} - {{kills}}</li>
+								{{else}}
+									<li class="" data-index="{{getPlayerIndex}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}} - {{kills}}</li>
+								{{/if}}
+								{{playerListInc}}
+							{{/if}}
+						{{ else }}
+						<div class="no-servers">
+							Could not find any players
 						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="player-review">
-							<div class="highlight-player">
-								<span class="name dead">Limited</span>
-								<span class="stat"><span class="value">2</span>SCORE</span>
-								<span class="stat"><span class="value">4</span>ASSISTS</span>
-								<span class="stat"><span class="value">17</span>KILLS</span>
-								<span class="stat"><span class="value">8</span>DEATHS</span>
-							</div>
-						</div>
-					</div>
+						{{/each}}
+					</ul>
 				</div>
 			</div>
 		</div>

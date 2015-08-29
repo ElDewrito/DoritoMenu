@@ -38,7 +38,7 @@ Template.Lobby.helpers({
 
     isTeamGame : function(variant) {
         // hard code return
-        return false;
+        // return false;
 
         if (variant.toLowerCase().indexOf('team') >= 0)
             return true;
@@ -80,19 +80,50 @@ var playerColours = [
     'rgba(255, 236, 0, 0.64)'
 ];
 
+function updateTopPlayer(player) {
+    $(".highlight-player .name").html(player.name);
+    $(".highlight-player [data-stat=score] .value").html(player.score);
+    $(".highlight-player [data-stat=kills] .value").html(player.kills);
+    $(".highlight-player [data-stat=deaths] .value").html(player.deaths);
+    $(".highlight-player [data-stat=assists] .value").html(player.assists);
+
+    var graphKills = (player.kills <= 0 ? 0.1 : player.kills);
+    var graphDeaths = (player.deaths <= 0 ? 0.1 : player.deaths);
+
+    var data = [
+        {
+            value: graphKills,
+            color:"#F7464A",
+            highlight: "#FF5A5E",
+            label: "Kills"
+        },
+        {
+            value: graphDeaths,
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Deaths"
+        }
+    ];  
+
+    var ctx = $("#lobbyChart").get(0).getContext("2d");
+
+    var lobbyChart = new Chart(ctx).Doughnut(data, {
+        segmentShowStroke: false,
+        animateRotate: false,
+    });
+}
+
 function getServerByIP(ip) {
     return GameServers.find({ip: ip}).fetch();
 }
 
+var serverObj;
 function updateServer(ipIn) {
-     var server = getServerByIP(ipIn)[0];
-    console.log("Server", server);
-    Session.set("serverData", server.data);
-    Session.set("geoIP", server.geoIP);
-}
-
-Template.Lobby.load = function(ipIn) {
-    updateServer(ipIn);
+    serverObj = getServerByIP(ipIn)[0];
+    console.log("Server", serverObj);
+    Session.set("serverData", serverObj.data);
+    Session.set("geoIP", serverObj.geoIP);
+    updateTopPlayer(serverObj.data.players[0]);
 
     playerIndex = 0;
 
@@ -106,31 +137,35 @@ Template.Lobby.load = function(ipIn) {
 
     var data = [
         {
-            value: 15,
+            value: 0.1,
             color:"#F7464A",
             highlight: "#FF5A5E",
             label: "Kills"
         },
         {
-            value: 5,
+            value: 0.1,
             color: "#46BFBD",
             highlight: "#5AD3D1",
             label: "Deaths"
         }
     ];
 
+
     var lobbyChart = new Chart(ctx).Doughnut(data, {
         segmentShowStroke: false,
         animateRotate: false,
     });
+}
+
+Template.Lobby.load = function(ipIn) {
+    Chart.defaults.global.responsive = true;
+    updateServer(ipIn);
 
 
-    
    //  setInterval(function() {
    //      updateServer(ipIn);
    // }, 5000);
 }
-
 
 Template.Lobby.events = {
     'click .connect': function(e) {
@@ -146,6 +181,10 @@ Template.Lobby.events = {
             MDSnackbars.show(SnackBarOptions);
             });
         }
-
+    },
+    'mouseover .player-list [data-index]' : function(e) {
+        e.preventDefault();
+        var playerIndex = $(e.currentTarget).attr("data-index");
+        updateTopPlayer(serverObj.data.players[playerIndex]);
     }
 }
