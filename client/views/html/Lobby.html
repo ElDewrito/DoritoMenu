@@ -19,10 +19,10 @@
 		<h1>{{serverData.status}}</h1>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<div class="lobby-col-left">
+				<div class="lobby-col-left {{#if serverData.passworded}} passworded{{/if}}">
 					<div class="server-image gametype-{{lower serverData.variantType}}">
-					    <img src="/img/maps/{{serverData.mapFile}}.jpg" width="465" height="262" class="img-responsive"/>
-						
+						{{#if serverData.passworded}}<span class="passworded"></span>{{/if}}
+					    <img src="/img/maps/{{serverData.mapFile}}.jpg" width="465" height="262" class="img-responsive"/>						
 					</div>
 
 					<div class="server-info">
@@ -34,6 +34,8 @@
 						<span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{serverData.eldewritoVersion}}</span>
 					</div>
 					<span class="connect" data-ip="{{serverData.ip}}">Connect</span>
+
+					{{#unless serverData.passworded}} 
 					<div class="highlight-player">
 						<h3><span class="name dead">Limited</span></h3>
 						<div class="row">
@@ -48,6 +50,8 @@
 							</div>
 						</div>
 					</div>
+					{{/unless}}
+
 					{{#if isTeamGame serverData.variant}}
 						<div class="team-weighing">
 							<div class="team-1">Red Team</div>
@@ -71,12 +75,10 @@
 									<li class="{{ healthStatus isAlive}}" data-index="{{getPlayerIndex}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}}</li>
 								{{/if}}
 								{{playerListInc}}
-							{{/if}}
-						{{ else }}
-						<div class="no-servers">
-							Could not find any players
-						</div>
+							{{/if}}					
 						{{/each}}
+
+						{{#if serverData.passworded}}<span class="locked-playerlist">Locked servers cannot display the player list</span>{{/if}}
 					</ul>
 				</div>
 			</div>
