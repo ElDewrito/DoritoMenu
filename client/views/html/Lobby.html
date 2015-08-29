@@ -16,7 +16,7 @@
 	 {{lobbyID}}
 
 	  -->
-		<h1>Lobby</h1>
+		<h1>{{serverData.status}}</h1>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<div class="lobby-col-left">
@@ -30,8 +30,6 @@
 							<img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}} - {{geoIP.city}}" alt="{{geoIP.country}}" />
 							<span class="server-name">{{serverData.name}}</span>
 						</h2>
-
-						<span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
 						<span class="gametype">{{serverData.variantType}}</span> on <span class="map-name">{{serverData.map}}</span>
 						<span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{serverData.eldewritoVersion}}</span>
 					</div>
@@ -39,7 +37,6 @@
 					<span class="connect" data-ip="{{serverData.ip}}">Connect</span>
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
-							<span class="status {{serverData.status}}">{{serverData.status}}</span>
 						</div>
 
 						<div class="col-xs-12 col-sm-8">
@@ -68,20 +65,41 @@
 			</div>
 			
 			<div class="col-xs-12 col-sm-6 lobby-col-right">
-				<div class="player-list-container">
-					Players <span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="player-list-container">
+							Players <span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
 
-					<ul class="player-list">
-						{{#each serverData.players}}
-							{{#if notNull name }}
-							<li class="{{ teamColour team }}">{{name}} - {{kills}}</li>
-							{{/if}}
-						{{ else }}
-						<div class="no-servers">
-						Could not find any players
+							<ul class="player-list">
+								{{playerListReset}}
+								{{#each serverData.players}}
+									{{#if notNull name }}
+										{{#if isTeamGame serverData.variant}}
+											<li class="{{ teamColour team }}" data-index="{{getPlayerIndex}}">{{name}} - {{kills}}</li>
+										{{else}}
+											<li class="" data-index="{{getPlayerIndex}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}} - {{kills}}</li>
+										{{/if}}
+										{{playerListInc}}
+									{{/if}}
+								{{ else }}
+								<div class="no-servers">
+									Could not find any players
+								</div>
+								{{/each}}
+							</ul>
 						</div>
-						{{/each}}
-					</ul>
+					</div>
+					<div class="col-sm-6">
+						<div class="player-review">
+							<div class="highlight-player">
+								<span class="name dead">Limited</span>
+								<span class="stat"><span class="value">2</span>SCORE</span>
+								<span class="stat"><span class="value">4</span>ASSISTS</span>
+								<span class="stat"><span class="value">17</span>KILLS</span>
+								<span class="stat"><span class="value">8</span>DEATHS</span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

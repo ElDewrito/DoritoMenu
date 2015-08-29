@@ -16,6 +16,17 @@
 				margin-top: -4px;
 			}
 		}
+		&.favourite .server-image:before {
+			content: "";
+			background: url(/img/Star-Full.png) no-repeat 50% 100%;
+			background-size: contain;
+			z-index: 1000;
+			height: 110px;
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+			width: 50px;
+		}
 		.connect {
 			display: inline-block;
 			background-color: rgba(138, 167, 177, 0.09);
@@ -23,6 +34,20 @@
 			border: 1px solid rgba(177, 188, 222, 0.51);
 			box-shadow: 0px 0px 12px 3px rgba(146, 164, 218, 0.51) inset;
 			margin: 10px 0;
+		}
+
+		.server-info { font-size: 21px;
+			.gametype { text-transform: uppercase;}
+			.eldewrito-version { font-size: 14px;}
+		}
+	}
+
+	.lobby-col-right {
+		.player-review {
+			background-color: rgba(128, 128, 128, 0.14);
+    		padding: 15px 20px;
+
+    		.name { font-size: 26px; margin-bottom: 15px; display: block; text-transform: uppercase;}
 		}
 	}
 	

@@ -28,12 +28,57 @@ Template.Lobby.helpers({
         return (teamIndex == "0" ? "red" : "blue");
     },
 
+    getColour : function(id) {
+        return playerColours[id];
+    },
+
     notNull : function (val) {
         return (val != null && val !== undefined && val != "" && val !== " ");
-    }
+    },
 
+    isTeamGame : function(variant) {
+        // hard code return
+        return false;
+
+        if (variant.toLowerCase().indexOf('team') >= 0)
+            return true;
+        else
+            return false;
+    },
+
+    playerListInc : function() {
+        playerIndex++;
+    },
+
+    playerListReset : function () {
+        playerIndex = 0;
+    },
+
+    getPlayerIndex : function (){
+        return playerIndex;
+    }
 });
 
+var playerIndex = 0;
+
+var playerColours = [
+    'rgba(255, 0, 0, 0.3)',
+    'rgba(208, 0, 255, 0.3)',
+    'rgba(0, 255, 179, 0.3)',
+    'rgba(142, 0, 255, 0.3)',
+    'rgba(0, 57, 255, 0.3)',
+    'rgba(0, 246, 255, 0.3)',
+    'rgba(0, 255, 47, 0.3)',
+    'rgba(255, 236, 0, 0.64)',
+    'rgba(255, 85, 0, 0.42)',
+    'rgba(255, 0, 0, 0.3)',
+    'rgba(208, 0, 255, 0.3)',
+    'rgba(0, 255, 179, 0.3)',
+    'rgba(142, 0, 255, 0.3)',
+    'rgba(0, 246, 255, 0.3)',
+    'rgba(0, 255, 47, 0.3)',
+    'rgba(255, 236, 0, 0.64)'
+];
 
 function getServerByIP(ip) {
     return GameServers.find({ip: ip}).fetch();
@@ -42,12 +87,20 @@ function getServerByIP(ip) {
 function updateServer(ipIn) {
      var server = getServerByIP(ipIn)[0];
     console.log("Server", server);
-    console.log("geoIP", server.geoIP);
     Session.set("serverData", server.data);
     Session.set("geoIP", server.geoIP);
 }
+
 Template.Lobby.load = function(ipIn) {
     updateServer(ipIn);
+
+    playerIndex = 0;
+
+    if (checkFavourite(ipIn)) {
+        $(".lobby-col-left").addClass("favourite");
+    } else {
+        $(".lobby-col-left").removeClass("favourite");
+    }
 
     var ctx = $("#lobbyChart").get(0).getContext("2d");
 
