@@ -164,6 +164,28 @@ function getServerByIP(ip) {
     return GameServers.find({ip: ip}).fetch();
 }
 
+function updateTeamBars(players) {
+    var redScore = 0;
+    var blueScore = 0;
+
+    if (players == null || players == undefined) return false;
+    _.each(players, function(player) {
+        if (player.team == 0) {
+            redScore += player.score;
+        }
+
+        if (player.team == 1) {
+            blueScore += player.score;
+        }
+    });
+
+    var totalScore = redScore + blueScore;
+    var redSize = Math.round((redScore / totalScore) * 100);
+
+    $(".team-weighing .team-red").css({"width" : redSize + "%"});
+    $(".team-weighing .team-red span").html(redSize + "%");
+}
+
 var serverObj;
 function updateServer(ipIn) {
     serverObj = getServerByIP(ipIn)[0];
@@ -219,8 +241,10 @@ Template.Lobby.load = function(ipIn) {
 
     serverUpdateInterval = setInterval(function() {
         updateServer(ipIn);
-        if (teamGame(serverObj.data.players))
+        if (teamGame(serverObj.data.players)) {
             orderByTeams();
+            updateTeamBars(serverObj.data.players);
+        }
    }, 5000);
 }
 

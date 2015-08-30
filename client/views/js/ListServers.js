@@ -6,7 +6,6 @@ Template.ListServers.helpers({
 			}
 		});
 	},
-
 	
 	serverCount: function() {
 		return GameServers.find().count();
