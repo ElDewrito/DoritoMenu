@@ -221,6 +221,8 @@ function updateServer(ipIn) {
     var lobbyChart = new Chart(ctx).Doughnut(data, {
         segmentShowStroke: false,
         animateRotate: false,
+        tooltipTemplates : '<%= value %>',
+        showTooltips: true
     });
 }
 
