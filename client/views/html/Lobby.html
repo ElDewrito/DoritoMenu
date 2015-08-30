@@ -36,28 +36,29 @@
 					<span class="connect" data-ip="{{ip}}">Connect</span>
 
 					{{#unless serverData.passworded}} 
-					<div class="highlight-player">
-						<h3><span class="name dead">Limited</span></h3>
-						<div class="row">
-							<div class="col-sm-5">
-								<canvas id="lobbyChart" width="100" height="100" style="max-height: 100px; max-width: 100px;"></canvas>
-							</div>
-							<div class="col-sm-7">
-								<span class="stat" data-stat="score"><span class="value">2</span>SCORE</span>
-								<span class="stat" data-stat="assists"><span class="value">4</span>ASSISTS</span>
-								<span class="stat" data-stat="kills"><span class="value">17</span>KILLS</span>
-								<span class="stat" data-stat="deaths"><span class="value">8</span>DEATHS</span>
+						<div class="highlight-player">
+							<h3><span class="name dead"></span></h3>
+							<div class="row">
+								<div class="col-sm-5">
+									<canvas id="lobbyChart" width="100" height="100" style="max-height: 100px; max-width: 100px;"></canvas>
+								</div>
+								<div class="col-sm-7">
+									<span class="stat" data-stat="score"><span class="value">0</span>SCORE</span>
+									<span class="stat" data-stat="assists"><span class="value">0</span>ASSISTS</span>
+									<span class="stat" data-stat="kills"><span class="value">0</span>KILLS</span>
+									<span class="stat" data-stat="deaths"><span class="value">0</span>DEATHS</span>
+								</div>
 							</div>
 						</div>
-					</div>
-					{{/unless}}
 
-					{{#if isTeamGame serverData.variant}}
-						<div class="team-weighing">
-							<div class="team-1">Red Team</div>
-							<div class="team-2"></div>
-						</div>        
-					{{/if}}
+						{{#if isTeamGame serverData.players}}
+							<div class="team-weighing">
+								<div class="team-1">Red Team</div>
+								<div class="team-2"></div>
+							</div>        
+						{{/if}}
+
+					{{/unless}}
 				</div>
 			</div>
 			
@@ -69,7 +70,7 @@
 						{{playerListReset}}
 						{{#each serverData.players}}
 							{{#if notNull name }}
-								{{#if isTeamGame serverData.variant}}
+								{{#if isTeamGame serverData.players}}
 									<li class="{{ teamColour team }} {{ healthStatus isAlive}}" data-team="{{team}}" data-name="{{name}}" data-index="{{getPlayerIndex}}">{{name}}</li>
 								{{else}}
 									<li class="{{ healthStatus isAlive}}" data-index="{{getPlayerIndex}}" data-name="{{name}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}}</li>

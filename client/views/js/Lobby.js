@@ -40,8 +40,8 @@ Template.Lobby.helpers({
         return (val != null && val !== undefined && val != "" && val !== " ");
     },
 
-    isTeamGame : function(variant) {
-        return teamGame(variant);
+    isTeamGame : function(players) {
+        return teamGame(players);
     },
 
     playerListInc : function() {
@@ -65,15 +65,22 @@ Template.Lobby.helpers({
     }
 });
 
-function teamGame(variant) {
-    // hard code return
-    // return false;
-
-    if (variant.toLowerCase().indexOf('team') >= 0 || true) {
-        return true;
+function teamGame(players) {
+    if ($('.player-list-container').attr("data-isTeamGame")) {
+        return $('.player-list-container').attr("data-isTeamGame") == 'true';
     }
-    else
-        return false;
+
+    var isATeamGame = true;
+    if (players == null || players == undefined) return false;
+    _.each(players, function(player) {
+        if (player.team > 1) {
+            isATeamGame = false;
+            return true;
+        }
+    });
+
+    $('.player-list-container').attr("data-isTeamGame", isATeamGame);
+    return isATeamGame;
 }
 
 var playerIndex = 0;
@@ -198,12 +205,13 @@ function updateServer(ipIn) {
 var serverUpdateInterval = null;
 Template.Lobby.load = function(ipIn) {
     Session.set('lastUpdated', new Date());
+    $('.player-list-container').removeAttr("data-isTeamGame");
     Chart.defaults.global.responsive = true;
     updateServer(ipIn);
     updateTopPlayer(serverObj.data.players[0]);
     
     setTimeout(function() {
-        if (teamGame(serverObj.data.variant))
+        if (teamGame(serverObj.data.players))
             orderByTeams();
     }, 500);
 
@@ -211,7 +219,7 @@ Template.Lobby.load = function(ipIn) {
 
     serverUpdateInterval = setInterval(function() {
         updateServer(ipIn);
-        if (teamGame(serverObj.data.variant))
+        if (teamGame(serverObj.data.players))
             orderByTeams();
    }, 5000);
 }
