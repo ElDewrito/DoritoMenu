@@ -24,6 +24,10 @@ Template.Lobby.helpers({
         return Session.get("geoIP");
     },
 
+    ip : function() {
+        return Session.get("ip");
+    },
+
     teamColour : function(teamIndex) {
         return (teamIndex == "0" ? "red" : "blue");
     },
@@ -37,13 +41,7 @@ Template.Lobby.helpers({
     },
 
     isTeamGame : function(variant) {
-        // hard code return
-        // return false;
-
-        if (variant.toLowerCase().indexOf('team') >= 0)
-            return true;
-        else
-            return false;
+        return teamGame(variant);
     },
 
     playerListInc : function() {
@@ -60,8 +58,23 @@ Template.Lobby.helpers({
 
     healthStatus : function (isAlive) {
         return (isAlive ? 'alive' : 'dead');
+    },
+
+    lastUpdated : function() {
+        return Session.get('lastUpdated');
     }
 });
+
+function teamGame(variant) {
+    // hard code return
+    // return false;
+
+    if (variant.toLowerCase().indexOf('team') >= 0 || true) {
+        return true;
+    }
+    else
+        return false;
+}
 
 var playerIndex = 0;
 
@@ -83,6 +96,29 @@ var playerColours = [
     'rgba(0, 255, 47, 0.3)',
     'rgba(255, 236, 0, 0.64)'
 ];
+
+function orderByTeams() {
+    var $container = $('.player-list-container .player-list');
+    var $players = $('.player-list-container .player-list li').detach();
+
+    $players = $players.sort(function(a, b) {
+        var pingA = $(a).attr('data-team');
+        pingA = parseInt(pingA.substring(0, pingA.length), 10);
+
+        var pingB = $(b).attr('data-team');
+        pingB = parseInt(pingB.substring(0, pingB.length), 10);
+
+        if (isNaN(pingA))
+            pingA = 10000;
+
+        if (isNaN(pingB))
+            pingB = 10000;
+
+        return pingA > pingB ? 1 : -1;
+    });
+
+    $container.append($players);
+}
 
 function updateTopPlayer(player) {
     $(".highlight-player .name").html(player.name);
@@ -126,6 +162,7 @@ function updateServer(ipIn) {
     serverObj = getServerByIP(ipIn)[0];
     Session.set("serverData", serverObj.data);
     Session.set("geoIP", serverObj.geoIP);
+    Session.set("ip", ipIn);
 
     playerIndex = 0;
 
@@ -152,7 +189,6 @@ function updateServer(ipIn) {
         }
     ];
 
-
     var lobbyChart = new Chart(ctx).Doughnut(data, {
         segmentShowStroke: false,
         animateRotate: false,
@@ -161,14 +197,22 @@ function updateServer(ipIn) {
 
 var serverUpdateInterval = null;
 Template.Lobby.load = function(ipIn) {
+    Session.set('lastUpdated', new Date());
     Chart.defaults.global.responsive = true;
     updateServer(ipIn);
     updateTopPlayer(serverObj.data.players[0]);
     
+    setTimeout(function() {
+        if (teamGame(serverObj.data.variant))
+            orderByTeams();
+    }, 500);
+
     clearInterval(serverUpdateInterval);
 
     serverUpdateInterval = setInterval(function() {
         updateServer(ipIn);
+        if (teamGame(serverObj.data.variant))
+            orderByTeams();
    }, 5000);
 }
 

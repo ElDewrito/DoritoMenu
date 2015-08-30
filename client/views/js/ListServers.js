@@ -54,20 +54,13 @@ function orderPings() {
 		return pingA > pingB ? 1 : -1;
 	});
 
-	$container.html($servers);
-}
-
-function updateLobby(data) {
-
+	$container.append($servers);
 }
 
 var orderByPingToggle = false;
 
 Template.ListServers.events = {
 	'click .row.server-item': function(e) {
-	
-
-
 
 		//// new lobby stuff
 		var ip = $(e.currentTarget).attr("data-ip");

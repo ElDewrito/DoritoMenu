@@ -33,7 +33,7 @@
 						<span class="gametype">{{serverData.variantType}}</span> on <span class="map-name">{{serverData.map}}</span>
 						<span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{serverData.eldewritoVersion}}</span>
 					</div>
-					<span class="connect" data-ip="{{serverData.ip}}">Connect</span>
+					<span class="connect" data-ip="{{ip}}">Connect</span>
 
 					{{#unless serverData.passworded}} 
 					<div class="highlight-player">
@@ -70,7 +70,7 @@
 						{{#each serverData.players}}
 							{{#if notNull name }}
 								{{#if isTeamGame serverData.variant}}
-									<li class="{{ teamColour team }} {{ healthStatus isAlive}}" data-index="{{getPlayerIndex}}">{{name}}</li>
+									<li class="{{ teamColour team }} {{ healthStatus isAlive}}" data-team="{{team}}" data-index="{{getPlayerIndex}}">{{name}}</li>
 								{{else}}
 									<li class="{{ healthStatus isAlive}}" data-index="{{getPlayerIndex}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}}</li>
 								{{/if}}
