@@ -1,7 +1,8 @@
 .overlay[data-id=login],
 .overlay[data-id=password],
 .overlay[data-id=directConnect],
-.overlay[data-id=setMenu] {
+.overlay[data-id=setMenu],
+.overlay[data-id=playerSearch] {
 	width: 35vw;
 	height: 63vh;
 	left: 34vw;
@@ -80,13 +81,12 @@
 	}
 
 	.cancel { margin-right: 5px; }
-
-
-
 }
 
 .overlay[data-id=password], 
-.overlay[data-id=directConnect] {
+.overlay[data-id=directConnect],
+.overlay[data-id=playerSearch]
+ {
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -100,6 +100,20 @@
 	.popup-heading {
 		width: 360px;
 	}
+}
+
+
+.overlay[data-id=playerSearch] .player-list {
+	width: 42%;
+	margin: 6% auto 0;
+	max-width: 722px;
+    list-style: none;
+    padding-left: 0;
+    font-size: 16px;
+
+    li {
+    	margin: 5px 0;
+    }
 }
 
 .overlay[data-id=setMenu] {

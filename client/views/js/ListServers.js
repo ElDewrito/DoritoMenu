@@ -30,8 +30,16 @@ Template.ListServers.helpers({
 
 	equals: function(a, b) {
 		return (a === b);
+	},
+
+	searchPlayer : function(name) {
+		return SearchForPlayer(name);
 	}
 });
+
+function SearchForPlayer(name) {
+	return GameServers.find({"data.players.name": name, data: { $exists: 1}}).fetch();
+}
 
 function orderPings() {
 	var $container = $('.overlay[data-id=gameservers] .list-wrapper');
@@ -152,6 +160,44 @@ Template.ListServers.events = {
 
 			$(".overlay[data-id=directConnect] .cancel").on("click", function() {
 				$(".overlay[data-id=directConnect]").removeClass("active");
+			});
+		},
+
+		'click .player-search' : function (e) {
+			$(".overlay[data-id=playerSearch]").addClass("active");
+			$(".overlay[data-id=playerSearch] #playerName").focus();
+
+			$(".overlay[data-id=playerSearch] .search").on("click", function(e) {
+				e.preventDefault();
+				var playerName = $(".overlay[data-id=playerSearch] #playerName").val();
+				if (playerName != null) {
+					SnackBarOptions.text = "Searching for player:" + playerName;
+					MDSnackbars.show(SnackBarOptions);
+
+					var servers = SearchForPlayer();
+
+					if (servers !== undefined) {
+						console.log("Player Found:", servers);
+						
+						var str = "";
+
+						_.each(servers, function(server) {
+							console.log(server);
+							str += "<li>" + server.data.name + " " + server.data.variant + " on " + server.data.map + " - <a href='#' data-ip='"+ server.ip+"' class='toLobby'>Go to Lobby</a></li>";
+						});
+
+						$(".overlay[data-id=playerSearch] .player-list").html(str);
+					}
+				}
+			});
+			$(".overlay[data-id=playerSearch]").on("click", ".toLobby", function(e) {
+				e.preventDefault();
+				alert("to lobby");
+			});
+
+
+			$(".overlay[data-id=playerSearch] .cancel").on("click", function() {
+				$(".overlay[data-id=playerSearch]").removeClass("active");
 			});
 		}
 	}
