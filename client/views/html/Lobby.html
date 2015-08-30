@@ -1,5 +1,5 @@
 <template name="Lobby">
-	<div class="overlay" data-id="lobby">
+	<div class="overlay" data-id="lobby" data-updated="{{lastUpdated}}">
 		<div class="bg"></div>
 		<div class="content">
 <!--     Lobby here
@@ -30,7 +30,7 @@
 							<img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}} - {{geoIP.city}}" alt="{{geoIP.country}}" />
 							<span class="server-name">{{serverData.name}}</span>
 						</h2>
-						<span class="gametype">{{serverData.variantType}}</span> on <span class="map-name">{{serverData.map}}</span>
+						<span class="gametype">{{serverData.variantType}}</span> on <span class="map-name">{{serverData.map}}</span> by {{serverData.hostPlayer}}
 						<span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{serverData.eldewritoVersion}}</span>
 					</div>
 					<span class="connect" data-ip="{{ip}}">Connect</span>
@@ -70,9 +70,9 @@
 						{{#each serverData.players}}
 							{{#if notNull name }}
 								{{#if isTeamGame serverData.variant}}
-									<li class="{{ teamColour team }} {{ healthStatus isAlive}}" data-team="{{team}}" data-index="{{getPlayerIndex}}">{{name}}</li>
+									<li class="{{ teamColour team }} {{ healthStatus isAlive}}" data-team="{{team}}" data-name="{{name}}" data-index="{{getPlayerIndex}}">{{name}}</li>
 								{{else}}
-									<li class="{{ healthStatus isAlive}}" data-index="{{getPlayerIndex}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}}</li>
+									<li class="{{ healthStatus isAlive}}" data-index="{{getPlayerIndex}}" data-name="{{name}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}}</li>
 								{{/if}}
 								{{playerListInc}}
 							{{/if}}					

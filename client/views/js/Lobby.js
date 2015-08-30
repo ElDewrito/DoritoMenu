@@ -233,7 +233,15 @@ Template.Lobby.events = {
     },
     'mouseover .player-list [data-index]' : function(e) {
         e.preventDefault();
-        var playerIndex = $(e.currentTarget).attr("data-index");
+        var name = $(e.currentTarget).attr("data-name");
+
+        var playerIndex = -1;
+        for (var i = 0; i < serverObj.data.players.length; i++) {
+            if (serverObj.data.players[i].name == name) {
+                playerIndex = i;
+                continue;
+            }
+        }
         updateTopPlayer(serverObj.data.players[playerIndex]);
     }
 }
