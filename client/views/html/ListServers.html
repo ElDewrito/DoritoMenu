@@ -33,6 +33,9 @@
                         <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}} - {{geoIP.city}}" alt="{{geoIP.country}}" />
                         <span class="ping">{{pingGameServer ip}}</span> 
                         <span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{data.eldewritoVersion}}</span>
+                        <span class="voip">{{#if data.VoIP}}<i class="fa fa-microphone"></i> voip{{/if}}</span>
+                        <span class="teamgame">{{#if data.teams}}<i class="fa fa-users"></i> team game{{/if}}</span>
+                        <span class="sprint">{{#if eq data.sprintEnabled "1"}} {{#if eq data.sprintUnlimitedEnabled "1"}}<i class="fa fa-cogs"></i> unlimited sprint{{/if}}{{else}}<i class="fa fa-cogs"></i> no sprint{{/if}}</span>
                         <span class="ip-container"><span class="glyphicon glyphicon-hdd"></span><span class="ip">{{ip}}</span></span>
                     </div>
 
