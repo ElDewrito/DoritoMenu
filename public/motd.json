@@ -1,9 +1,9 @@
 {
-  "date" : "22nd August 2015",
-  "heading" : "Eldewrito 0.4.10 Released",
-  "body" : "<p>The team is proud to announce version 0.4.10 has been released. This release has a host of bug fixes and new features. Be sure to check out the <a href='https://forum.halo.click/index.php?/topic/438-eldewrito-0410-has-been-released/'>Halo Click Release Notes thread</a> for more in-depth information.</p><p>Please be sure to run the Launcher to update the version.<p>- Eldewrito Team</p>",
-  "author": "Limited",
+  "date" : "24rd September 2015",
+  "heading" : "Eldewrito 0.4.11 Released",
+  "body" : "<p>The team is proud to announce version 0.4.11 has been released. This release has a host of bug fixes and new features including Sprint Fixes. Be sure to check out the <a href='https://forum.halo.click/index.php?/topic/512-eldewrito-0411-has-been-released/'>Halo Click Release Notes thread</a> for more in-depth information.</p><p>Please be sure to run the Launcher to update the version.<p>- Eldewrito Team</p>",
+  "author": "DARKC0DE",
   "active" : true,
-  "motdID" : 3,
-  "usedMOTD": "0,1,2"
+  "motdID" : 4,
+  "usedMOTD": "0,1,2,3"
 }
