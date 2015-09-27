@@ -1,0 +1,96 @@
+<template name="Lobby">
+	<div class="overlay" data-id="lobby" data-updated="{{lastUpdated}}">
+		<div class="bg"></div>
+		<div class="content">
+<!--     Lobby here
+	<a href="#">Join Game</a>
+
+	<span class="name">{{serverData.name}} 
+
+	  <span class="gametype">{{serverData.variant}}</span> on <span class="map">{{serverData.map}}</span> 
+	  - by {{serverData.hostPlayer}}</span> <span class="status {{serverData.statsClass}}">{{serverData.stats}}</span>
+	  {{geoIP.city}} 
+	  <span> {{serverData.eldewritoVersion}}</span>
+	  <span class="ping">{{pingGameServer ip}}</span> 
+
+	 {{lobbyID}}
+
+	  -->
+		<h1>{{serverData.status}}</h1>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<div class="lobby-col-left {{#if serverData.passworded}} passworded{{/if}}">
+					<div class="server-image gametype-{{lower serverData.variantType}}">
+						{{#if serverData.passworded}}<span class="passworded"></span>{{/if}}
+					    <img src="/img/maps/{{serverData.mapFile}}.jpg" width="465" height="262" class="img-responsive"/>						
+					</div>
+
+					<div class="server-info">
+						<h2>
+							<img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}} - {{geoIP.city}}" alt="{{geoIP.country}}" />
+							<span class="server-name">{{serverData.name}}</span>
+						</h2>
+						<span class="gametype">{{serverData.variant}}</span> on <span class="map-name">{{serverData.map}}</span> by {{serverData.hostPlayer}}
+						<span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{serverData.eldewritoVersion}}</span>
+					</div>
+					<span class="connect" data-ip="{{ip}}">Connect</span>
+
+					{{#unless serverData.passworded}} 
+						<div class="highlight-player">
+							<h3><span class="name dead"></span></h3>
+							<div class="row">
+								<div class="col-sm-5">
+									<canvas id="lobbyChart" width="100" height="100" style="max-height: 100px; max-width: 100px;"></canvas>
+								</div>
+								<div class="col-sm-7">
+									<span class="stat" data-stat="score"><span class="value">0</span>SCORE</span>
+									<span class="stat" data-stat="assists"><span class="value">0</span>ASSISTS</span>
+									<span class="stat" data-stat="kills"><span class="value">0</span>KILLS</span>
+									<span class="stat" data-stat="deaths"><span class="value">0</span>DEATHS</span>
+								</div>
+							</div>
+						</div>
+
+						{{#if isTeamGame serverData.players}}
+							<div class="team-scores">Team Scores</div>
+							<div class="team-weighing">
+								<div class="team-red"><span>50%</span></div>
+							</div>        
+						{{/if}}
+
+					{{/unless}}
+				</div>
+			</div>
+			
+			<div class="col-xs-12 col-push-sm-1 col-sm-4 lobby-col-right">
+				<div class="player-list-container">
+					Players <span class="playercount">{{serverData.numPlayers}}/{{serverData.maxPlayers}}</span>
+
+					<ul class="player-list">
+						{{playerListReset}}
+						{{#each serverData.players}}
+							{{#if notNull name }}
+								{{#if isTeamGame serverData.players}}
+									<li class="{{ teamColour team }} {{ healthStatus isAlive}}" data-team="{{team}}" data-name="{{name}}" data-index="{{getPlayerIndex}}">{{name}}</li>
+								{{else}}
+									<li class="{{ healthStatus isAlive}}" data-index="{{getPlayerIndex}}" data-name="{{name}}" style="background-color: {{ getColour getPlayerIndex}};">{{name}}</li>
+								{{/if}}
+								{{playerListInc}}
+							{{/if}}					
+						{{/each}}
+
+						{{#if serverData.passworded}}<span class="locked-playerlist">Locked servers cannot display the player list</span>{{/if}}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</template>
+
+
+
+
+
+

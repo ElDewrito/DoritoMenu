@@ -1,0 +1,195 @@
+.overlay[data-id=lobby] {
+	top: 0;
+	width: 77%;
+	height: 100%;
+	right: 0;
+	left: auto;
+	.content {
+		padding: 50px;
+	}
+
+	.passworded .passworded {
+		display: block;
+		background: rgba(0, 0, 0, 0.59) url(/img/passworded.png) no-repeat 50% 50%;
+		background-size: 15%;
+		position: absolute;
+		padding: 0;
+		margin: 0;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		z-index: 1000;
+	}
+
+	.locked-playerlist {
+		font-size: 16px;
+	}
+
+	.lobby-col-left {
+		max-width: 465px;
+		h2 { 
+			margin-top: 10px;
+			.flag {
+				margin-top: -4px;
+			}
+		}
+		&.favourite .server-image:before {
+			content: "";
+			background: url(/img/Star-Full.png) no-repeat 50% 100%;
+			background-size: contain;
+			z-index: 1000;
+			height: 110px;
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+			width: 50px;
+		}
+		.connect {
+			display: inline-block;
+			background-color: rgba(138, 167, 177, 0.05);
+			padding: 5px 14px;
+			border: 1px solid rgba(168, 177, 204, 0.17);
+			/* box-shadow: 0px 0px 12px 3px rgba(146, 164, 218, 0.51) inset; */
+			margin: 10px 0;
+			font-size: 33px;
+			line-height: 1;
+			&:hover {
+		    	background-color: rgba(138, 167, 177, 0.15);
+		    	border: 1px solid rgba(168, 177, 204, 0.25);
+			}
+		}
+
+		.server-info { font-size: 21px;
+			.gametype { text-transform: capitalize;}
+			.eldewrito-version { 
+				font-size: 15px;
+				.glyphicon  { top: 4px;}
+			}
+		}
+	}
+
+	.lobby-col-right {
+		.player-review {
+			background-color: rgba(128, 128, 128, 0.14);
+    		padding: 15px 20px;
+
+    		.name { font-size: 26px; margin-bottom: 15px; display: block; text-transform: uppercase;}
+		}
+	}
+	
+	.player-list-container {
+		color: white;
+		font-size: 22px;
+		margin-top: -30px;
+		.player-list {
+			padding-left: 0;
+			list-style: none;
+			li {
+				background: rgba(255,0,0,0.3);
+				padding: 5px 10px;
+				margin-bottom: 3px;
+				display: block;
+				font-size: 16px;
+				position: relative;
+				
+				&.blue {
+					background-color: rgba(68, 121, 255, 0.32);
+				}
+				&.blue:hover {
+					background-color: rgba(68, 121, 255, 0.52);
+				}
+				&.red {
+					background-color: rgba(247, 52, 52, 0.44)
+				}
+				&.red:hover {
+					background-color: rgba(247, 52, 52, 0.74)
+				}
+
+				&:hover:before {
+					background-color: rgba(255, 255, 255, 0.18);
+					content: "";
+					display: block;
+					left: 0;
+					right: 0;
+					top: 0;
+					bottom: 0;
+					position: absolute;
+				}
+
+				&.dead {
+					background-image: url(/img/dead.png);
+					background-repeat: no-repeat;
+					background-position: 98% 50%;
+					background-size: 20px;
+				}
+			}
+		}
+	}
+
+	.highlight-player {
+		max-width: 290px;
+		.name {
+			font-weight: normal;
+		}
+
+		.stat {
+			font-size: 14px;
+			color: lightblue;
+			text-transform: uppercase;
+			margin: 0 10px 10px 0;
+			display: inline-block;
+			border-left: 1px solid rgba(255, 255, 255, 0.18);
+			padding-left: 8px;
+			padding-top: 3px;
+			width: 55px;
+			.value {
+				color: white;
+				font-size: 22px;
+				display: block;
+				line-height: 0.5;
+				font-weight: 200;
+				margin-bottom: 2px;
+			}
+		}
+	}
+	.server-image {
+		position: relative;
+		max-width: 465px;
+		[class*=" gametype-"]::after,
+		[class^="gametype-"]::after {
+			right: auto;
+			left: 0;
+		}
+	}
+	.popup-heading {
+		width: 360px;
+	}
+
+	.team-scores {
+		font-size: 16px;
+		margin-top: 20px;
+	}
+
+	.team-weighing {
+		background: rgba(68, 121, 255, 0.32);
+		max-width: 290px;
+		height: 20px;
+		.team-red {
+			background: #79272f;
+		    display: inline-block;
+			position: relative;
+			width: 50%;
+			word-wrap: break-word;
+			word-break: break-all;
+			height: 100%;
+			transition: width 0.24;
+			span {
+				position: absolute;
+				right: -14px;
+				top: 23px;
+				transition: all 0.4s;
+			}
+		}
+	}
+}

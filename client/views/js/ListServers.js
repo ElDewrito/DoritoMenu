@@ -6,7 +6,7 @@ Template.ListServers.helpers({
 			}
 		});
 	},
-
+	
 	serverCount: function() {
 		return GameServers.find().count();
 	},
@@ -53,24 +53,22 @@ function orderPings() {
 		return pingA > pingB ? 1 : -1;
 	});
 
-	$container.html($servers);
+	$container.append($servers);
 }
 
 var orderByPingToggle = false;
 
 Template.ListServers.events = {
 	'click .row.server-item': function(e) {
-		var server = $(e.currentTarget);
-		ga('send', 'event', 'serverlist', 'connect', server.attr("data-ip"));
-		if ($(e.currentTarget).hasClass("passworded")) {
-			displayPasswordForm(server);
-		}
-		else {
-			dewRcon.send("connect " + server.attr("data-ip") + " ", function(res) {
-				SnackBarOptions.text = res;
-				MDSnackbars.show(SnackBarOptions);
-			});
-		}
+
+		//// new lobby stuff
+		var ip = $(e.currentTarget).attr("data-ip");
+
+        // Show lobby screen with relevant info
+        $(".overlay").removeClass("active");
+        $(".overlay[data-id=lobby]").toggleClass("active");
+        $("body").attr("data-menu", "lobby");
+        Template.Lobby.load(ip);
 	},
 	'click .orderByPing' : function(e) {
 		ga('send', 'event', 'serverlist', 'sort ping');
