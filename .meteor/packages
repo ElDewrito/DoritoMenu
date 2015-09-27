@@ -5,8 +5,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
 twbs:bootstrap
 jquery
 meteorhacks:fast-render
@@ -19,3 +17,6 @@ dandv:http-more
 255kb:md-snackbars
 less
 fortawesome:fontawesome
+gfk:server-cookies
+mizzao:user-status
+accounts-password

@@ -1,4 +1,4 @@
 {
-"geoip-lite": "1.1.6",
-"socks5-http-client": "1.0.1"
+    "geoip-lite": "1.1.6",
+    "socks5-http-client": "1.0.1"
 }

@@ -8,7 +8,11 @@ StartRconConnection = function() {
         DisplayNotification("Connected to Eldewrito!");
         dewRconConnected = true;
         Session.set('dewRconConnected', true);
-        LoadDewStuff();
+        if (Meteor.userId() != "") {
+            SetDewSettingsFromHaloClickAPI();
+        } else {
+            LoadDewStuff();
+        }
     };
     dewRcon.dewWebSocket.onerror = function() {
         dewRconConnected = false;
@@ -62,6 +66,12 @@ dewRconHelper = function() {
 //TODO: make it so these don't have to be chained.. Darn CB Functions.
 GameSettings = new Meteor.Collection(null);
 var settingsBlacklist = ['Execute', 'Help', 'WriteConfig'];
+
+SetDewSettingsFromHaloClickAPI = function(cb) {
+    dewRcon.send('Player.Name "' + Meteor.user().username + '"', function(cb) {
+        LoadDewStuff();
+    });
+}
 LoadDewStuff = function() {
     //Lets get all the settings!
     dewRcon.send("help", function(res) {
@@ -93,13 +103,15 @@ LoadDewStuff = function() {
         dewRcon.send("Game.Version", function(version) {
             Session.set("Dew_Version", version);
             dewRcon.send('Game.MenuURL "' + window.location + '"', function(ret) {
-                dewRcon.send('WriteConfig', function(ret) {		
-                    //Save menu url	for test systems loading.
-                });		
+                dewRcon.send('WriteConfig', function(ret) {
+                    //Save menu url for test systems loading.
+                });
             });
         });
-    
-        var menuSetting = GameSettings.find({ command: 'Game.MenuURL'}).fetch();
+
+        var menuSetting = GameSettings.find({
+            command: 'Game.MenuURL'
+        }).fetch();
         if (menuSetting !== undefined)
             dewStorage.checkDefault(menuSetting);
     });

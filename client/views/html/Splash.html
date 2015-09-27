@@ -19,6 +19,6 @@
     <a href="#" class="train-menu" title="Switch to TheFeelTrain menu">Switch to TheFeelTrains menu</a>
     <a class="alpha" target="_blank" href="https://github.com/ElDewrito/DoritoMenu" title="Found a bug? Create a bug report on GitHub!">Alpha</a>
     {{#if gameRunning}}
-        <span class="player_name">Welcome {{Dew_Player_Name}}</span>
+        <span class="player_name">{{#if currentUser}}<img class="img-thumbnail" style="height:35px;" src="{{currentUser.profile.avatar_thumb}}" /> {{/if}}Welcome {{Dew_Player_Name}}</span>
     {{/if}}
 </template>
