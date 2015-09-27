@@ -8,7 +8,7 @@ StartRconConnection = function() {
         DisplayNotification("Connected to Eldewrito!");
         dewRconConnected = true;
         Session.set('dewRconConnected', true);
-        if (Meteor.userId() != "") {
+        if (Meteor.userId() != null) {
             SetDewSettingsFromHaloClickAPI();
         } else {
             LoadDewStuff();
