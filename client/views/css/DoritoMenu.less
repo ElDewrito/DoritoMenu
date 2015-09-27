@@ -211,3 +211,10 @@ body {
 body:not(.debug) .debug{
     display: none;
 }
+
+@media (min-width: 1080px) {
+    .overlay[data-id=lobby] , body, .motd-splash-blur, .banned,
+    .overlay[data-id=login] .bg, .overlay[data-id=password] .bg, .overlay[data-id=directConnect] .bg, .overlay[data-id=setMenu] .bg, .overlay[data-id=lobby] .bg {
+        background-size: 100% !important;
+    }
+}

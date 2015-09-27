@@ -96,17 +96,20 @@
 				&.blue {
 					background-color: rgba(68, 121, 255, 0.32);
 				}
-				&.blue:hover {
+				&.blue:hover,
+				&.blue.active-player {
 					background-color: rgba(68, 121, 255, 0.52);
 				}
 				&.red {
 					background-color: rgba(247, 52, 52, 0.44)
 				}
-				&.red:hover {
+				&.red:hover,
+				&.red.active-player {
 					background-color: rgba(247, 52, 52, 0.74)
 				}
 
-				&:hover:before {
+				&:hover:before,
+				&.active-player:before {
 					background-color: rgba(255, 255, 255, 0.18);
 					content: "";
 					display: block;
