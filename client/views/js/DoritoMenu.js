@@ -1,20 +1,25 @@
 Template.Splash.events = {
 	'click li': function(e) {
+		if ($(e.currentTarget).hasClass("back") && $(".overlay[data-id=lobby]").hasClass("active")) {
+			$(".overlay[data-id=lobby]").removeClass("active");
+			$(".overlay[data-id=gameservers]").addClass("active");
+			return;
+		}
+
 		var overlay = $(e.currentTarget).attr("data-menu");
-		$('li').removeClass("active");
-		$($(e.currentTarget)).toggleClass("active");
+		$('.menu li').removeClass("active");
+		$(e.currentTarget).toggleClass("active");
 
 		$(".overlay").removeClass("active");
 		$(".overlay[data-id=" + overlay + "]").toggleClass("active");
-
 		$("body").attr("data-menu", overlay);
-	},
 
-	'click .back': function(e) {
-		$(".overlay.active").removeClass("active");
-		$("body").removeAttr("data-menu");
-	},
 
+		if ($(e.currentTarget).hasClass("back")) {
+			$(".overlay.active").removeClass("active");
+			$("body").removeAttr("data-menu");
+		}
+	},
 	'click .exit-menu': function(e) {
 		dewRcon.send("set_menu false", function(res) {
 			console.log(res);

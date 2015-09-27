@@ -62,11 +62,9 @@
 
 		.server-info { font-size: 21px;
 			.gametype { text-transform: capitalize;}
-			.eldewrito-version { 
-				font-size: 15px;
-				.glyphicon  { top: 4px;}
-			}
 		}
+
+
 	}
 
 	.lobby-col-right {
@@ -194,5 +192,57 @@
 				transition: all 0.4s;
 			}
 		}
+	}
+}
+
+
+.server-config {
+	font-size: 24px;
+	.eldewrito-version { 
+		font-size: 15px;
+		.glyphicon  { top: 3px; font-size: 16px;}
+	}
+	.fa {
+		font-size: inherit;
+		position: relative;
+		bottom: -1px;
+	}
+	.active {
+		color: white;
+	}
+	.sprint {
+		background: url(/img/sprint.png) no-repeat 0 0;
+		display: inline-block;
+		width: 34px;
+		height: 28px;
+		background-size: cover;
+	}
+	.unlimited-sprint {
+		background: url(/img/infsprint.png) no-repeat 0 0;
+		display: inline-block;
+		width: 34px;
+		height: 28px;
+		background-size: cover;
+	}
+	.no-sprint {
+		background: url(/img/no-sprint.png) no-repeat 0 0;
+		display: inline-block;
+		width: 34px;
+		height: 28px;
+		background-size: cover;
+	}
+}
+
+[data-id=gameservers] .server-config {
+	font-size: 19px;
+	display: inline-block;
+	.no-sprint,
+	.sprint,
+	.unlimited-sprint {
+	    display: inline-block;
+	    width: 26px;
+	    height: 23px;
+	    top: 3px;
+	    position: relative;
 	}
 }

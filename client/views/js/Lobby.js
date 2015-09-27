@@ -10,10 +10,7 @@ Template.Lobby.helpers({
 
     loadLobby : function (ip) {
         // Load all lobby stuff here
-
         var players = Template.Lobby.helpers.players(ip);
-        console.log(players);
-
     },
 
     serverData : function() {
@@ -40,10 +37,6 @@ Template.Lobby.helpers({
         return (val != null && val !== undefined && val != "" && val !== " ");
     },
 
-    isTeamGame : function(players) {
-        return teamGame(players);
-    },
-
     playerListInc : function() {
         playerIndex++;
     },
@@ -62,26 +55,11 @@ Template.Lobby.helpers({
 
     lastUpdated : function() {
         return Session.get('lastUpdated');
+    },
+    equals: function(a, b) {
+        return (a === b);
     }
 });
-
-function teamGame(players) {
-    if ($('.player-list-container').attr("data-isTeamGame")) {
-        return $('.player-list-container').attr("data-isTeamGame") == 'true';
-    }
-
-    var isATeamGame = true;
-    if (players == null || players == undefined) return false;
-    _.each(players, function(player) {
-        if (player.team > 1) {
-            isATeamGame = false;
-            return true;
-        }
-    });
-
-    $('.player-list-container').attr("data-isTeamGame", isATeamGame);
-    return isATeamGame;
-}
 
 var playerIndex = 0;
 
@@ -108,26 +86,26 @@ function orderByTeams() {
     var $container = $('.player-list-container .player-list');
     var $players = $('.player-list-container .player-list li').detach();
 
-    $players = $players.sort(function(a, b) {
-        var pingA = $(a).attr('data-team');
-        pingA = parseInt(pingA.substring(0, pingA.length), 10);
-
-        var pingB = $(b).attr('data-team');
-        pingB = parseInt(pingB.substring(0, pingB.length), 10);
-
-        if (isNaN(pingA))
-            pingA = 10000;
-
-        if (isNaN(pingB))
-            pingB = 10000;
-
-        return pingA > pingB ? 1 : -1;
+    $red = $players.filter(function() {
+        if ($(this).attr("data-team") == 0) return true;
     });
 
-    $container.append($players);
+    $blue = $players.filter(function() {
+        if ($(this).attr("data-team") == 1) return true;
+    });
+
+    $.merge($red, $blue);
+
+    $container.append($red);
 }
 
-function updateTopPlayer(player) {
+function updateTopPlayer(index) {
+    var player = serverObj.data.players[index];
+
+    if (player == undefined || !player) {
+        player = serverObj.data.players[0];
+    }
+
     $(".highlight-player .name").html(player.name);
     $(".highlight-player [data-stat=score] .value").html(player.score);
     $(".highlight-player [data-stat=kills] .value").html(player.kills);
@@ -187,6 +165,7 @@ function updateTeamBars(players) {
 }
 
 var serverObj;
+
 function updateServer(ipIn) {
     serverObj = getServerByIP(ipIn)[0];
     Session.set("serverData", serverObj.data);
@@ -227,23 +206,25 @@ function updateServer(ipIn) {
 }
 
 var serverUpdateInterval = null;
+var activeIndex = 0;
 Template.Lobby.load = function(ipIn) {
     Session.set('lastUpdated', new Date());
     $('.player-list-container').removeAttr("data-isTeamGame");
     Chart.defaults.global.responsive = true;
     updateServer(ipIn);
-    updateTopPlayer(serverObj.data.players[0]);
+    updateTopPlayer(0);
     
     setTimeout(function() {
-        if (teamGame(serverObj.data.players))
+        if (serverObj.data.teams)
             orderByTeams();
-    }, 500);
+    }, 250);
 
     clearInterval(serverUpdateInterval);
 
     serverUpdateInterval = setInterval(function() {
         updateServer(ipIn);
-        if (teamGame(serverObj.data.players)) {
+        updateTopPlayer(activeIndex);
+        if (serverObj.data.teams) {
             orderByTeams();
             updateTeamBars(serverObj.data.players);
         }
@@ -267,15 +248,25 @@ Template.Lobby.events = {
     },
     'mouseover .player-list [data-index]' : function(e) {
         e.preventDefault();
-        var name = $(e.currentTarget).attr("data-name");
+        var playerIndex = $(e.currentTarget).attr("data-index");
 
-        var playerIndex = -1;
-        for (var i = 0; i < serverObj.data.players.length; i++) {
-            if (serverObj.data.players[i].name == name) {
-                playerIndex = i;
-                continue;
-            }
+        updateTopPlayer(playerIndex);
+    },
+    'mouseout .player-list [data-index]' : function(e) {
+           updateTopPlayer(activeIndex);
+    },
+    'click .player-list [data-index]' : function(e) {
+        e.preventDefault();
+        var playerIndex = $(e.currentTarget).attr("data-index");
+
+        if (playerIndex == activeIndex) {
+            $(".player-list li").removeClass("active-player");   
         }
-        updateTopPlayer(serverObj.data.players[playerIndex]);
+        else {
+            $(".player-list li").removeClass("active-player");   
+            $(e.currentTarget).addClass("active-player");
+            activeIndex = playerIndex;
+            updateTopPlayer(activeIndex);
+        }
     }
 }
