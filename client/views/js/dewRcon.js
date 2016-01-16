@@ -5,7 +5,7 @@ snacking = 0;
 StartRconConnection = function() {
     dewRcon = new dewRconHelper();
     dewRcon.dewWebSocket.onopen = function() {
-        DisplayNotification("Connected to Eldewrito!");
+        DisplayNotification("Connected to ElDewrito!");
         dewRconConnected = true;
         Session.set('dewRconConnected', true);
         if (Meteor.userId() != null) {

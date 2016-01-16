@@ -14,7 +14,7 @@
             <div class="row server-item {{#if data.passworded}} passworded{{/if}} {{#if equals data.numPlayers data.maxPlayers}} full{{/if}}" data-ip="{{ip}}">
                 <div class="col-xs-6 col-sm-2">
                     <div class="server-image gametype-{{lower data.variantType}}">
-                        <img src="/img/maps/{{data.mapFile}}.jpg" width="200" height="100" class="img-responsive"/>
+                        <img src="/img/maps/{{lower data.mapFile}}.jpg" onError="this.onerror=null;this.src='/img/maps/no-image.png';" width="200" height="100" class="img-responsive"/>
                     </div>
                 </div>
 

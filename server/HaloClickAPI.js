@@ -1,3 +1,0 @@
-HaloClickGoodies = {
-    "APIKEY": "nope"
-};

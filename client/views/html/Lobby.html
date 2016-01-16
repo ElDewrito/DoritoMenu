@@ -22,7 +22,7 @@
 				<div class="lobby-col-left {{#if serverData.passworded}} passworded{{/if}}">
 					<div class="server-image gametype-{{lower serverData.variantType}}">
 						{{#if serverData.passworded}}<span class="passworded"></span>{{/if}}
-					    <img src="/img/maps/{{serverData.mapFile}}.jpg" width="465" height="262" class="img-responsive"/>						
+					    <img src="/img/maps/{{lower serverData.mapFile}}.jpg" onError="this.onerror=null;this.src='/img/maps/no-image.png';" width="465" height="262" class="img-responsive"/>						
 					</div>
 
 					<div class="server-info">

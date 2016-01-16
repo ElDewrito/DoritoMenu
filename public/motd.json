@@ -1,9 +1,9 @@
 {
-  "date" : "24rd September 2015",
-  "heading" : "Eldewrito 0.4.11 Released",
-  "body" : "<p>The team is proud to announce version 0.4.11 has been released. This release has a host of bug fixes and new features including Sprint Fixes. Be sure to check out the <a href='https://forum.halo.click/index.php?/topic/512-eldewrito-0411-has-been-released/'>Halo Click Release Notes thread</a> for more in-depth information.</p><p>Please be sure to run the Launcher to update the version.<p>- Eldewrito Team</p>",
-  "author": "DARKC0DE",
+  "date" : "14th January 2016",
+  "heading" : "ElDewrito 0.5.0 Released",
+  "body" : "<p>The team is proud to announce version 0.5.0 has been released. This update will allow you to play on all of the new maps present in the latest official release of Halo Online: High Ground, Last Resort, Narrows, Standoff, The Pit and Sandtrap.</p><p>For more information, please view the <a href='https://www.reddit.com/r/HaloOnline/comments/410f6p/050/'>Official Reddit Thread</p><p>- ElDewrito Team</p>",
+  "author": "ED Team",
   "active" : true,
-  "motdID" : 4,
-  "usedMOTD": "0,1,2,3"
+  "motdID" : 5,
+  "usedMOTD": "0,1,2,3,4"
 }
