@@ -6,10 +6,10 @@
             </div>
             <div class="col-xs-12 col-lg-9">
                 <div class="server-controls"><span class="direct-connect">Direct Connect</span> <span class="quick-join">Quick Join</span> <span class="orderByPing"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Order By Ping</span> <span class="togglePassworded">Hide Locked</span></div>
-                <span class="condensed-mode pull-right"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Condensed Mode</span>
+                <span class="condensed-mode active pull-right"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Condensed Mode</span>
             </div>
         </div>
-        <div class="list-wrapper">
+        <div class="list-wrapper condensed-view">
             {{#each server}}
             <div class="row server-item {{#if data.passworded}} passworded{{/if}} {{#if equals data.numPlayers data.maxPlayers}} full{{/if}}" data-ip="{{ip}}">
                 <div class="col-xs-6 col-sm-2">

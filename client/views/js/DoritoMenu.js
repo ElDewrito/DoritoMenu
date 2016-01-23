@@ -84,7 +84,6 @@ Template.Home.rendered = function() {
 					}, 2000);
 				}
 			}
-			DoHaloClickMagic();
 		});
 	}
 
