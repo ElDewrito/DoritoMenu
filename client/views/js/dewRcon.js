@@ -102,11 +102,11 @@ LoadDewStuff = function() {
         });
         dewRcon.send("Game.Version", function(version) {
             Session.set("Dew_Version", version);
-            dewRcon.send('Game.MenuURL "' + window.location + '"', function(ret) {
-                dewRcon.send('WriteConfig', function(ret) {
-                    //Save menu url for test systems loading.
-                });
-            });
+            // dewRcon.send('Game.MenuURL "' + window.location + '"', function(ret) {
+            //     dewRcon.send('WriteConfig', function(ret) {
+            //         //Save menu url for test systems loading.
+            //     });
+            // });
         });
 
         var menuSetting = GameSettings.find({

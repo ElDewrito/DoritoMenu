@@ -1,8 +1,12 @@
+DEWMENU_LINK = 'http://dewmenu.click'
+
 Template.Settings.helpers({
     setting: function() {
         return GameSettings.find();
     }
 });
+
+
 
 Template.Settings.events = {
     'keypress input': function(evt, template) {
@@ -21,5 +25,9 @@ Template.Settings.events = {
             SnackBarOptions.text = res;
             MDSnackbars.show(SnackBarOptions);
         });
+    },
+    'click #clearStorage': function() {
+        dewStorage.clear();
+        alert("Storage cleared");
     }
 }

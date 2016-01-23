@@ -1,3 +1,4 @@
+
 dewStorage = (function () {
 	var module = {};
 
@@ -56,12 +57,12 @@ dewStorage = (function () {
 
 		var menuUrl = val[0].value;
 
-		if (menuUrl.indexOf("http://dewmenu.halo.click") <= -1) {
+		if (menuUrl.indexOf("DEWMENU_LINK") <= -1) {
 
 			$(".overlay[data-id=setMenu]").addClass("active");
 
 			$(".overlay[data-id=setMenu] .confirm").on("click", function() {
-				dewRcon.send('game.menuurl "http://dewmenu.halo.click"');
+				dewRcon.send('game.menuurl ' + DEWMENU_LINK);
 				SnackBarOptions.text = "Dewmenu set as the default";
 				MDSnackbars.show(SnackBarOptions);
 				$(".overlay[data-id=setMenu]").removeClass("active");
