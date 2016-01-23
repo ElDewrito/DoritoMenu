@@ -32,8 +32,7 @@
                     <div class="second-row">
                         <!-- <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}} - {{geoIP.city}}" alt="{{geoIP.country}}" /> -->
                         <span class="ping">
-                            <img class="ping_bars" src="/img/ping-{{getPingBars ip}}.png" alt="Ping bar indicator " />
-                            {{pingGameServer ip}}
+                            {{{ getPingBars ip}}}
                         </span> 
                         <span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{data.eldewritoVersion}}</span>
                         <div class="server-config">
