@@ -81,7 +81,7 @@ dewStorage = (function () {
 	module.loadSettings = function () {
 		var isCondensed = dewStorage.get("condensed");
 
-		if (isCondensed == "true") {
+		if (isCondensed != "true") {
 			toggleCondensed(false);
 		}
 
