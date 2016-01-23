@@ -36,20 +36,18 @@
                         </span> 
                         <span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{data.eldewritoVersion}}</span>
                         <div class="server-config">
-                            {{#if serverData.teams}}
-                                <i class="fa fa-microphone voip active" title="VoIP Active"></i>
-                            {{else}}
-                                <i class="fa fa-microphone voip disabled" title="VoIP Disabled"></i>
+                            {{#if data.VoIP}}
+                            <i class="fa fa-microphone voip active" title="VoIP Active"></i>
                             {{/if}}
 
-                            {{#if serverData.teams}}
+                            {{#if data.teams}}
                                 <i class="fa fa-users teams active" title="Team Game"></i>
                             {{else}}
                                 <i class="fa fa-user teams disabled" title="FFA Game"></i>
                             {{/if}}
 
-                            {{#if eq serverData.sprintEnabled "1"}} 
-                                {{#if eq serverData.sprintUnlimitedEnabled "1"}}
+                            {{#if eq data.sprintEnabled "1"}} 
+                                {{#if eq data.sprintUnlimitedEnabled "1"}}
                                     <span class="unlimited-sprint"></span>
                                 {{else}}
                                     <span class="sprint"></span>
