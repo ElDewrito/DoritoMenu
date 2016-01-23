@@ -235,11 +235,16 @@ Template.Lobby.events = {
     'click .connect': function(e) {
 
         var server = $(e.currentTarget);
+        console.log(server);
         ga('send', 'event', 'serverlist', 'connect', server.attr("data-ip"));
-        if ($(e.currentTarget).hasClass("passworded")) {
+
+        if ($("[data-id='lobby'] .lobby-col-left").hasClass("passworded")) {
+            console.log("Is passworded");
             displayPasswordForm(server);
         }
         else {
+            console.log("Is not passworded");
+
             dewRcon.send("connect " + server.attr("data-ip") + " ", function(res) {
             SnackBarOptions.text = res;
             MDSnackbars.show(SnackBarOptions);
@@ -269,4 +274,21 @@ Template.Lobby.events = {
             updateTopPlayer(activeIndex);
         }
     }
+}
+displayPasswordForm = function(server) {
+    $(".overlay[data-id=password]").addClass("active");
+
+    $(".overlay[data-id=password] .connect").on("click", function() {
+        var password = $(".overlay[data-id=password] #loginPassword").val();
+        dewRcon.send("connect " + $(server).attr('data-ip') + " " + password, function(res) {
+            SnackBarOptions.text = res;
+            MDSnackbars.show(SnackBarOptions);
+        });
+
+        $(".overlay[data-id=password]").removeClass("active");
+    });
+
+    $(".overlay[data-id=password] .cancel").on("click", function() {
+        $(".overlay[data-id=password]").removeClass("active");
+    });
 }
