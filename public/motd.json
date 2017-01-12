@@ -1,9 +1,9 @@
 {
-  "date" : "14th January 2016",
-  "heading" : "ElDewrito 0.5.0 Released",
-  "body" : "<p>The team is proud to announce version 0.5.0 has been released. This update will allow you to play on all of the new maps present in the latest official release of Halo Online: High Ground, Last Resort, Narrows, Standoff, The Pit and Sandtrap.</p><p>For more information, please view the <a href='https://www.reddit.com/r/HaloOnline/comments/410f6p/050/'>Official Reddit Thread</p><p>- ElDewrito Team</p>",
-  "author": "ED Team",
+  "date" : "12th January 2017",
+  "heading" : "Dew Menu Discontinuation",
+  "body" : "<p>After a year of hosting Dew Menu, and 549 days since project start, it is time to say goodbye to the Dew Menu. For those few of you who still use the Dew Menu, thank you. I recommend switching to <a href='http://scooterpsu.github.io/'>Scooters</a> menu as that is the most popular and still receives updates.</p><p>See you in the hills of Bloodgulch.<br>- Limited</p>",
+  "author": "Limited",
   "active" : true,
-  "motdID" : 5,
-  "usedMOTD": "0,1,2,3,4"
+  "motdID" : 6,
+  "usedMOTD": "0,1,2,3,4,5"
 }

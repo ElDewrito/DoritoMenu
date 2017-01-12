@@ -1,9 +1,8 @@
 # DoritoMenu
 The Dorito Menu
-http://dewmenu.click/
 
 ## Development
-To get started, you need to first install Meteor.js on your system. Meteor supports Windows, OSX, and Linux. We highly recommend first checking out the [Meteor Tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app) before diving into heavy development. 
+To get started, you need to first install Meteor.js on your system. Meteor supports Windows, OSX, and Linux. We highly recommend first checking out the [Meteor Tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app) before diving into heavy development.
 
 Check out https://www.meteor.com/install on how to get Meteor up and running on your system.
 
@@ -23,7 +22,7 @@ Any changes you make will update in real time! This makes development very fast,
 ### Code Style and Editors
 Please use 4 spaces for tabs. Set your editor to space 4 times when you hit Tab. Sublime should do this by default.
 
-Most of us use Sublime Text 3 with a few plugins. You can install plugins by using the [Sublime Package Control](https://packagecontrol.io/installation) plugin. 
+Most of us use Sublime Text 3 with a few plugins. You can install plugins by using the [Sublime Package Control](https://packagecontrol.io/installation) plugin.
 
 For HTML, CSS, and Javascript you should download the Html Prettify plugin.
 
@@ -36,7 +35,7 @@ For HTML, CSS, and Javascript you should download the Html Prettify plugin.
 You should also install Meteor Snippets
 * type `meteor`, select `Meteor Snippets`
 
-You can use LESS as a CSS replacement, as Meteor will compile less at run time. 
+You can use LESS as a CSS replacement, as Meteor will compile less at run time.
 
 
 
