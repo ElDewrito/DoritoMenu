@@ -126,7 +126,9 @@ function UpdateGameServerStats() {
 function GetMasterServerList() {
     //Lets get the master server list from github on startup
     //We might want to have this in a 10 minute loop or something, but for now this is fine
-    var url = "https://raw.githubusercontent.com/ElDewrito/ElDorito/master/dewrito.json";
+    
+	// Thanks TheDarkConduit for the heads up on URL change.
+	var url = "https://raw.githubusercontent.com/ElDewrito/ElDorito/master/dist/dewrito.json";
 
     try {
         var result = HTTP.call("GET", url, httpExtraOptions);
