@@ -30,19 +30,19 @@ Template.Splash.events = {
         ga('send', 'event', 'settings', 'change-menu', 'scooter');
 		window.location.href = "http://scooterpsu.github.io";
 	}
-}
+};
 
 Template.Home.rendered = function() {
 	(function(i, s, o, g, r, a, m) {
 		i['GoogleAnalyticsObject'] = r;
 		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
+			(i[r].q = i[r].q || []).push(arguments);
 		}, i[r].l = 1 * new Date();
 		a = s.createElement(o),
 		m = s.getElementsByTagName(o)[0];
 		a.async = 1;
 		a.src = g;
-		m.parentNode.insertBefore(a, m)
+		m.parentNode.insertBefore(a, m);
 	})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
 	ga('create', 'UA-65054935-2', 'auto');
@@ -73,9 +73,9 @@ Template.Home.rendered = function() {
 			var connectParam = getQueryVariable("connect");
 			var passParam = getQueryVariable("password");
 
-			if (connectParam != null) {
-				if (passParam == false) passParam = "";
-				if (/[^0-9.:]+/g.test(connectParam) == false && /[^0-9a-zA-Z.:]+/g.test(passParam) == false) {
+			if (connectParam !== null) {
+				if (passParam === false) passParam = "";
+				if (/[^0-9.:]+/g.test(connectParam) === false && /[^0-9a-zA-Z.:]+/g.test(passParam) === false) {
 					setTimeout(function() {
 						dewRcon.send("connect " + connectParam + " " + passParam, function(res) {
 							SnackBarOptions.text = res;
@@ -85,7 +85,7 @@ Template.Home.rendered = function() {
 				}
 			}
 		});
-	}
+	};
 
 	function getQueryVariable(variable) {
 		var query = window.location.search.substring(1);

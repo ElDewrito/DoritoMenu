@@ -14,7 +14,7 @@ var httpExtraOptions = {
 */
 var httpExtraOptions = {
     timeout: 30000
-}
+};
 
 function UpdateMasterServerList(DewJson) {
     var masterServers, gameServers = [];
@@ -126,24 +126,26 @@ function UpdateGameServerStats() {
 function GetMasterServerList() {
     //Lets get the master server list from github on startup
     //We might want to have this in a 10 minute loop or something, but for now this is fine
-    var url = "https://raw.githubusercontent.com/ElDewrito/ElDorito/master/dewrito.json";
+
+	// Thanks TheDarkConduit for the heads up on URL change.
+	var url = "https://raw.githubusercontent.com/ElDewrito/ElDorito/master/dist/dewrito.json";
 
     try {
         var result = HTTP.call("GET", url, httpExtraOptions);
+
+        if (result.statusCode == 200) {
+            console.log("response received.");
+            var DewJson = JSON.parse(result.content);
+            UpdateMasterServerList(DewJson.masterServers);
+        } else {
+            console.log("Response issue: ", result.statusCode);
+            var errorJson = JSON.parse(result.content);
+        }
     } catch (e) {
         console.log("Error getting master server list.. retrying in 3 seconds.\n" + e.message);
         Meteor.setTimeout(GetMasterServerList, 3000);
         return;
     }
-    if (result.statusCode == 200) {
-        console.log("response received.");
-        var DewJson = JSON.parse(result.content);
-        UpdateMasterServerList(DewJson.masterServers);
-    } else {
-        console.log("Response issue: ", result.statusCode);
-        var errorJson = JSON.parse(result.content);
-    }
-
 }
 
 Meteor.startup(function() {
@@ -161,7 +163,7 @@ Meteor.startup(function() {
         UpdateGameServerStats();
     }, 10000);
 
-    //Let's get the master server list every 10 minutes just in case it changed. 
+    //Let's get the master server list every 10 minutes just in case it changed.
     Meteor.setInterval(function() {
         GetMasterServerList();
     }, 600000);
@@ -175,7 +177,7 @@ Meteor.startup(function() {
     //         ip: "127.0.0.1",
     //         uid: "player.uuid" + i,
     //         netspeed: randomBetween(1000, 15000)
-    //     }        
+    //     }
 
     //     MatchmakingPlayers.insert(player);
     // }
@@ -184,15 +186,13 @@ Meteor.startup(function() {
             this.unblock();
             var data = ServerCookies.retrieve(this.connection);
             var cookies = data && data.cookies;
-            if (cookies["pass_hash"] == "" || cookies["session_id"] == "") {
+            if (cookies.pass_hash === "" || cookies.session_id === "") {
                 throw new Meteor.Error("HaloClickAPI", "Not logged into halo.click, your account will not store stats or be allowed to join official Halo.Click servers");
-                return;
             }
-            var click_user = Meteor.http.call("GET", "https://forum.halo.click/api/authenticate_session?session_password=" + cookies["pass_hash"] + "&session_id=" + cookies["session_id"] + "&api_key=" + HaloClickGoodies.APIKEY);
+            var click_user = Meteor.http.call("GET", "https://forum.halo.click/api/authenticate_session?session_password=" + cookies.pass_hash + "&session_id=" + cookies.session_id + "&api_key=" + HaloClickGoodies.APIKEY);
             var user = JSON.parse(click_user.content);
             if (typeof user.member_id === "undefined") {
                 throw new Meteor.Error("HaloClickAPI", "Not logged into halo.click, your account will not store stats or be allowed to join official Halo.Click servers");
-                return;
             }
             console.log("User Auth Request: " + user.name);
             var userAcct = Meteor.users.findOne({

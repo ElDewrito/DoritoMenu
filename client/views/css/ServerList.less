@@ -21,9 +21,9 @@
 	overflow-x: hidden;
 	overflow-y: scroll;
 	font-size: 25px;
-	
+
 	&.condensed-view {
-		.server-item { 
+		.server-item {
 			padding: 5px 20px;
 
 			&.filtered { padding: 0px 20px; }
@@ -34,12 +34,12 @@
 			}
 
 
-			.server-details { 
+			.server-details {
 				padding: 7px 0;
 				line-height: 1.1;
 
-				.second-row { 
-					font-size: 16px; 
+				.second-row {
+					font-size: 16px;
 					.fa { font-size: 15px; }
 					.flag { position: relative; bottom: 1px; }
 
@@ -57,14 +57,42 @@
 		}
 
 	}
+
+	&.condensed-view--mega {
+		.server-item {
+			padding: 4px 20px 0;
+			.server-details {
+				padding: 0px 0 8px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+				.name { font-size: 16px; }
+			}
+			.first-row {
+				width: 72%;
+				display: inline-block;
+    			vertical-align: top;
+			}
+			.second-row {
+				width: 27%;
+				display: inline-block;
+				text-align: right;
+    			vertical-align: top;
+			}
+			.server-extra {
+				.playercount {
+					font-size: 22px;
+					padding: 0;
+				}
+			}
+		}
+	}
 }
 
 .server-stats {
 	font-size: 23px;
 	padding: 8px 0px;
   	border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-	.server-controls { 
-		padding: 0 25px; 
+	.server-controls {
+		padding: 0 25px;
 		font-size: 20px;
 		display: inline-block;
 
@@ -84,7 +112,7 @@
 
 	}
 	.condensed-mode {
-		font-size: 20px; 
+		font-size: 20px;
 		padding: 5px 0;
 		&:hover {
 		  	color: #a1a1a1;
@@ -100,7 +128,7 @@
 	}
 }
 .server-item {
-	padding: 20px;	
+	padding: 20px;
   	transition: all 0.2s;
 
 	&:hover, &:active, &.active {
@@ -108,7 +136,7 @@
 		transition: all 0.2s;
 		.favourite-toggle { opacity: 1; transition: opacity 0.2s }
 	}
-	
+
 	&.filtered {
 		transition: all 0.5s;
 		border: none;
@@ -150,9 +178,9 @@
 			font-size: 26px;
 			font-weight: bold;
 		}
-	
-		.ping { 
-			font-size: 21px; 
+
+		.ping {
+			font-size: 21px;
 			&_bars {
 				position: relative;
 				bottom: 3px;
@@ -235,7 +263,7 @@
 		.favourite-toggle {
 		    background: url(/img/Star-Full.png) no-repeat 50% 50%;
 	    	background-size: contain;
-    	 	opacity: 1; transition: opacity 0.2s 
+    	 	opacity: 1; transition: opacity 0.2s
 	    }
 	}
 }

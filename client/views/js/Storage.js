@@ -4,7 +4,7 @@ dewStorage = (function () {
 
 	module.available = function () {
 		try {
-			return 'localStorage' in window && window['localStorage'] !== null;
+			return 'localStorage' in window && window.localStorage !== null;
 		} catch (e) {
 			return false;
 		}
@@ -20,12 +20,12 @@ dewStorage = (function () {
 	},
 
 	module.set = function (name, val) {
-		localStorage.setItem(name, val);            
+		localStorage.setItem(name, val);
 	},
 
 	module.setArray = function (name, val) {
 		var tmp = JSON.parse(dewStorage.get(name));
-		if (tmp == null) {
+		if (tmp === null) {
 			tmp = [];
 		}
 
@@ -36,7 +36,7 @@ dewStorage = (function () {
 
 	module.removeFromArray = function (name, val) {
 		var tmp = JSON.parse(dewStorage.get(name));
-		if (tmp == null) return false;
+		if (tmp === null) return false;
 
 		var i = tmp.indexOf(val);
 
@@ -78,11 +78,13 @@ dewStorage = (function () {
 		}
 	},
 
-	module.loadSettings = function () {
+	module.loadSettings = function() {
 		var isCondensed = dewStorage.get("condensed");
 
-		if (isCondensed == "false") {
+		if (isCondensed === "false") {
 			toggleCondensed(false);
+		} else {
+			$('.col-map-img').addClass("hide");
 		}
 
 		var pings = dewStorage.get("orderByPing");
@@ -92,7 +94,8 @@ dewStorage = (function () {
 		}
 
 		checkFavouriteList();
-	}
+	};
+
 	module.active = module.available();
 	return module;
 })();

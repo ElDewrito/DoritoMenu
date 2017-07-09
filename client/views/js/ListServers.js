@@ -6,14 +6,14 @@ Template.ListServers.helpers({
 			}
 		});
 	},
-	
+
 	serverCount: function() {
 		return GameServers.find().count();
 	},
 
 	playerCount: function() {
 		// Ugh, if we had mongo db aggregate we could so this so cleanly.
-		var servers = GameServers.find({ 'data.players': { $exists: true}, $where : "this.data.players.length > 0" }).fetch()
+		var servers = GameServers.find({ 'data.players': { $exists: true}, $where : "this.data.players.length > 0" }).fetch();
 		var totalPlayers = 0;
 
 		servers.forEach(function(server) {
@@ -25,7 +25,7 @@ Template.ListServers.helpers({
 	},
 
 	matchMap: function(map) {
-		GameServers.find({ 'data.map' : map }).fetch()
+		GameServers.find({ 'data.map' : map }).fetch();
 	},
 
 	equals: function(a, b) {
@@ -89,7 +89,7 @@ Template.ListServers.events = {
 			btnText = "Show Locked";
 		}
 		else  {
-			$(".list-wrapper .passworded").removeClass("filtered");   
+			$(".list-wrapper .passworded").removeClass("filtered");
 			btnText = "Hide Locked";
 		}
 
@@ -98,7 +98,7 @@ Template.ListServers.events = {
 
 	'click .condensed-mode' : function(e) {
 		ga('send', 'event', 'serverlist', 'toggle condensed mode');
-		toggleCondensed(true);    
+		toggleCondensed(true);
 	},
 
 	'click .quick-join' : function(e) {
@@ -138,7 +138,7 @@ Template.ListServers.events = {
 
 			$(".overlay[data-id=directConnect] .connect").on("click", function() {
 				var ip = $(".overlay[data-id=directConnect] #directConnectIP").val();
-				if (ip != null) {
+				if (ip !== null) {
 					dewRcon.send("connect " + ip + " ", function(res) {
 						SnackBarOptions.text = res;
 						MDSnackbars.show(SnackBarOptions);
@@ -152,7 +152,7 @@ Template.ListServers.events = {
 				$(".overlay[data-id=directConnect]").removeClass("active");
 			});
 		}
-	}
+	};
 
 	displayPasswordForm = function(server) {
 		$(".overlay[data-id=password]").addClass("active");
@@ -170,16 +170,23 @@ Template.ListServers.events = {
 		$(".overlay[data-id=password] .cancel").on("click", function() {
 			$(".overlay[data-id=password]").removeClass("active");
 		});
-	}
+	};
+
 	toggleCondensed = function (store) {
-		$("[data-id=gameservers] .list-wrapper").toggleClass("condensed-view");
+		$("[data-id=gameservers] .list-wrapper").toggleClass("condensed-view--mega");
 		$("[data-id=gameservers] .condensed-mode").toggleClass("active");
 
 		var isCondensed = $(".condensed-mode").hasClass("active");
 
+		if (isCondensed) {
+			$('.col-map-img').addClass("hide");
+		} else {
+			$('.col-map-img').removeClass("hide");
+		}
+
 		if (store)
 			dewStorage.set("condensed", isCondensed);
-	}
+	};
 
 	orderPing = function (store) {
 
@@ -188,32 +195,32 @@ Template.ListServers.events = {
 		orderByPingToggle = !orderByPingToggle;
 
 		if (orderByPingToggle)
-			orderPings();  
+			orderPings();
 
 		if (store)
 			dewStorage.set("orderByPing", orderByPingToggle);
-	}
+	};
 
 	setFavourite = function(ip) {
 		dewStorage.setArray("favourites", ip);
-	}
+	};
 
 	removeFavourite = function(ip) {
 		dewStorage.removeFromArray("favourites", ip);
-	}
+	};
 
 	checkFavourite = function(ip) {
 
 		var favouritesList = JSON.parse(dewStorage.get("favourites"));
 
-		if (favouritesList == null)
+		if (favouritesList === null)
 			return false;
 
 		if (favouritesList.indexOf(ip) >= 0)
 			return true;
 		else
 			return false;
-	}
+	};
 
 	checkFavouriteList = function() {
 		$(".server-item").each(function() {
@@ -221,7 +228,8 @@ Template.ListServers.events = {
 				$(this).addClass("favourite");
 			}
 		});
-	}
+	};
+
 	function updatePings() {
 		_.each(GameServers.find().fetch(), function(server) {
 			var startTime = Date.now(),
@@ -235,20 +243,22 @@ Template.ListServers.events = {
 				timeout: 5000,
 				success: function() {
 					endTime = Date.now();
-					ping = Math.round((endTime - startTime) * .45);
+					ping = Math.round((endTime - startTime) * 0.45);
 					Session.set("ping_" + hashServer, ping);
 				}
 			});
 		});
-	if (orderByPingToggle)
-		orderPings();
+
+		if (orderByPingToggle)
+			orderPings();
 	}
- Template.ListServers.rendered = function() {
-	//Lets check for pings when the server list is rendered
-	//Lets also re-check pings every 10 seconds from the client
-	updatePings();  
-	setInterval(function() {
-	   updatePings();
-	   checkFavouriteList();
-   }, 10000);
-}
+
+	 Template.ListServers.rendered = function() {
+		//Lets check for pings when the server list is rendered
+		//Lets also re-check pings every 10 seconds from the client
+			updatePings();
+			setInterval(function() {
+			   updatePings();
+			   checkFavouriteList();
+		   }, 10000);
+	};

@@ -8,7 +8,7 @@ StartRconConnection = function() {
         DisplayNotification("Connected to ElDewrito!");
         dewRconConnected = true;
         Session.set('dewRconConnected', true);
-        if (Meteor.userId() != null) {
+        if (Meteor.userId() !== null) {
             SetDewSettingsFromHaloClickAPI();
         } else {
             LoadDewStuff();
@@ -18,7 +18,7 @@ StartRconConnection = function() {
         dewRconConnected = false;
         Session.set('dewRconConnected', false);
         if (!dewRconConnected) {
-            if (DewRconPortIndex == 0) {
+            if (DewRconPortIndex === 0) {
                 DewRconPortIndex = 1;
                 snacking = 1;
                 StartRconConnection();
@@ -41,7 +41,7 @@ StartRconConnection = function() {
         dewRcon._cbFunction(message.data);
         dewRcon.lastMessage = message.data;
     };
-}
+};
 var DewRconPortIndex = 0;
 var DewRconPorts = [11764, 11776];
 dewRconHelper = function() {
@@ -59,8 +59,8 @@ dewRconHelper = function() {
         } catch (e) {
             DisplayNotification("Unable to communicate with Eldewrito. Is the game running?", true);
         }
-    }
-}
+    };
+};
 
 
 //TODO: make it so these don't have to be chained.. Darn CB Functions.
@@ -71,7 +71,7 @@ SetDewSettingsFromHaloClickAPI = function(cb) {
     dewRcon.send('Player.Name "' + Meteor.user().username + '"', function(cb) {
         LoadDewStuff();
     });
-}
+};
 LoadDewStuff = function() {
     //Lets get all the settings!
     dewRcon.send("help", function(res) {
@@ -89,12 +89,13 @@ LoadDewStuff = function() {
                     command: settingsPart1[0],
                     value: settingsPart1[1],
                     help: settingsHelp
-                }
+                };
                 GameSettings.insert(insertSetting);
 
                 switch (settingsPart1[0]) {
                     case 'Player.Name':
                         Session.set("Dew_Player_Name", settingsPart1[1]);
+                        break;
                     default:
                         //not implemented
                 }
@@ -115,4 +116,4 @@ LoadDewStuff = function() {
         if (menuSetting !== undefined)
             dewStorage.checkDefault(menuSetting);
     });
-}
+};

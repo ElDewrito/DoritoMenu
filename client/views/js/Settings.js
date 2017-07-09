@@ -1,4 +1,4 @@
-DEWMENU_LINK = 'http://dewmenu.click'
+var DEWMENU_LINK = 'http://dewmenu.click';
 
 Template.Settings.helpers({
     setting: function() {
@@ -30,4 +30,4 @@ Template.Settings.events = {
         dewStorage.clear();
         alert("Storage cleared");
     }
-}
+};

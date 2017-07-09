@@ -2,17 +2,18 @@
     <div class="overlay" data-id="gameservers">
         <div class="server-stats row">
             <div class="col-xs-12 col-lg-3">
-                <span class="global-stats"><strong>{{playerCount}}</strong> Players - <strong>{{serverCount}}</strong> Servers</span> 
+                <span class="global-stats"><strong>{{playerCount}}</strong> Players - <strong>{{serverCount}}</strong> Servers</span>
             </div>
             <div class="col-xs-12 col-lg-9">
                 <div class="server-controls"><span class="direct-connect">Direct Connect</span> <span class="quick-join">Quick Join</span> <span class="orderByPing"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Order By Ping</span> <span class="togglePassworded">Hide Locked</span></div>
                 <span class="condensed-mode active pull-right"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Condensed Mode</span>
             </div>
         </div>
-        <div class="list-wrapper condensed-view">
+        <div class="list-wrapper condensed-view condensed-view--mega">
             {{#each server}}
             <div class="row server-item {{#if data.passworded}} passworded{{/if}} {{#if equals data.numPlayers data.maxPlayers}} full{{/if}}" data-ip="{{ip}}">
-                <div class="col-xs-6 col-sm-2">
+
+                <div class="col-xs-6 col-sm-2 col-map-img">
                     <div class="server-image gametype-{{lower data.variantType}}">
                         <img src="/img/maps/{{lower data.mapFile}}.jpg" onError="this.onerror=null;this.src='/img/maps/no-image.png';" width="200" height="100" class="img-responsive"/>
                     </div>
@@ -24,8 +25,8 @@
 
                 <div class="col-xs-12 col-sm-pull-1 col-sm-9 server-details">
                     <div class="first-row">
-                        <span class="name">{{data.name}} 
-                        <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}}</span> 
+                        <span class="name">{{data.name}}
+                        <span class="gametype">{{data.variant}}</span> on <span class="map">{{data.map}}</span>
                         - by {{data.hostPlayer}}</span> <span class="status {{data.statsClass}}">{{data.stats}}</span> <span class="favourite-toggle"></span>
                     </div>
 
@@ -33,7 +34,7 @@
                         <!-- <img class="flag flag-{{lower geoIP.country}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" title="{{geoIP.country}} - {{geoIP.city}}" alt="{{geoIP.country}}" /> -->
                         <span class="ping">
                             {{{ getPingBars ip}}}
-                        </span> 
+                        </span>
                         <span class="eldewrito-version"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{data.eldewritoVersion}}</span>
                         <div class="server-config">
                             {{#if data.VoIP}}
@@ -46,7 +47,7 @@
                                 <i class="fa fa-user teams disabled" title="FFA Game"></i>
                             {{/if}}
 
-                            {{#if eq data.sprintEnabled "1"}} 
+                            {{#if eq data.sprintEnabled "1"}}
                                 {{#if eq data.sprintUnlimitedEnabled "1"}}
                                     <span class="unlimited-sprint"></span>
                                 {{else}}

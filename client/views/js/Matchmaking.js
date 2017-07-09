@@ -13,4 +13,4 @@ Template.Matchmaking.helpers({
 
 Template.Matchmaking.rendered = function() {
     console.log("Loaded");
-}
+};

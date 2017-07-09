@@ -34,7 +34,7 @@ Template.Lobby.helpers({
     },
 
     notNull : function (val) {
-        return (val != null && val !== undefined && val != "" && val !== " ");
+        return (val !== null && val !== undefined && val !== "" && val !== " ");
     },
 
     playerListInc : function() {
@@ -87,7 +87,7 @@ function orderByTeams() {
     var $players = $('.player-list-container .player-list li').detach();
 
     $red = $players.filter(function() {
-        if ($(this).attr("data-team") == 0) return true;
+        if ($(this).attr("data-team") === 0) return true;
     });
 
     $blue = $players.filter(function() {
@@ -102,7 +102,7 @@ function orderByTeams() {
 function updateTopPlayer(index) {
     var player = serverObj.data.players[index];
 
-    if (player == undefined || !player) {
+    if (typeof player === "undefined" || !player) {
         player = serverObj.data.players[0];
     }
 
@@ -128,7 +128,7 @@ function updateTopPlayer(index) {
             highlight: "#5AD3D1",
             label: "Deaths"
         }
-    ];  
+    ];
 
     var ctx = $("#lobbyChart").get(0).getContext("2d");
 
@@ -146,9 +146,9 @@ function updateTeamBars(players) {
     var redScore = 0;
     var blueScore = 0;
 
-    if (players == null || players == undefined) return false;
+    if (players === null || typeof players === "undefined") return false;
     _.each(players, function(player) {
-        if (player.team == 0) {
+        if (player.team === 0) {
             redScore += player.score;
         }
 
@@ -213,7 +213,7 @@ Template.Lobby.load = function(ipIn) {
     Chart.defaults.global.responsive = true;
     updateServer(ipIn);
     updateTopPlayer(0);
-    
+
     setTimeout(function() {
         if (serverObj.data.teams)
             orderByTeams();
@@ -229,7 +229,7 @@ Template.Lobby.load = function(ipIn) {
             updateTeamBars(serverObj.data.players);
         }
    }, 5000);
-}
+};
 
 Template.Lobby.events = {
     'click .connect': function(e) {
@@ -265,16 +265,16 @@ Template.Lobby.events = {
         var playerIndex = $(e.currentTarget).attr("data-index");
 
         if (playerIndex == activeIndex) {
-            $(".player-list li").removeClass("active-player");   
+            $(".player-list li").removeClass("active-player");
         }
         else {
-            $(".player-list li").removeClass("active-player");   
+            $(".player-list li").removeClass("active-player");
             $(e.currentTarget).addClass("active-player");
             activeIndex = playerIndex;
             updateTopPlayer(activeIndex);
         }
     }
-}
+};
 displayPasswordForm = function(server) {
     $(".overlay[data-id=password]").addClass("active");
 
@@ -291,4 +291,4 @@ displayPasswordForm = function(server) {
     $(".overlay[data-id=password] .cancel").on("click", function() {
         $(".overlay[data-id=password]").removeClass("active");
     });
-}
+};

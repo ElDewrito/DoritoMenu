@@ -11,14 +11,14 @@ Template.MOTD.rendered = function() {
                 if (data.active !== undefined && data.active) {
                     msg = "<strong>MOTD</strong> - " + data.author + ": " + data.message;
 
-                   if (checkMOTD(data.motdID) == false) {
+                   if (checkMOTD(data.motdID) === false) {
                         displayMOTD(data);
                    }
                 }
             }
-        });  
+        });
     });
-}
+};
 
 Template.MOTD.events = {
     'click .motd-splash .accept': function(e) {
@@ -28,11 +28,11 @@ Template.MOTD.events = {
 
         dewStorage.setArray("motd", motdId);
     }
-}
+};
 
 checkMOTD = function(id) {
     var motd = JSON.parse(dewStorage.get("motd"));
-    if (motd == null) return false;
+    if (motd === null) return false;
     if (motd.indexOf(id.toString()) >= 0)
         return true;
     else
@@ -45,4 +45,4 @@ displayMOTD  = function(data) {
 
     $(".motd-splash .motd-heading").html(data.heading);
     $(".motd-splash .motd-body").html(data.body);
-}
+};
