@@ -35,7 +35,7 @@ StartRconConnection = function() {
                 }, 9000);
             }
         }
-        console.error("WebSocket could not be established, check game is running");
+        // console.error("WebSocket could not be established, check game is running");
     };
     dewRcon.dewWebSocket.onmessage = function(message) {
         dewRcon._cbFunction(message.data);
@@ -46,20 +46,29 @@ var DewRconPortIndex = 0;
 var DewRconPorts = [11764, 11776];
 dewRconHelper = function() {
     window.WebSocket = window.WebSocket || window.MozWebSocket;
-    this.dewWebSocket = new WebSocket('ws://127.0.0.1:' + DewRconPorts[DewRconPortIndex], 'dew-rcon');
     this.lastMessage = "";
     this.lastCommand = "";
     this.open = false;
     this._cbFunction = {};
-    this.send = function(command, cb) {
-        try {
-            this._cbFunction = cb;
-            this.dewWebSocket.send(command);
-            this.lastCommand = command;
-        } catch (e) {
-            DisplayNotification("Unable to communicate with Eldewrito. Is the game running?", true);
-        }
-    };
+    try {
+        this.dewWebSocket = new WebSocket('ws://127.0.0.1:' + DewRconPorts[DewRconPortIndex], 'dew-rcon');
+
+        this.dewWebSocket.onerror = function (error) {
+            // console.log(error);
+        };
+        this.send = function(command, cb) {
+            try {
+                this._cbFunction = cb;1
+                this.dewWebSocket.send(command);
+                this.lastCommand = command;
+            } catch (e) {
+                DisplayNotification("Unable to communicate with Eldewrito. Is the game running?", true);
+            }
+        };
+    }
+    catch(e) {
+
+    }
 };
 
 
